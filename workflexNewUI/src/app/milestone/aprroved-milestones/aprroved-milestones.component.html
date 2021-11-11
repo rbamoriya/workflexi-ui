@@ -1,0 +1,270 @@
+<app-individualheader></app-individualheader>
+<div class="container">
+  <div class="row">
+
+    <div class="col-12 col-sm-3 col-md-3 col-lg-3">
+      <mat-card class="profilecard" *ngIf="milestoneData">
+        <mat-card-header class="flex-column">
+          <div mat-card-avatar class="avtrcard"><img style="border-radius: 50%;flex-shrink: 0;object-fit: cover;"
+              [src]="imageSrcData" alt="Profile photo" class="avtrcard mat-card-avatar" *ngIf="imageSrcData"></div>
+          <mat-card-title class="mt-3"
+            *ngIf="milestoneData && milestoneData.gigProcess && milestoneData.gigProcess.user">
+            {{milestoneData.gigProcess.user.name}}</mat-card-title>
+          <mat-card-title class="mt-3"
+            *ngIf="milestoneData && milestoneData.gigProcess && milestoneData.gigProcess.company">
+            {{milestoneData.gigProcess.company.companyName}}</mat-card-title>
+          <mat-card-subtitle *ngIf="milestoneData && milestoneData.gigProcess && milestoneData.gigProcess.user">
+            <ul>
+              <!-- <li>UX Designer</li> -->
+              <li>{{milestoneData.gigProcess.user.location}}</li>
+              <li><strong>Mob. : </strong> <span>{{milestoneData.gigProcess.user.mobile}}</span></li>
+              <li><strong>Email : </strong><span>{{milestoneData.gigProcess.user.email}}</span></li>
+            </ul>
+
+          </mat-card-subtitle>
+          <mat-card-subtitle *ngIf="milestoneData && milestoneData.gigProcess && milestoneData.gigProcess.company">
+            <ul>
+              <!-- <li>UX Designer</li> -->
+              <li>{{milestoneData.gigProcess.company.location}}</li>
+              <li><strong>City: </strong> <span>{{milestoneData.gigProcess.company.companyCity}}</span></li>
+              <li><strong>State: </strong> <span>{{milestoneData.gigProcess.company.companyState}}</span></li>
+              <li><strong>Address: </strong><span>{{milestoneData.gigProcess.company.companyAddress}}</span></li>
+            </ul>
+
+          </mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+    </div>
+
+    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 ">
+      <h3 *ngIf="providerName">Details for <b>{{providerName}}</b></h3>
+      <hr/>
+      <mat-tab-group class="milestone-tabs">
+        <mat-tab label="Approved Milestone">
+          <div class="d-flex justify-content-between heading"
+            *ngIf="milestoneData && milestoneData.approvedMilestones && milestoneData.approvedMilestones != null && milestoneData.approvedMilestones.length > 0 else notAvilable">
+            <h3 *ngIf="milestoneData"></h3>
+            <div class="project-timeline">
+              <mat-icon>date_range</mat-icon>
+              <h5>Duration:&nbsp;</h5>{{formatDate(milestoneData.startDate)}} to {{formatDate(milestoneData.endDate)}}
+            </div>
+          </div>
+
+          <ng-template #notAvilable>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" *ngIf="showApproveed == true">
+              <mat-card class="set-error d-flex align-items-center col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div style="margin-top: 0px"
+                  class="text-center alert alert-info1 col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  Milestone(s) not approved yet
+                </div>
+              </mat-card>
+            </div>
+          </ng-template>
+
+          <ng-template [ngIf]="milestoneData">
+
+            <mat-card class="example-card milestonecard"
+              *ngFor="let milestone of milestoneData.approvedMilestones ; index as i">
+              <!-- <mat-card class="example-card milestonecard" > -->
+              <mat-card-header>
+                <mat-card-title
+                  *ngIf="i < (milestoneData.approvedMilestones && milestoneData.approvedMilestones.length -1)">Task
+                  {{i + 1}}</mat-card-title>
+                <mat-card-title
+                  *ngIf="i == (milestoneData.approvedMilestones && milestoneData.approvedMilestones.length -1)">Final
+                  Task</mat-card-title>
+                <mat-card-subtitle class="mb-2">
+                  <ul class="mb-2">
+                    <li><strong>End Date:</strong> {{formatDate(milestone.endDate)}}</li>
+                    <li><strong>Amount:</strong> {{milestone.amount}}</li>
+                  </ul>
+                </mat-card-subtitle>
+
+              </mat-card-header>
+              <mat-card-content>
+                <p class="mb-0"><strong>Description:</strong></p>
+                <div [innerHTML]="createTrustedHtml(milestone.description)"></div>
+              </mat-card-content>
+
+              <mat-card-subtitle>
+                <div class="row">
+                  <div class="col-12 col-md-4"><strong>Gig Status:</strong> {{milestone.status | uppercase}} </div>
+                  <div class="col-12 col-md-4 mt-3 mt-md-0"> <strong>Payment Status: </strong>
+
+                    <span *ngIf="milestone.isPaid == 'true' else notPaid">
+                      <span class="badge badge-success" style="padding: .75em .4em; min-width: 80px;">Started</span>&nbsp;
+                      <span *ngIf="milestone.isDisbursed == 'true' else notDisbursed"
+                        class="badge badge-success" style="padding: .75em .4em; min-width: 80px;">Disbursed</span>
+                      <ng-template #notDisbursed>
+                        <span class="badge badge-primary cpointer"
+                          (click)="disburseForMilestone(milestone.uniqueId)" style="padding: .75em .4em; min-width: 80px;">Disburse</span>
+                        <!--ng-template #notDisPrimary>
+                          <span class="badge badge-primary" style="padding: .75em .4em; min-width: 80px;">Disburse</span>
+                        </ng-template-->
+                      </ng-template>
+                    </span>
+                    <ng-template #notPaid>
+                      <span class="badge badge-primary cpointer" style="padding: .75em .4em; min-width: 80px;"
+                        (click)="payForMilestone(milestone.uniqueId)">Start</span>
+                      <!--ng-template #notPrimary>
+                        <span class="badge badge-primary" style="padding: .75em .4em; min-width: 80px;">Start</span>
+                      </ng-template-->
+                    </ng-template>
+                  </div>
+                </div>
+              </mat-card-subtitle>
+            </mat-card>
+
+          </ng-template>
+          <div class="row">
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <div class="d-flex justify-content-between heading col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <mat-card *ngIf="userType == null || userType == ''"
+                  class="set-error d-flex align-items-center col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <div style="margin-top: 0px"
+                    class="text-center alert alert-danger col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    You are not authorized to access this milestone
+                  </div>
+                </mat-card>
+                <mat-card *ngIf="isMilestoneExist == 'false'"
+                  class="set-error d-flex align-items-center col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <div style="margin-top: 0px"
+                    class="text-center alert alert-info1 col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    Milestone(s) not created yet by the seeker
+                  </div>
+                </mat-card>
+              </div>
+            </div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+          </div>
+
+        </mat-tab>
+        <mat-tab label="Update milestone">
+          <div class="d-flex justify-content-between heading">
+            <div class="project-timeline w-100" *ngIf="milestoneData">
+              <span style="margin-bottom: 0.5rem;margin-right: 0.5rem;">
+                <button [disabled]="disableSubmitApprovalButton" mat-flat-button color="primary"
+                  (click)="addMilestoneRow()"> Add Milestone + </button>
+              </span>
+              <span style="margin-bottom: 0.5rem;margin-right: 0.5rem;">
+                <button [disabled]="disableSubmitApprovalButton || disableApprovalButton" mat-flat-button
+                  color="primary" (click)="sendForApproval()">Send For Approval</button>
+              </span>
+              <div class="project-timeline d-none d-md-flex">
+                <mat-icon>date_range</mat-icon>
+                <h5>Duration:&nbsp;</h5>{{formatDate(milestoneData.startDate)}} to {{formatDate(milestoneData.endDate)}}
+              </div>
+              <span *ngIf="(disableSubmitApprovalButton) else create"></span>
+              <ng-template #create>
+                <span style="color: #19bc9c" color="primary" class="mx-3 d-none d-md-flex"
+                  (click)="popupService.openEndDateChangeModal(milestoneData)">
+                  <mat-icon>create</mat-icon>
+                </span>
+              </ng-template>
+            </div>
+          </div>
+          <div class="project-timeline d-flex d-md-none" *ngIf="milestoneData">
+            <mat-icon>date_range</mat-icon>
+            <h5>Duration:&nbsp;</h5>{{formatDate(milestoneData.startDate)}} to {{formatDate(milestoneData.endDate)}}
+            <span *ngIf="(disableSubmitApprovalButton) else create"></span>
+            <ng-template #create>
+              <span style="color: #19bc9c" color="primary" class="mx-3"
+                (click)="popupService.openEndDateChangeModal(milestoneData)">
+                <mat-icon>create</mat-icon>
+              </span>
+            </ng-template>
+          </div>
+          <mat-card *ngIf="rejectReason" class="example-card milestonecard">
+            <mat-card-header>
+              <mat-card-title>Reject reason</mat-card-title>
+              <mat-card-subtitle>
+                <ul>
+                  <li>
+                    <p>{{rejectReason}}</p>
+                  </li>
+                </ul>
+              </mat-card-subtitle>
+            </mat-card-header>
+          </mat-card>
+
+          <ng-template [ngIf]="milestoneData">
+            <mat-card class="example-card milestonecard" *ngFor="let milestone of milestoneData.milestones;index as i">
+              <mat-card-header>
+                <mat-card-title *ngIf="i < (milestoneData.milestones && milestoneData.milestones.length -1)">Task
+                  {{i + 1}}</mat-card-title>
+                <mat-card-title *ngIf="i == (milestoneData.milestones && milestoneData.milestones.length -1)">Final Task
+                </mat-card-title>
+                <mat-card-subtitle class="mb-2">
+                  <ul class="mb-2">
+                    <li><strong>End Date:</strong> {{formatDate(milestone.endDate)}}</li>
+                    <li><strong>Amount:</strong> {{milestone.amount}}</li>
+                  </ul>
+                </mat-card-subtitle>
+                <ng-template [ngIf]="disableSubmitApprovalButton != true">
+                  <mat-menu #appMenu="matMenu">
+                    <button [disabled]="isPaidOrPastDated(milestone)" mat-menu-item
+                      (click)="openDialog(i)">Edit</button>
+                    <span *ngIf="milestoneData.milestones.length != i+1">
+                      <span
+                        *ngIf="(milestone.endDate != '' && approvalMilestoneEqualSavedMilestone == true && todaysDate > milestone.endDate) || (milestone.isPaid == 'true') else editableMilestoneDelete"></span>
+                      <ng-template #editableMilestoneDelete>
+                        <button [disabled]="isPaidOrPastDated(milestone)" mat-menu-item (click)="removeMilestone(i)">
+                          Delete</button>
+                      </ng-template>
+                    </span>
+                  </mat-menu>
+                  <button mat-icon-button [matMenuTriggerFor]="appMenu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                </ng-template>
+              </mat-card-header>
+              <mat-card-content>
+                <p class="mb-0"><strong>Description:</strong></p>
+                <div [innerHTML]="createTrustedHtml(milestone.description)">
+                </div>
+              </mat-card-content>
+            </mat-card>
+
+          </ng-template>
+          <div class="row">
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <div class="d-flex justify-content-between heading col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <mat-card *ngIf="userType == null || userType == ''"
+                  class="set-error d-flex align-items-center col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <div style="margin-top: 0px"
+                    class="text-center alert alert-danger col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    You are not authorized to access this milestone
+                  </div>
+                </mat-card>
+                <mat-card *ngIf="isMilestoneExist == 'false'"
+                  class="set-error d-flex align-items-center col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <div style="margin-top: 0px"
+                    class="text-center alert alert-info1 col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    Milestone(s) not created yet by the seeker
+                  </div>
+                </mat-card>
+              </div>
+            </div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+          </div>
+
+        </mat-tab>
+      </mat-tab-group>
+
+    </div>
+
+  </div>
+
+</div>
+
+<app-milestone-edit showClose="true" (editDone)="editDoneInPopUp()" (addCancel)="addCancelInPopUp()"
+  (onClose)="popupService.closeMilestoneEditModal()" #milestoneEditModal>
+  {{popupService.bindMilestoneEditModal(milestoneEditModal)}}
+</app-milestone-edit>
+
+<app-end-date-change showClose="true" (editDone)="editDoneInPopUp()" (onClose)="popupService.closeEndDateChangeModal()"
+  #endDateChangeModal>
+  {{popupService.bindEndDateChangeModal(endDateChangeModal)}}
+</app-end-date-change>

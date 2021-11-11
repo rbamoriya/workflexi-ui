@@ -1,0 +1,308 @@
+<app-header></app-header>
+
+  <div class="hero-section container">
+    <div id="content-part">
+      <h2>Hiring Made Easy & Simple</h2>
+      <h3>Engage with talents across 100s of skillsets and 1000s of profiles</h3>
+      <ul class="hirer-benefits">
+          <li><img src="/assets/images/list-img.jpg"/>Zero Sign-up Charge!</li>
+          <li><img src="/assets/images/list-img.jpg"/>Zero Monthly Charge!</li>
+          <li><img src="/assets/images/list-img.jpg"/>Zero Yearly Charge!</li>
+      </ul>
+    </div>
+    <div id="form-part" *ngIf="registrationForm">
+      <h2>Hire Now</h2>
+      <hr>
+      <form [formGroup]="registrationForm">
+        <div class="form-group">
+          <label>Name <span>*</span> </label>
+          <input type="text" class="form-control" formControlName="name" required
+            placeholder="Eg. John Doe">
+          <div class="error" *ngIf="registrationForm.get('name').touched && !registrationForm.get('name').valid"> Name is required</div>
+        </div>
+        <div class="form-group">
+          <label>Mobile <span>*</span> </label>
+          <input name="mobile" type="text" class="form-control" formControlName="mobile"
+            placeholder="Enter 10 digits valid mobile number">
+          <div class="error" *ngIf="registrationForm.get('mobile').touched && !registrationForm.get('mobile').valid"> Mobile is required</div>
+        </div>
+        <div class="form-group">
+          <label>Email <span>*</span> </label>
+          <input name="email" type="email" class="form-control" formControlName="email"
+            placeholder="Eg. yourmail@domain.com">
+          <div class="error" *ngIf="registrationForm.get('email').touched && !registrationForm.get('email').valid"> Email is required</div>
+          <!-- <div class="error" *ngIf="registrationForm.get('email').hasError('duplicate')">This Email has already been used</div> -->
+        </div>
+        <div class="form-group">
+            <label>Gender <span>*</span> </label>
+            <div class="gender">
+              <div class="icon male "><a class="btn btn-outline-light" (click)="selectGender('Male')" [ngClass]="{'active': registrationForm.get('gender').value == 'Male'}"><img
+                    src="https://img.icons8.com/android/24/000000/male.png" /></a>Male</div>
+              <div class="icon female"><a class="btn btn-outline-light" (click)="selectGender('FeMale')" [ngClass]="{'active': registrationForm.get('gender').value == 'FeMale'}"><img
+                    src="https://img.icons8.com/android/24/000000/female.png" /></a>Female</div>
+              <div class="icon others"><a class="btn btn-outline-light" (click)="selectGender('Other')" [ngClass]="{'active': registrationForm.get('gender').value == 'Other'}"><img
+                    src="https://img.icons8.com/windows/32/000000/gender-equality.png" /></a>Other</div>
+            </div>
+          </div>
+          <div class="form-group" style="display:flex; flex-direction: column">
+            <label>Location <span>*</span> </label>
+            <input class="form-control" matInput matGoogleMapsAutocomplete
+            (onAutocompleteSelected)="onAutocompleteSelected($event)"
+             placeholder="Eg. Bangalore" formControlName="locationPreferences" required>
+        </div>
+        <div class="form-group">
+          <label>Looking for skill <span>*</span> </label>
+          <ng-multiselect-dropdown style="border:none !important;"
+                                [placeholder]="'Select Skill'"
+                                [data]="skillList"
+                                [settings]="dropdownSettings"
+                                formControlName="skill" required>
+                            </ng-multiselect-dropdown>
+        </div>
+        <div class="form-group">
+            <label>Minimum Experience (in Years) <span>*</span> </label>
+            <input name="mobile" type="text" class="form-control" formControlName="totalExperienceInYears"
+              placeholder="Eg. 4">
+            <div class="error" *ngIf="registrationForm.get('totalExperienceInYears').touched && !registrationForm.get('totalExperienceInYears').valid"> Minimum Experience is required</div>
+          </div>
+          <div class="form-group">
+            <label>Maximum Experience (in Years) <span>*</span> </label>
+            <input name="mobile" type="text" class="form-control" formControlName="maximumExperienceInYears"
+              placeholder="Eg. 8">
+            <div class="error" *ngIf="registrationForm.get('maximumExperienceInYears').touched && !registrationForm.get('maximumExperienceInYears').valid"> Maximum Experience is required</div>
+          </div>
+          <div class="form-group">
+            <label>Engagement Period (in Months) <span>*</span> </label>
+            <input name="mobile" type="text" class="form-control" formControlName="engagementPeriod"
+              placeholder="Eg. 3">
+            <div class="error" *ngIf="registrationForm.get('engagementPeriod').touched && !registrationForm.get('engagementPeriod').valid"> Engagement Period is required</div>
+          </div>
+          <div class="form-group">
+            <label>Remarks (within 250 characters) <span>*</span> </label>
+            <textarea name="mobile" type="text" class="form-control" formControlName="remarks"
+              placeholder="Describe your requirement"></textarea>
+            <div class="error" *ngIf="registrationForm.get('remarks').touched && !registrationForm.get('remarks').valid"> Remarks is required</div>
+          </div>
+        <button id="hirer-registration" data-toggle="modal" class="btn submit" (click)="submit()" [disabled]="!registrationForm.valid" type="submit">
+          Submit
+        </button>
+        <a [routerLinkActive]="'active'" [routerLink]="['/auth/login']"> Already have an account ? <span> Login</span></a>
+      </form>
+    </div>
+
+  </div>
+
+
+    <!-- Start about us -->
+    <div class="aboutus">
+      <div class="container">
+        <div class="row align-items-center">
+  
+          <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+            <div class="video">
+              <video controls class="w-100 card">
+                <source src="/assets/videos/intro.mp4" type="video/mp4">
+              </video>
+              <!-- <div class="youtube-btn">
+                <mat-icon>play_arrow</mat-icon>
+              </div> -->
+            </div>
+          </div>
+  
+          <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+            <h2>What We Do</h2>
+            <p>We are a platform for gigs. Gigs are quick short-term jobs that help you earn money. Our gigs are
+              quick and remunerative.
+              Could vary from 1 day gig to 1 year gig.</p>
+  
+            <p>We offer peer-to-peer, employer-to-employee or business-to-business gigs. Look for a skill ->
+              Engage with
+              them -> Pay, get your work done.</p>
+            <h2>What makes us unique</h2>
+            <p>We are India’s only platform to offer gigs across different verticals. Gigs could be contractual or
+              freelancing in nature.</p>
+  
+            <p>We eliminate the concept of a ‘Resume’. Instead we have a 30sec video of a gig worker showcasing his/her
+              skill.</p>
+            <p>Through a single log in, you can achieve four different objectives:</p>
+            <ul>
+              <li>Operate as an individual <b>gig-worker</b></li>
+              <li>Operate as a company <b>gig-seeker</b></li>
+              <li>Operate as an individual <b>hirer</b></li>
+              <li>Operate as a company <b>hirer</b></li>
+            </ul>
+          </div>
+  
+  
+        </div>
+  
+      </div>
+    </div>
+    <!-- </div> -->
+    <!-- end of about us -->
+    <!-- Trends start here -->
+    <div class="trends">
+      <div class="container">
+        <h1 class="">Trend is Growing</h1>
+        <div class="row">
+          <div class="col-12 col-sm-4 col-md-4 col-lg-4 text-center">
+            <h3 class="text-center text-green">280+</h3>
+            <p>Companies</p>
+          </div>
+          <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+            <h3 class="text-center text-green">34520+</h3>
+            <p>Profiles</p>
+          </div>
+          <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+            <h3 class="text-center text-green">1252+</h3>
+            <p>Gigs</p>
+          </div>
+  
+        </div>
+  
+  
+      </div>
+    </div>
+  
+    <!-- </div> -->
+    <!-- Trends end here -->
+  
+    <!-- Testimonial start here -->
+  
+    <div class="testimonial">
+      <div class="container-fluid" style="border: 3px solid #19669e;">
+        <div class="row">
+          <div class="col-md-6 left-bg p-5">
+            <h1 class="my-4 my-md-0"><span>Success Stories</span></h1>
+          </div>
+          <div class="col-md-6 right-sec p-5">
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <owl-carousel-o [options]="customOptions">
+                    <ng-template carouselSlide dotContent="<img src='/assets/images/002.jpeg'>">
+                      <div class="slide">
+                        <p class="mb-5">Workflexi is one of our recruitment partners at the moment who
+                          helped our
+                          company close some of our ambitious recruitment needs. Workflexi provided us
+                          with good talents for our immediate projects. I found the Workflexi team to
+                          be dedicated and engaged in the various recruitment drive we had together
+                          worked on and would welcome the opportunity to work with the team again.</p>
+                        <h3 class="text-center ">Amit Anand </h3>
+                        <p class="text-center">Co- Founder at Vedantu Innovations</p>
+                      </div>
+                    </ng-template>
+                    <ng-template carouselSlide dotContent="<img src='/assets/images/003.jpg'>">
+                      <div class="slide">
+  
+                        <p class="mb-5">
+                          When every career decision you have made since high school stands out, you get used to taking
+                          chances and thanks to Workflexi.in who helped me land with a job that takes me one step closer
+                          to my dream of becoming a writer! I am a Knowledge Management professional with an MBA degree in
+                          Marketing and HR - almost minimal experience in Content Writing (excluding the occasional
+                          opportunities as a part of the work), it has been a lot difficult to start afresh and reach the
+                          interview stage. Geethu, from Workflexi has been immensely helpful in making this possible!!</p>
+                        <h3 class="text-center ">Arushi Gupta
+                        </h3>
+                        <p class="text-center">Senior Content Associate</p>
+                      </div>
+                    </ng-template>
+                    <ng-template carouselSlide
+                      dotContent="<img src='https://www.pphfoundation.ca/wp-content/uploads/2018/05/default-avatar.png'>">
+                      <div class="slide">
+  
+                        <p class="mb-5">When I heard about workflexi and its unique product, I was skeptical. Lancelot
+                          Technology always believe in innovation and we try to implement something new and unique to
+                          empower our employees internally and externally. As a staffing company we believe our employees
+                          are our key strength and safe guarding them with job security is our at most priority. Workflexi
+                          provides contract employees with job security by assuring them one month of Basic Pay, which is
+                          phenomenal considering the future of workforce in India is going to be on contract. Lancelot
+                          Technology looks forward for a great association in the months and years to come.</p>
+                        <h3 class="text-center ">Mohan Gowda
+                        </h3>
+                        <p class="text-center">CEO at Lancelot Technology</p>
+                      </div>
+                    </ng-template>
+                    <ng-template carouselSlide dotContent="<img src='/assets/images/005.jpg'>">
+                      <div class="slide">
+  
+                        <p class="mb-5">I Ankit Seth have immensely benefited from the team of Workflexi . They have not
+                          only guided me but they helped me in getting on to the right path in life . I am indebted to
+                          them & would definitely recommend them to all the job seekers around . Get in touch with them
+                          and kick-start your career . Cheers Workflexi team!</p>
+                        <h3 class="text-center ">Ankit Seth
+                        </h3>
+                        <p class="text-center">Academic Counselor </p>
+                      </div>
+                    </ng-template>
+                    <ng-template carouselSlide dotContent="<img src='/assets/images/004.jpeg'>">
+                      <div class="slide">
+  
+                        <p class="mb-5">We used workFlexi to source high-end design talent for KRACKIN and found the team
+                          to be extremely responsive and co-operative. We were able to close on good candidates within
+                          just 48 hours of posting the requirements. Wishing the team all success and more business</p>
+                        <h3 class="text-center ">Kiran GR
+  
+                        </h3>
+                        <p class="text-center">Co-Founder at KRACKIN
+                        </p>
+                      </div>
+                    </ng-template>
+                    <ng-template carouselSlide dotContent="<img src='/assets/images/006.jpeg'>">
+                      <div class="slide">
+  
+                        <p class="mb-5">Workflexi is an amazing platform for people on the job hunt for ... well getting
+                          one! Whether it be freelancing opportunities or contractual jobs, if you got the skills they
+                          hook you up. I got a job through them within a couple of weeks of quitting my previous job. And
+                          the founders are cool too. Many thanks to Workflexi!</p>
+                        <h3 class="text-center ">Bharat Ramakrishna
+  
+  
+                        </h3>
+                        <p class="text-center">Senior Manager of Digital Content Marketing
+  
+                        </p>
+                      </div>
+                    </ng-template>
+                    <ng-template carouselSlide dotContent="<img src='/assets/images/001.jpg'>">
+                      <div class="slide">
+  
+                        <p class="mb-5">Many thanks to workflexi. Geetha has an awesome concept for professionals who can
+                          have the best of both worlds - a fulfilling career & ample time to pursue one's interests. With
+                          10+ years of experience, I was looking for a job that did not require me to be in office
+                          full-time and also gave me enough time to pursue my interests. Workflexi did just that. Now, I
+                          have a dream job where I have to work for only two days in a week.</p>
+                        <h3 class="text-center ">Revati A S
+  
+                        </h3>
+                        <p class="text-center">Digital Marketing Professional
+  
+                        </p>
+                      </div>
+                    </ng-template>
+                  </owl-carousel-o>
+                </div>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Testimonial end here -->
+  
+  
+    <!-- Join start here -->
+    <!--div class="join mt-5">
+      <div class="container">
+          <h1> Client Satisfaction Is Our Top Priority</h1>
+          <p>Clients are asked to rate developer’s performance on three factors</p>
+          <div class="button mt-5">
+              <button mat-flat-button color="primary">Join for Free </button>
+          </div>
+      </div>
+  
+  </div-->
+    <!-- Join end here -->
+  
+    <app-footer></app-footer>

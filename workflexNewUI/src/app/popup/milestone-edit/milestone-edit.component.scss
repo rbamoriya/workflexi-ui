@@ -1,0 +1,34 @@
+.mat-dialog-title{
+    background-image: -webkit-gradient(linear,left top,right top,from(#1abc9c),to(#087dc3))!important;
+    background-image: linear-gradient(to right, #1abc9c, #087dc3) !important;
+    color: #fff;
+    text-align: left;
+    margin: -1rem -1rem 0; 
+    // width: calc(100% + 50px);
+    padding: 15px;
+    margin-bottom: 35px;
+}
+button + button{
+    margin-left: 20px;
+}
+editor{
+    margin-bottom: 20px;
+}
+.mat-form-field{
+    width: 100%;
+}
+
+.modal-dialog {
+    margin: auto !important;
+    float: none !important;
+    height: auto !important;
+}
+
+.modal-body{
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-overlay-container {
+    position: fixed;
+    z-index: 1050 !important;
+}

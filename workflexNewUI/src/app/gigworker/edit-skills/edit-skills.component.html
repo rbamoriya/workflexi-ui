@@ -1,0 +1,143 @@
+<div class="container-fluid bg">
+  <div class="row">
+    <div class="col-12 col-md-2 col-lg-2">
+      <div class="sideleft">
+        <app-ind-edit-skill-sidenav [id]="id"></app-ind-edit-skill-sidenav>
+      </div>
+    </div>
+    <div class="col-12  col-md-10 col-lg-10">
+      <div class="card ml-md-5 ml-0 px-2 px-md-1">
+        <form (ngSubmit)="submit()" [formGroup]="basicInfoForm">
+          <mat-toolbar class="trasnparent">
+            <mat-toolbar-row>
+              <span class="example-spacer"></span>
+              Having trouble? &nbsp;<a href="#"> Get Help</a>
+            </mat-toolbar-row>
+          </mat-toolbar>
+          <div class="row p-0">
+            <div class="infoarea ml-4 mr-2 p-0">
+              <h3 *ngIf="!new">Update your Skill & Experience</h3>
+              <h3 *ngIf="new">Add your Skill & Experience </h3>
+            </div>
+            <div class="row pl-2 ">
+              <div class="col-12 col-sm-12 col-md-7 col-lg-7 pl-4 pl-md-5 ">
+                <div class=" infoarea-1 px-3 px-md-1">
+                  <p> Please upload a 30sec video, giving a short bio. It should cover your skill, experience, location
+                    and how you can value add. Make it as creative as possible.
+                  </p>
+                  <p>Answer these 3 questions.</p>
+                  <ul>
+                    <li>
+                      <p> One skill that you are good at, experience</p>
+                    </li>
+                    <li>
+                      <p>What kind of gig interests you</p>
+                    </li>
+                    <li>
+                      <p>Wow us with what you can bring to the table</p>
+                    </li>
+                  </ul>
+                  <p>Showcase your work, if possible.</p>
+                </div>
+              </div>
+
+              <div class="col-12 col-sm-12 col-md-4 col-lg-4 "
+                *ngIf="pDetails != null && pDetails.isApproved != null && pDetails.isApproved && providerDetails.document != undefined else sampleVideo">
+                <video [src]="videoSrcUrl" width="320" height="200" controls class="card"></video>
+              </div>
+
+              <ng-template #sampleVideo>
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4 pl-3 pl-md-1 ">
+                  <div class=" px-4 px-md-1">
+                    <video src="assets/images/introduction.mp4" width="340" height="250" class="card" controls></video>
+                    <p *ngIf="providerDetails != null && providerDetails.document != undefined && providerDetails.document != null && providerDetails.isApproved != true"
+                      class="alert alert-green" style="color:#3f51b5;">Your video upload is not yet approved</p>
+                  </div>
+                </div>
+              </ng-template>
+
+            </div>
+            <div class="col-12 col-sm-9 col-md-9 col-lg-9">
+              <div class="infoarea mx-2 px-md-4">
+
+                <p>Fill your details before you explore page</p>
+                <h6>Describe your expertise<sup>*</sup></h6>
+                <mat-form-field style="border:none !important;" appearance="outline" floatLabel="never">
+
+                  <input style="border:none !important;" matInput placeholder="Ex. Backed Devloper"
+                    [ngClass]="{'form-submitted': formSubmitted}" formControlName="title" required>
+                </mat-form-field>
+                <h6>Upload an instruction video to showcase your skill(max size 50mb)<sup>*</sup></h6>
+                <video [src]="url" *ngIf="format==='video' && url" width="350" height="200" class="card" controls></video>
+                <input id="video-file" style="margin-bottom: 20px;margin-top: 20px;" type='file'
+                  accept="video/mp4, video/mov" (change)="onSelectFile($event)" />
+
+                <h6>Choose your skill<sup>*</sup></h6>
+                <ng-multiselect-dropdown style="border:none !important;" [placeholder]="'Select Skill'"
+                  [data]="skillList" [disabled]="disabled" [settings]="dropdownSettings"
+                  [ngClass]="{'form-submitted': formSubmitted}" formControlName="skill" required>
+                </ng-multiselect-dropdown>
+                <div class="row" style="margin-top: 20px;">
+
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <h6>Total Experience (in year)</h6>
+                    <mat-form-field style="border:none !important;" appearance="outline" floatLabel="never">
+
+                      <input style="border:none !important;" matInput placeholder="Ex.5"
+                        formControlName="totalExperienceInYears" type="number">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <h6>Total Experience (in Month)</h6>
+                    <mat-form-field style="border:none !important;" appearance="outline" floatLabel="never">
+
+                      <input style="border:none !important;" matInput placeholder="Ex.06"
+                        formControlName="totalExperienceInMonths" type="number">
+                    </mat-form-field>
+                  </div>
+
+                </div>
+                <div class="row">
+
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <h6>Remuneration Type<sup>*</sup></h6>
+                    <ng-multiselect-dropdown style="border:none !important;" [placeholder]="'Select Remuneration Type'"
+                      [data]="rnumarationType" [disabled]="disabled" [settings]="dropdownSettings"
+                      [ngClass]="{'form-submitted': formSubmitted}" formControlName="remunerationType" required>
+                    </ng-multiselect-dropdown>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <h6>Expected Remuneration(in INR)<sup>*</sup></h6>
+                    <mat-form-field style="border:none !important;" appearance="outline" floatLabel="never">
+
+                      <input style="border:none !important;" matInput placeholder="Ex.600" type="number"
+                        [ngClass]="{'form-submitted': formSubmitted}" formControlName="remuneration" required>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+              <div class="bottom-part mx-2 px-md-4">
+                <br>
+                <h6>Short description about yourself(within 250 characters)<sup>*</sup></h6>
+                <mat-form-field style="border:none !important;" appearance="outline" floatLabel="never">
+                  <textarea style="border:none !important;" matInput name="" id="" cols="30" rows="10"
+                    [ngClass]="{'form-submitted': formSubmitted}" formControlName="descriptions" required></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div class="bottom-part d-flex justify-content-between">
+                <button mat-flat-button color="primary" type="submit">Update</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <button class="selectSkill" id="selectSkill" type="submit">Next</button>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner type="ball-clip-rotate-multiple" size="medium"></ngx-spinner>

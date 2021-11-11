@@ -1,0 +1,86 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>Workflexi User List</h2>
+            <!-- <div class="col-md-12" *ngIf="userList">
+                <table class="table-striped table">
+                    <thead class="">
+                    <tr>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Mobile</th>
+                        <th>Email</th>
+                        <th>Email Verified</th>
+                        <th>Location</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of userList | paginate: {itemsPerPage:10, currentPage :p}">
+                            <td>{{user.name}}</td>
+                            <td>{{user.gender}}</td>
+                            <td>{{user.mobile}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.isEmailVerified}}</td>
+                            <td>{{user.location}}</td>
+                            <td>
+                                <button mat-stroked-button class="mat-flat-button mat-button-base mat-primary" 
+                                color="primary" (click)="navigateDetail(user.id)" >Detail</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pagination-controls (pageChange)="p=$event"></pagination-controls>
+            </div> -->
+            <div class="col-md-12">
+                <div class="example-header">
+                    <mat-form-field class="float-left">
+                      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                    </mat-form-field>
+                </div>
+                <table mat-table [dataSource]="dataSource" matSort class="table-striped table mat-elevation-z8 font">
+                    <!-- <ng-container [matColumnDef]="coloumnName" *ngFor="let coloumnName of tableColumns">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> {{coloumnName | uppercase}} </th>
+                        <td class="text-left" mat-cell *matCellDef="let element"> {{element[coloumnName]}} </td>
+                    </ng-container> -->
+
+                        <ng-container matColumnDef="name">
+                            <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                            <td class="text-left data-cell" mat-cell *matCellDef="let element"> {{element.name}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="gender">
+                            <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Gender </th>
+                            <td class="text-left data-cell " mat-cell *matCellDef="let element"> {{element.gender}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="mobile">
+                            <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Mobile </th>
+                            <td class="text-left data-cell" mat-cell *matCellDef="let element"> {{element.mobile}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="email">
+                            <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                            <td class="text-left data-cell" mat-cell *matCellDef="let element"> {{element.email}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="isEmailVerified">
+                            <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Email verified </th>
+                            <td class="text-left data-cell" mat-cell *matCellDef="let element"> {{element.isEmailVerified}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="location">
+                            <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Location </th>
+                            <td class="text-left data-cell" mat-cell *matCellDef="let element"> {{element.location}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="action">
+                            <th class="text-left" mat-header-cell *matHeaderCellDef> Action </th>
+                            <td class="text-left data-cell" mat-cell *matCellDef="let element">
+                                <button mat-raised-button color="primary" (click)="navigateDetail(element.id)">Details</button>
+                            </td>
+                          </ng-container>
+                      
+                        <tr class="pt-2" mat-header-row *matHeaderRowDef="tableColumns"></tr>
+                        <tr class="pt-2" mat-row *matRowDef="let row; columns: tableColumns;"></tr>
+                </table>
+                <mat-paginator class="mat-elevation-z8" #paginator [pageSizeOptions]="pageList" showFirstLastButtons></mat-paginator>
+
+            </div>
+        </div>
+    </div>
+</div>

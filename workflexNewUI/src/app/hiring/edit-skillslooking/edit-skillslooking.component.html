@@ -1,0 +1,84 @@
+<div class="container-fluid bg">
+    <div class="row">
+        <div class="col-12 col-sm-2 col-md-2 col-lg-2">
+            <div class="sideleft">
+                <app-ind-edit-skillooking [id]="id"></app-ind-edit-skillooking>
+            </div>
+        </div>
+        <div style="border:none !important;" class="col-12 col-sm-10 col-md-10 col-lg-10  ">
+            <div class="card ml-md-5 ml-0 px-2 px-md-1">
+            <form (ngSubmit)="submit($event)" [formGroup]="basicInfoForm">
+                <mat-toolbar class="trasnparent">
+                    <mat-toolbar-row>
+                        <span class="example-spacer"></span>
+                        Having trouble? &nbsp;<a href="#"> Get Help</a>
+                    </mat-toolbar-row>
+                </mat-toolbar>
+                <div class="row">
+                    <div class="col-12 col-sm-9 col-md-9 col-lg-9">
+                        <div class="infoarea">
+                            <h3>Skill Looking For</h3>
+
+                            <h6>Looking for skill<sup>*</sup></h6>
+
+                            <ng-multiselect-dropdown *ngIf="skillList" style="border:none !important;"
+                                [placeholder]="'Select Skill'"
+                                [data]="skillList"
+                                [disabled]="disabled"
+                                [settings]="dropdownSettings"
+                                [ngClass]="{'form-submitted': formSubmitted}" formControlName="skill" required>
+                            </ng-multiselect-dropdown>
+                            <h6 style="margin-top: 20px;">Location Preference<sup>*</sup></h6>
+                            <mat-form-field style="border:none !important;" appearance="outline" floatLabel="never">
+
+                                <input style="border:none !important;" matInput matGoogleMapsAutocomplete 
+                                (onAutocompleteSelected)="onAutocompleteSelected($event)" placeholder="Ex. Australia" [ngClass]="{'form-submitted': formSubmitted}" formControlName="locationPreferences" required>
+                            </mat-form-field>
+                            <h6>Minimum Experience(in Years)<sup>*</sup></h6>
+                            <mat-form-field style="border:none !important;" appearance="outline" floatLabel="never">
+
+                                <input type="number" style="border:none !important;" matInput placeholder="Ex. 5" [ngClass]="{'form-submitted': formSubmitted}" formControlName="totalExperienceInYears" required>
+                            </mat-form-field>
+                            <h6>Maximum Experience(in Years)</h6>
+                            <mat-form-field style="border:none !important;" appearance="outline" floatLabel="never">
+
+                                <input type="number" style="border:none !important;" matInput placeholder="Ex. 10" [ngClass]="{'form-submitted': formSubmitted}" formControlName="maximumExperienceInYears">
+                                <mat-error *ngIf="basicInfoForm.get('maximumExperienceInYears').invalid">Maximum experience should be greater than minimum experience</mat-error>
+                            </mat-form-field>
+                            <h6>Engagement Period(in Months)<sup>*</sup></h6>
+                            <mat-form-field style="border:none !important;" appearance="outline" floatLabel="never">
+
+                                <input type="number"  style="border:none !important;" matInput placeholder="Ex. 4" [ngClass]="{'form-submitted': formSubmitted}" formControlName="engagementPeriod" required>
+                            </mat-form-field>
+
+                        </div>
+                        <div class="bottom-part">
+                            <br>
+                            <h6>Remarks(within 250 characters)<sup>*</sup></h6>
+                            <mat-form-field style="border:none !important;" appearance="outline" floatLabel="never">
+                                <textarea style="border:none !important;" matInput name="" id="" cols="30" rows="10" [ngClass]="{'form-submitted': formSubmitted}" formControlName="remarks" required></textarea>
+                            </mat-form-field>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="bottom-part d-flex justify-content-end">
+                            <span></span>
+                            <button mat-stroked-button *ngIf="id == undefined" (click)="skipAddSkills()" color="primary" type="button">
+                                <span> Skip</span>
+                             </button>
+                            <button mat-flat-button color="primary" type="submit">
+                               <span *ngIf="id == undefined"> Add</span>
+                               <span *ngIf="id != undefined"> Update</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+            <button class="selectSkill" id="selectSkill" type="submit">Next</button>
+        </div>
+    </div>
+</div>

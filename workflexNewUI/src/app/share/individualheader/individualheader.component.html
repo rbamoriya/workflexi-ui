@@ -1,0 +1,108 @@
+<div class="header">
+  <div class="container">
+    <mat-toolbar>
+      <div class="logo">
+        <a href="javascript:void(0)" (click)="dashboard()"><img src="assets/images/logo.png" style="width: 130px;"></a>
+        <button mat-icon-button aria-label="Mobile Navigation" (click)=toggleDisplayDiv() [ngClass]="hide"
+          class="d-block d-sm-none">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+
+      <div class="nv d-none d-sm-block">
+        <button mat-flat-button color="primary" [routerLink]="['/hiring/dashboard']">Dashboard</button>
+        <a mat-button class="switchButton mt-2" color="primary">
+          Individual&nbsp;<ui-switch size="small" color="#1ABC9C" defaultBgColor="#455a64" (change)="changeStatus()"
+            [checked]="sharedService.isCompanySelected == true" class="toggle"></ui-switch>&nbsp;Company
+        </a>
+        <div class="searchbox">
+          <input [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}" type="text" placeholder="Search Skill..."
+            (keyup.enter)="searchForGigs()">
+          <button class="searchbtn" (click)="searchForGigs()">Search</button>
+        </div>
+        <span class="example-spacer"></span>
+        <div class="nav ">
+          <a mat-button class="switchButton" color="primary">
+            Hirer&nbsp;<ui-switch size="small" color="#1ABC9C" defaultBgColor="#455a64" (change)="switchCategory()"
+              [checked]="switchType == 'Gig Worker'" class="toggle"></ui-switch>&nbsp;Gig Worker
+          </a>
+          <span class="example-spacer"></span>
+          <span class="headerme">
+            <button mat-icon-button aria-label="" [routerLink]="['/wallet']" title="Wallet">
+              <!-- <mat-icon>account_balance_wallet</mat-icon> -->
+              <img src="assets/images/wallet.png" alt="" class="wallet-icon">
+            </button>
+            <span>{{ balance | number: '1.0-0'}}</span> 
+            <mat-icon class="refresh-icon" (click)="walletBalance()">refresh</mat-icon>
+          </span>
+
+          <button mat-button [matMenuTriggerFor]="menu" class="profile">
+            <span class="img-avtar"><img style="border-radius: 50%;flex-shrink: 0;object-fit: cover;height: 40px;
+              width: 40px;" [src]="headerSrcData" alt="Profile photo" class="avtrcard mat-card-avatar"
+                *ngIf="headerSrcData"></span><span *ngIf="userDetails">{{userDetails.name}}</span>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item [routerLink]="['/admin']" *ngIf="isAdmin">Admin View</button>
+            <button mat-menu-item (click)="viewProfile()" >View Profile</button>
+            <button mat-menu-item [routerLink]="['/company/profile']" >View Company</button>
+            <button mat-menu-item [routerLink]="['/logout']">Logout</button>
+          </mat-menu>
+        </div>
+      </div>
+    </mat-toolbar>
+  </div>
+  <div class="sidenav d-none" [ngClass]="showMenu">
+    <div class="op"></div>
+    <div class="inside">
+      <div class="logo">
+
+        <a href="javascript:void(0)" (click)="dashboard()"><img src="assets/images/logo.png"></a>
+        <button mat-icon-button aria-label="Mobile Navigation" (click)=toggleHideDiv()>
+          <mat-icon>clear</mat-icon>
+        </button>
+      </div>
+
+      <div class="nv" [ngClass]="showMenu">
+        <button mat-button [matMenuTriggerFor]="menu" class="profile sidenav-items">
+          <span class="img-avtar"><img style="border-radius: 50%;flex-shrink: 0;object-fit: cover;height: 40px;
+            width: 40px;" [src]="headerSrcData" alt="Profile photo" class="avtrcard mat-card-avatar"
+              *ngIf="headerSrcData && headerSrcData.toString().includes('blob')"></span><span
+            *ngIf="userDetails">{{userDetails.name}}</span>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item [routerLink]="['/admin']" *ngIf="isAdmin">Admin View</button>
+          <button mat-menu-item (click)="viewProfile()">View Profile</button>
+          <button mat-menu-item [routerLink]="['/company/profile']">View Company</button>
+          <button mat-menu-item [routerLink]="['/logout']">Logout</button>
+        </mat-menu>
+        <span class="headerme px-3 sidenav-items">
+          <button mat-icon-button aria-label="" [routerLink]="['/wallet']" title="Wallet">
+            <!-- <mat-icon>account_balance_wallet</mat-icon> -->
+            <img src="assets/images/wallet.png" alt="" class="wallet-icon">
+          </button>
+          <span *ngIf="balance && balance > 0">{{ balance / 100 }}</span>
+          <span *ngIf="!balance || (balance < 0)">0</span>
+        </span>
+        <hr />
+        <button mat-button color="primary" [routerLink]="['/hiring/dashboard']" class="sidenav-items">Dashboard</button>
+        <a mat-button class="switchButton" color="primary">
+          Individual&nbsp;<ui-switch size="small" color="#1ABC9C" defaultBgColor="#455a64" (change)="changeStatus()"
+            [checked]="sharedService.isCompanySelected == true" class="toggle"></ui-switch>&nbsp;Company
+        </a>
+        <div class="nav sidenav-items">
+          <!-- target="_blank" -->
+          <a mat-button class="switchButton" color="primary">
+            Hirer&nbsp;<ui-switch size="small" color="#1ABC9C" defaultBgColor="#455a64" (change)="switchCategory()"
+              [checked]="switchType == 'Gig Worker'" class="toggle"></ui-switch>&nbsp;Gig Worker
+          </a>
+        </div>
+        <hr />
+        <div class="searchbox ml-3" style="width: calc(100% - 1.25rem)">
+          <input [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}" type="text" placeholder="Search job"
+            (keyup.enter)="searchForGigs()">
+          <button class="searchbtn" (click)="searchForGigs()">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

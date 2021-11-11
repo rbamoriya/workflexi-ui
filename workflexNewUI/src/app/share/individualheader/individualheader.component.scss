@@ -1,0 +1,113 @@
+@import '../header/header.component';
+
+.searchbox {
+  display: inline-flex;
+
+  padding: 0 40px;
+
+  input {
+    border-width: 1px 0px 1px 1px;
+    border-color: rgba($color: #455A64, $alpha: 0.3);
+    border-radius: 4px 0 0 4px;
+    min-height: 43px;
+    width: 100%;
+    // min-width: 400px;
+    padding: 6px 12px;
+    font-size: 0.875rem;
+  }
+
+  .searchbtn {
+    border: none;
+    background-color: #1ABC9C;
+    opacity: 1;
+    color: #fff;
+    padding: 6px 12px;
+    font-size: 0.875rem;
+    min-width: 100px;
+    text-align: center;
+    border-radius: 0 4px 4px 0;
+  }
+}
+
+.header {
+  box-shadow: 0px 3px 6px rgba($color: #000, $alpha: 0.16);
+  background-color: #fff;
+  margin-bottom: 30px;
+}
+
+.img-avtar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+
+  img {
+    border-radius: 50%;
+  }
+}
+
+.headerme {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #455A64;
+  font-size: medium;
+  position: relative;
+}
+
+.mat-button.mat-button-base.mat-primary {
+  color: #1abc9c;
+}
+
+.notification {
+  background-color: #C12335;
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  font-size: small;
+  top: 0px;
+  right: 0px;
+}
+
+.hide {
+  display: none !important
+}
+
+.nv {
+  margin-left: auto;
+}
+
+.switchButton {
+  text-decoration: unset !important;
+}
+
+.toggle {
+  position: relative;
+  top: 5px;
+}
+
+.wallet-icon {
+  width: 30px;
+  position: relative;
+  top: -3px;
+}
+
+
+.sidenav-items {
+  width: 100%;
+  display: block;
+  text-align: left;
+}
+
+.refresh-icon {
+  margin: 0 0.3em;
+  font-size: 22px;
+  font-weight: 500;
+  color: rgba(69, 90, 100, 0.73);
+  cursor: pointer;
+}

@@ -1,0 +1,29 @@
+<a href="javascript:void(0)" class="logo"><img src="assets/images/logo.png" alt="workflexi" /></a>
+<mat-nav-list>
+  <mat-list-item>
+    <a matLine href="#" [routerLinkActive]="'active'" [routerLink]="['/hiring/edit/skillslooking/'+id]"
+      *ngIf="id != undefined">
+      <!-- <span class="steps">1</span> -->
+      <!-- <ul>
+            <li class="fs-20"> -->
+      <p class="fs-20">
+        <span>Service Looking For</span>
+      </p>
+      <!-- </li>
+          </ul> -->
+      <!-- <span class="fs-20">Service Looking For</span>  -->
+    </a>
+    <a matLine href="#" [routerLinkActive]="'active'" [routerLink]="[ROUTS.HIRER_NEW_SKILLOOKIG]"
+      *ngIf="id == undefined">
+      <!-- <span class="steps">1</span>  
+           <span  class="fs-20">Service Looking For</span>-->
+      <!-- <ul>
+            <li class="fs-20"> -->
+      <p class="fs-20">
+        <span>Service Looking For</span>
+      </p>
+      <!-- </li>
+          </ul> -->
+    </a>
+  </mat-list-item>
+</mat-nav-list>

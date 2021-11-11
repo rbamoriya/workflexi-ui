@@ -1,0 +1,122 @@
+.profilecard {
+  // box-shadow: none;
+  // background: transparent;
+  padding: 40px 0;
+
+  .mat-card-subtitle {
+    ul {
+      margin: 0;
+      padding: 0px;
+
+      li {
+        display: block;
+        text-align: left;
+        // align-items: flex-start;
+        // justify-content: flex-start;
+        position: relative;
+        color: rgba($color: #455A64, $alpha: 0.63);
+
+        // span {
+        //   display: inline-block;
+        //   padding: 0 0 0 5px;
+        // }
+      }
+    }
+  }
+
+}
+
+.avtrcard {
+  width: 120px;
+  height: 120px;
+  background-size: cover;
+  margin: 0 auto;
+}
+
+.bg-gray {
+  background-color: #fff;
+
+  border-radius: 5px;
+}
+
+.project-timeline {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+
+  h5,
+  p {
+    margin: 0px;
+  }
+
+  p {
+    padding: 0 10px;
+  }
+}
+
+.example-card {
+  box-shadow: none;
+  color: rgba($color: #455A64, $alpha: 0.73);
+  margin-bottom: 20px;
+}
+
+.mat-card-subtitle {
+  ul {
+    padding: 0px;
+
+    li {
+      display: inline;
+      margin-right: 20px;
+    }
+  }
+}
+
+.heading {
+
+  h3,
+  h4,
+  p {
+    color: #1ABC9C;
+  }
+}
+
+.mat-card-title {
+  color: #1ABC9C;
+}
+
+
+.alert-danger {
+  background-color: rgba(240, 128, 128, 0.2);
+  color: lightcoral;
+  padding: 1rem !important;
+}
+
+.alert-info1 {
+  background-color: #D3F4DE;
+  color: #1ABC9C;
+  padding: 1rem !important;
+}
+
+.badge {
+  display: inline-block;
+  padding: .25em .4em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25rem;
+  cursor: pointer;
+}
+
+.badge-success {
+  background-color: #1ABC9C !important;
+  color: #fff !important;
+}
+
+.badge-primary {
+  background-color: #4285f4 !important;
+  color: #fff !important;
+}

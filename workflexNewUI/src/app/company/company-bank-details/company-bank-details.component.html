@@ -1,0 +1,59 @@
+<div class="container-fluid bg">
+        <div class="row">
+            <div class="col-12 col-sm-2 col-md-2 col-lg-2">
+                <div class="sideleft">
+                    <!-- <app-ind-sidenav></app-ind-sidenav> -->
+                    <app-company-sidenav [edit]=false></app-company-sidenav>
+                </div>
+            </div>
+            <div class="col-12 col-sm-10 col-md-10 col-lg-10">
+
+                   <mat-toolbar class="trasnparent">
+                    <mat-toolbar-row>
+                      <span class="example-spacer"></span>
+                      Having trouble? &nbsp;<a href="#"> Get Help</a>
+                    </mat-toolbar-row>
+                    </mat-toolbar>
+                    <form [formGroup]="createCompanyForm" (ngSubmit)="createCompany()">
+                        <div class="row">
+                            <div class="col-12 col-sm-9 col-md-9 col-lg-9">
+                                <div class="infoarea">
+                                <h1>Company Bank Details</h1>
+                                <p>Fill your details before you explore further</p>
+                                <h5>Bank Name</h5>
+                                <mat-form-field appearance="outline"  floatLabel="never">
+                                    <input matInput formControlName="bankName" placeholder="Ex.HDFC bank">
+                                </mat-form-field>
+                                <h5>Name In Bank</h5>
+                                <mat-form-field appearance="outline"  floatLabel="never">
+                                    <input matInput formControlName="nameInBank" placeholder="Ex.Ayansh Patel">
+                                </mat-form-field>
+
+                                <h5>Account Number</h5>
+                                <mat-form-field appearance="outline"  floatLabel="never">
+                                    <input matInput formControlName="accountNumber" placeholder="Ex.1001001001001">
+                                </mat-form-field>
+                                <h5>IFSC</h5>
+                                <mat-form-field appearance="outline"  floatLabel="never">
+                                    <input matInput formControlName="ifsc" placeholder="Ex.AMIN0005911">
+                                </mat-form-field>
+                            </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="bottom-part d-flex justify-content-between">
+                                    <button mat-stroked-button color="primary" (click)="goPriviousFormRout()">Previous</button>
+                                    <div>
+                                        <button mat-stroked-button color="primary" class="skip-css" type="submit">Skip</button>
+                                        <button mat-flat-button color="primary" type="submit">Next</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+            </div>
+        </div>
+    </div>

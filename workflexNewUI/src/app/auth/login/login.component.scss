@@ -1,0 +1,130 @@
+.sidleft {
+  height: 100vh;
+  background-color: #E6FFF9;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+
+  .bottompart {
+    padding: 50px;
+
+    h2 {
+      color: #455A64;
+      // margin-bottom: 100px;
+    }
+  }
+}
+
+.logo {
+  padding: 25px 50px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.loginbox {
+  max-width: 450px;
+  text-align: left;
+  width: 100%;
+
+  h1 {
+    color: #087DC3;
+    font-size: 1.875rem;
+    margin: 20px 0;
+    text-align: center;
+  }
+}
+
+.loginbox {
+  .mat-form-field {
+    width: 100%;
+  }
+
+  .mat-flat-button.mat-primary {
+    min-width: 180px;
+    min-height: 45px;
+    color: #fff;
+  }
+}
+
+.alert-green {
+  background-color: #D3F4DE;
+  color: #15A346;
+
+}
+
+.alert {
+  padding: 25px 50px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.ch-number {
+  // text-align: right;
+
+  // .mat-button.mat-button-base {
+  //   padding-left: 0px;
+  //   padding-right: 0px;
+  font-weight: 500;
+
+  // }
+
+}
+
+.or-cls {
+  text-align: center;
+  color: gainsboro;
+  margin: 2rem 0;
+
+}
+
+.register-btn {
+  margin: 0 1rem;
+  color: black !important;
+  background-color: white !important;
+}
+
+.fp-cls {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.fp-cls a,
+.fp-cls a:hover {
+  color: #007bff;
+  cursor: pointer;
+}
+
+.fp-cls a:hover {
+  text-decoration: underline;
+}
+
+.or-devider {
+  color: #606770;
+  align-items: center;
+  display: flex;
+  text-align: center;
+
+  &::before {
+    margin-right: 10px;
+    border-bottom: 1px solid #ccd0d5;
+    content: "";
+    flex: 1 1 auto;
+  }
+
+  &::after {
+    margin-right: 10px;
+    border-bottom: 1px solid #ccd0d5;
+    content: "";
+    flex: 1 1 auto;
+  }
+}
+
+div.recaptcha-container {
+  margin: 1em 0;
+}
+
+div.recaptcha-container-for-login {
+  margin-bottom: 1em;
+}

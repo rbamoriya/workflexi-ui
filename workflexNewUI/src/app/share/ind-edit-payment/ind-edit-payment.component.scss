@@ -1,0 +1,30 @@
+.steps{
+    width: 30px;
+    height: 30px;
+    color: rgba($color: #455A64, $alpha: 0.63);
+    border-radius: 50%;
+   display: inline-flex;
+    border:1px solid rgba($color: #455A64, $alpha: 0.63);
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    font-weight: 500;
+}
+.mat-line{
+    display: flex;
+}
+.logo{
+    padding: 30px 15px;
+    display: block
+}
+.mat-nav-list .mat-list-item{
+    margin: 10px 0;
+    color:rgba($color: #455A64, $alpha: 0.63);
+}
+.mat-nav-list .mat-list-item .active{
+    color:#087DC3;
+.steps{
+    border-color: #087DC3;
+    color:#087DC3
+}
+}

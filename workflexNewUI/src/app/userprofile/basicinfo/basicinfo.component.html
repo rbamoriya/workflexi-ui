@@ -1,0 +1,128 @@
+<div class="container-fluid bg">
+    <div class="row">
+
+        <div class="col-12 col-sm-2 col-md-2 col-lg-2">
+            <div class="sideleft">
+                <app-ind-sidenav [nextTrue]="true" [isEmailVarify]="isEmailVarify"></app-ind-sidenav>
+            </div>
+
+        </div>
+
+        <div style="border:none !important;" class="col-12 col-sm-10 col-md-10 col-lg-10" *ngIf="basicInfoForm">
+            <form (ngSubmit)="submitForm(false)" [formGroup]="basicInfoForm">
+            <mat-toolbar class="trasnparent">
+                <mat-toolbar-row>
+                  <span class="example-spacer"></span>
+                  Having trouble? &nbsp;<a href="#"> Get Help</a>
+                </mat-toolbar-row>
+                </mat-toolbar>
+            <div class="row">
+
+                <div class="col-12 col-sm-9 col-md-9 col-lg-9">
+                    <div class="infoarea">
+                    <h2>{{heading}}</h2>
+                    <p>Fill your details before you explore further</p>
+                    <h5>Name<sup>*</sup></h5>
+                    <mat-form-field appearance="outline"  floatLabel="never" style="border:none !important;">
+
+                        <input style="border:none !important;" matInput placeholder="Ex. John Doe" [ngClass]="{'form-submitted': formSubmitted}" formControlName="name" required>
+                      </mat-form-field>
+                      <div *ngIf="isNewEmailUser">
+                        <h5>Mobile<sup>*</sup></h5>
+                        <mat-form-field appearance="outline"  floatLabel="never" style="border:none !important;">
+    
+                            <input style="border:none !important;" matInput placeholder="Enter 10 digits valid mobile number" [ngClass]="{'form-submitted': formSubmitted}" formControlName="mobile" required>
+                          </mat-form-field>
+                      </div>
+                      <h5>Email<sup>*</sup></h5>
+                        <span class="text-danger" *ngIf="!isEmailVarify && !isNewUser">The email is not verified,<a href="javascript:void(0);" (click)="submitForm(true)">  Resend</a> verify email.</span>
+                        <mat-form-field appearance="outline" floatLabel="never" style="border:none !important;">
+                            <input style="border:none !important;" matInput placeholder="Ex.youremail@domanin.com" formControlName="email" [ngClass]="{'form-submitted': formSubmitted,'varifyIcon':isEmailVarify && !isNewUser,'inVarifyIcon':!isEmailVarify && !isNewUser}"  required (focusout)="validateEmail()">
+                            <mat-error *ngIf="basicInfoForm.get('email').hasError('duplicate')">This Email has already been used</mat-error>
+                            <mat-error *ngIf="basicInfoForm.get('email').hasError('email')">Invalid Email address</mat-error>
+                        </mat-form-field>
+                        <div *ngIf="isNewEmailUser">
+                            <h5>Password<sup>*</sup></h5>
+                        <mat-form-field appearance="outline"  floatLabel="never" style="border:none !important;">
+    
+                            <input  type="password" style="border:none !important;" matInput [ngClass]="{'form-submitted': formSubmitted}" formControlName="password" required>
+                            <mat-error *ngIf="basicInfoForm.get('password').hasError('required')">Password is required</mat-error>
+                            <mat-error *ngIf="basicInfoForm.get('password').hasError('pattern')">Password must have at least 8 characters, 1 uppercase letter, 1 lowercase letter and 1 special character</mat-error>
+                          </mat-form-field>
+                          <h5>Confirm Password<sup>*</sup></h5>
+                        <mat-form-field appearance="outline"  floatLabel="never" style="border:none !important;">
+    
+                            <input type="password" style="border:none !important;" matInput [ngClass]="{'form-submitted': formSubmitted}" formControlName="confirmPassword" required>
+                            <mat-error *ngIf="basicInfoForm.get('confirmPassword').hasError('passwordMismatch')">Passwords don't match</mat-error>
+                          </mat-form-field>
+                        </div>
+                      <h5>Gender<sup>*</sup></h5>
+                      <div class="joincheckbox">
+                        <label>
+                            <input type="checkbox" id="male-checkbox" (click)="checked('male', $event.target.checked)" formControlName="gender1"/>
+                            <span class="icon">
+                                <span class="icon-male"></span>
+                            </span>
+                            <p>Male</p>
+                        </label>
+                        <label>
+                         <input type="checkbox" id="female-checkbox" (click)="checked('female', $event.target.checked)" formControlName="gender2"/>
+                         <span class="icon">
+                            <span class="icon-Female"></span>
+                         </span>
+                         <p>Female</p>
+                     </label>
+                     <label>
+                        <input type="checkbox" id="other-checkbox" (click)="checked('other', $event.target.checked)" formControlName="gender3"/>
+                        <span class="icon">
+                            <span class="icon-Other_Gender"></span>
+                        </span>
+                        <p>Other</p>
+                    </label>
+                    </div>
+                    <h5>Location<sup>*</sup></h5>
+                    <mat-form-field appearance="outline"  floatLabel="never" style="border:none !important;">
+
+                    <input style="border:none !important;" matInput matGoogleMapsAutocomplete
+                    (onAutocompleteSelected)="onAutocompleteSelected($event)"
+                     placeholder="Ex.noida" [ngClass]="{'form-submitted': formSubmitted}" formControlName="location" required>
+                    </mat-form-field>
+                    <h5>Alternate Mobile Number</h5>
+                    <mat-form-field appearance="outline"  floatLabel="never" style="border:none !important;">
+
+                        <input style="border:none !important;" matInput placeholder="Ex.9999999999" formControlName="alternateMobile">
+                      </mat-form-field>
+                </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="upload">
+                        <input id="cropzee-input" class="image-input form-control" type='file' accept='image/*' (change)="onFileChange($event)">
+                        <mat-icon id="image-icon" aria-hidden="false" aria-label="Example home icon">photo_camera
+                        </mat-icon>
+                        <img mat-card-avatar style="border-radius: 50%;flex-shrink: 0;object-fit: cover;width: 150px;height: 150px;background-size: cover;" class="avtrcard mat-card-avatar example-header-image" id='StyleImage' class="image-output" *ngIf="!gigworkerBasicInfoSrcData && imageFiles.length>0" src="{{imageFiles[0].fileUrl}}">
+                        <img mat-card-avatar style="border-radius: 50%;flex-shrink: 0;object-fit: cover;width: 150px;height: 150px;background-size: cover;" [src]="gigworkerBasicInfoSrcData" alt="Profile photo" class="avtrcard mat-card-avatar example-header-image" *ngIf="gigworkerBasicInfoSrcData && gigworkerBasicInfoSrcData.toString().includes('blob') && imageFiles.length===0">
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="bottom-part d-flex justify-content-between">
+                        <span></span>
+                        <!-- <button mat-flat-button color="primary" [routerLink]="['/gigworker/skills']">Next</button> -->
+                        <button mat-flat-button color="primary" type="submit" [disabled]="!basicInfoForm.valid">
+                            <span *ngIf="isEmailVarify == true">Next</span>
+                            <span *ngIf="isEmailVarify != true">Submit</span>
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+            </form>
+        </div>
+
+    </div>
+</div>

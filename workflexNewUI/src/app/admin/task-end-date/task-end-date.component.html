@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>Workflexi Task List</h2>
+            <div class="col-md-12 layout" *ngIf="taskList">
+                <table class="table-striped table">
+                    <thead class="">
+                    <tr>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Task from Status</th>
+                        <th>Task to Status</th>
+                        <th>Name</th>
+                        <th>Location</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                            <tr *ngFor="let task of taskList | paginate: {itemsPerPage: 10, currentPage: p}">
+                                <td>{{task.startDate}}</td>
+                                <td>{{task.endDate}}</td>
+                                <td>{{task.fromStatus}}</td>
+                                <td>{{task.toStatus}}</td>
+                                <td>{{task.user.name}}</td>
+                                <td>{{task.user.location}}</td>
+                                <td>
+                                    <button mat-stroked-button class="mat-flat-button mat-button-base mat-primary" 
+                                    color="primary" (click)="navigateDetail(task.id)" >Detail</button>&nbsp;
+                                    <button mat-stroked-button class="btn btn-danger" 
+                                    (click)="deleteTask(task.id)" >Delete</button>
+                                </td>
+                            </tr>
+                    </tbody>
+
+                </table>
+                <pagination-controls (pageChange)="p=$event"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>

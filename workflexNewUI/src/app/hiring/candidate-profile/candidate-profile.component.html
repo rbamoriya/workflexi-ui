@@ -1,0 +1,108 @@
+<app-individualheader></app-individualheader>
+<div class="container" *ngIf="pDetails">
+  <div class="row">
+    <div class="col-12 col-sm-9 col-md-9 col-lg-9">
+      <div class="profileheader">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <mat-card class="profilecard">
+              <!-- <img style="border-radius: 50%;flex-shrink: 0;object-fit: cover;float: left;" [src]="profileImgSrcData"
+                alt="image" class="example-header-image avtrcard mat-card-avatar"> -->
+              <mat-card-header>
+                <div mat-card-avatar class="avtrcard">
+                  <img style="border-radius: 50%;flex-shrink: 0;object-fit: cover;float: left;"
+                    [src]="profileImgSrcData" alt="image" class="example-header-image avtrcard mat-card-avatar">
+                </div>
+                <!-- <img style="border-radius: 50%;flex-shrink: 0;object-fit: cover;" [src]="profileImgSrcData" alt="image" class="avtrcard mat-card-avatar" *ngIf="profileImgSrcData"> -->
+                <mat-card-title *ngIf="pDetails.user && pDetails.user.name" class="mt-0 mt-md-4">
+                  <h4 class="text-dark-gray">{{pDetails.user.name}}</h4>
+                </mat-card-title>
+                <mat-card-title *ngIf="pDetails.company && pDetails.company.companyName">
+                  <p> {{pDetails.company.companyName}}</p>
+                </mat-card-title>
+
+                <mat-card-subtitle class="ml-3 ml-md-0">
+                  <ul class="py-2">
+                    <li *ngIf="pDetails.data.title"><strong>Title:</strong> {{pDetails.data.title}}</li>
+                    <li *ngIf="pDetails.data.location[0]"><b>Address</b>: {{pDetails.data.location[0]}}</li>
+                    <li><strong>Experience:</strong> <span
+                        *ngIf="pDetails.data.totalExperienceInYears">{{pDetails.data.totalExperienceInYears}}
+                        year(s)</span> <span
+                        *ngIf="pDetails.data.totalExperienceInMonths">{{pDetails.data.totalExperienceInMonths}}
+                        month(s)</span> </li>
+                    <li
+                      *ngIf="pDetails != null && pDetails.user != undefined && pDetails.user != null && pDetails.user.mobile != null && pDetails.user.mobile != undefined">
+                      <strong>Mob.:</strong> <span>{{ pDetails.user.mobile }}</span></li>
+                    <li
+                      *ngIf="pDetails != null && pDetails.user != undefined && pDetails.user != null && pDetails.user.email != null && pDetails.user.email != undefined">
+                      <strong>Email:</strong> <span>{{ pDetails.user.email }}</span></li>
+                  </ul>
+                </mat-card-subtitle>
+              </mat-card-header>
+            </mat-card>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="row pl-3 pt-3">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="box">
+              <h6 class="text-dark-gray">Skill</h6>
+              <mat-chip-list>
+                <mat-chip *ngFor="let skill of pDetails.data.skill">{{skill}}</mat-chip>
+              </mat-chip-list>
+            </div>
+            <div class="box">
+              <h6 class="text-dark-gray">Remuneration</h6>
+              <p>
+                ₹ {{pDetails.data.remuneration}} <sub>/ {{pDetails.data.remunerationType}}</sub>
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="box" *ngIf="videoSrc">
+              <h6 class="text-dark-gray">Intro Video</h6>
+              <div class="videocantainer">
+                <video [src]="videoSrc" width="350" height="200" class="card" controls></video>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="box" *ngIf="pDetails.data.descriptions">
+              <h6 class="text-dark-gray">About</h6>
+              <p>
+                {{pDetails.data.descriptions}}
+              </p>
+            </div>
+
+            <!-- <div class="box">
+                            <h3>Profile</h3>
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                <img src="assets/images/image_small">
+                                <br>
+                                <a href="#">Website Design</a>
+                            </div>
+                        </div> -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-3 col-md-3 col-lg-3 m-fixed">
+      <div class="candidate-info-price text-center">
+        <img src="assets/images/pricing.svg" class="w-50" />
+        <mat-list>
+          <mat-list-item>
+            <h4 matLine class="text-center text-green"> ₹{{pDetails.data.remuneration}} <small>/
+                {{pDetails.data.remunerationType}}</small></h4>
+          </mat-list-item>
+
+        </mat-list>
+        <button mat-flat-button color="primary" *ngIf="!isGigApplied" (click)="applyGig(pDetails.id)">Shortlist</button>
+        <button style="min-width: 180px;border-color: #1abc9c;height: 45px;" mat-stroked-button color="primary"
+          *ngIf="isGigApplied">Shortlisted</button>
+      </div>
+    </div>
+
+  </div>
+</div>

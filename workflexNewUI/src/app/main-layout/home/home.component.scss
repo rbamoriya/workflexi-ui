@@ -1,0 +1,251 @@
+.banner {
+  background-image: url("../../../assets/images/banner.svg");
+  background-repeat: no-repeat;
+  background-position: 120% 0px;
+  height: calc(100vh - 84px);
+  // margin-top: -180px;
+  display: flex;
+  background-size: contain;
+  align-items: center;
+
+  h2 {
+    font-size: 3.25rem;
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    color: #455a64;
+  }
+
+  h1 {
+    font-size: 3.25rem;
+    margin: 0;
+    padding: 0;
+    color: #087dc3;
+  }
+
+  h3 {
+    color: #087dc3;
+    margin-top: 20px;
+  }
+
+  p {
+   
+    margin: 10px 0 50px;
+
+    // li {
+      // list-style: none;
+    
+      font-size: 1.05rem;
+      color: #455a64;
+      font-weight: 400;
+      padding: 10px 10px 12px 8px;
+    // }
+  }
+
+  .mat-flat-button.mat-button-base.mat-primary {
+    min-width: 180px;
+    color: #fff;
+    font-size: 0.9375rem;
+    font-family: "Poppins", "Helvetica Neue", sans-serif;
+    min-height: 50px;
+    margin: 10px 0;
+  }
+}
+
+.client {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.aboutus {
+  background: #2E3F46;
+  padding: 40px 0;
+
+  p,
+  ul {
+    color: #ffffff;
+    font-size: 0.975rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+    color: #ffffff;
+  }
+
+  h2 {
+    color: #1abc9c !important;
+  }
+}
+
+.video {
+  // background-image: url("../../../assets/images/youtube.png");
+  width: 90%;
+  margin: 0 auto;
+  height: 400px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  video {
+    box-shadow: 5px 5px 2px black;
+  }
+}
+
+.youtube-btn {
+  left: 50%;
+  top: 50%;
+  cursor: pointer;
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  background: rgb(69 90 101);
+  transform: translate(-50%, -50%);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  box-shadow: 0px 0px 2px 2px rgb(69 90 101 / 50%);
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  mat-icon {
+    font-size: 35px;
+    height: 35px;
+    width: 35px;
+  }
+}
+
+.trends {
+  background: #ecf7f5;
+  padding: 40px 0;
+
+  h1 {
+    font-size: 3rem;
+    color: #455a64;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  p {
+    color: #455a64;
+    font-size: 0.975rem;
+    text-align: center;
+  }
+
+  h3 {
+    font-size: 2.75rem;
+    color: #455a64;
+    margin: 0px;
+    text-align: center;
+  }
+}
+
+.testimonial {
+  .container-fluid {
+    .row {
+      align-items: center;
+
+      .left-bg {
+        background-color: #07669f;
+
+        min-height: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        h1 {
+          font-size: 3rem;
+          color: #fff;
+          max-width: 200px;
+          position: relative;
+
+          span {
+            position: relative;
+            z-index: 1;
+          }
+
+          &::before {
+            content: '\201C';
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            display: flex;
+            background-color: rgba(178, 220, 245, 0.24);
+            border-radius: 50%;
+            left: -53px;
+            top: -45px;
+            align-items: center;
+            font-size: 4rem;
+            justify-content: center;
+            padding-top: 37px;
+          }
+
+          &::after {
+            content: '';
+            background-image: url(../../../assets/images/testi.svg);
+            width: 124px;
+            height: 207px;
+            position: absolute;
+            left: -63px;
+            top: 10px;
+
+          }
+        }
+      }
+
+      .right-sec {
+        h1 {
+          font-weight: 500;
+        }
+
+      }
+    }
+  }
+}
+
+.join {
+  padding: 40px 0;
+
+  h1 {
+    font-size: 3rem;
+    color: #455a64;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  p {
+    color: #455a64;
+    font-size: 0.975rem;
+    text-align: center;
+  }
+
+  .button {
+    text-align: center;
+
+    button {
+      color: #eee;
+      border-radius: 20px;
+    }
+  }
+}
+
+
+.slide {
+  color: rgba($color: #455A64, $alpha: 1.0);
+
+  p {
+    font-size: 0.975rem;
+    line-height: 1.9;
+
+  }
+}
+
+.client {
+  background-color: #fff;
+}

@@ -1,0 +1,25 @@
+.task-end-date {
+    margin-right: 24px;
+}
+
+.mat-dialog-actions {
+    margin: 1em 0;
+    justify-content: flex-end;
+}
+
+.mat-dialog-title {
+    background-image: linear-gradient(to right, #1abc9c, #087dc3) !important;
+    color: #fff;
+    text-align: left;
+    margin: -1rem -1rem 0;
+    padding: 15px;
+    margin-bottom: 35px;
+}
+
+.task-heading {
+    display: flex;
+    justify-content: space-between;
+    mat-icon {
+        cursor: pointer;
+    }
+}

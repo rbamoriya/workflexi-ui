@@ -1,0 +1,154 @@
+<app-individualheader></app-individualheader>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+    </div>
+    <div class="col-xs-6 col-sm-12 col-md-12 col-lg-12 ">
+      <mat-card class="example-card milestonecard">
+        <mat-card-header class="text-center">
+          <mat-card-title>
+            <h3>My Wallet</h3>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-header>
+          <mat-card-title class="my-4 d-flex align-items-center">
+            <img src="assets/images/wallet.png" width="30px" alt="" srcset="">
+            <span class="pl-2">Your Wallet Balance: <i class="fa fa-rupee"></i> {{ balance | number: '1.0-0'}}</span>
+            <mat-icon class="refresh-icon" (click)="walletBalance()">refresh</mat-icon>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-12">
+              <h4 class="text-center mb-3">Add money to your wallet(using below account no.) and click on the Milestone's Task 'Start' button to start the Gig</h4>
+              <div class="mode-of-pay-container" *ngIf="decentro">
+                <div class="row w-100">
+                  <div class="col-12 col-md-6">
+                    <div class="card">
+                      <div class="account-container">
+                        <div class="imps-img-container">
+                          <img src="/assets/images/wallet/imps-neft-rtgs.png" width="100%" style="object-fit: contain;"/>
+                        </div>
+                        <hr />
+                        <div class="account-details-container">
+                          <div>
+                            <p class=" text-dark-gray text-center mb-2 fs-18">
+                              <span class="font-weight-bold">Name:</span>
+                              <span class="mb-0"> {{name}} </span>
+                            </p>
+                          </div>
+                          <div>
+                            <p class=" text-dark-gray text-center mb-2 fs-18">
+                              <span class="font-weight-bold">Account:</span>
+                              <span class="mb-0"> {{decentro.account}} </span>
+                            </p>
+                          </div>
+                          <div class=" text-md-left">
+                            <p class=" text-dark-gray text-center fs-18 mb-0">
+                              <span class="font-weight-bold ">IFSC:</span>
+                              <span class="mb-0"> {{decentro.IFSC}} </span>
+                            </p>
+                          </div>
+                        </div>
+                        <div>
+                          <p><strong>Note: </strong>ICICI bank users should select <i>Other Bank</i> option while adding above account as a beneficiary. </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-1 text-center d-flex justify-content-center align-items-center">
+                    <div>
+                      <h3 class="my-4">OR</h3>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-5 text-center">
+                    <div *ngIf="qrCodePath" class="card h-100">
+                      <div>
+                        <img [src]="qrCodePath">
+                      </div>
+                      <div class="upi-txt">
+                        <b class="mb-0">{{decentro.UPI}}</b>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                  <button type="button" (click)="walletStatement()" mat-raised-button color="primary">
+                    Wallet Statement
+                  </button>
+                  <div class="to-from-container">
+                    <div>
+                      <span>From Date: </span>
+                      <mat-form-field appearance="outline">
+                        <input matInput disabled [ngModel]="fromDateModel | date:'dd-MM-yyyy'" >
+                        <input [hidden]="true" style="border:none !important;" matInput [matDatepicker]="fromDate"
+                          placeholder="dd-MMM-yyyy"
+                          [(ngModel)]="fromDateModel" >
+                        <mat-datepicker-toggle matSuffix [for]="fromDate"></mat-datepicker-toggle>
+                        <mat-datepicker #fromDate></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+                    <div>
+                      <span>To Date: </span>
+                      <mat-form-field appearance="outline">
+                        <input matInput disabled [ngModel]="toDateModel | date:'dd-MM-yyyy'" >
+                        <input [hidden]="true" style="border:none !important;" matInput [matDatepicker]="toDate"
+                          placeholder="dd-MM-yyyy" [ngModel]="toDateModel | date: 'dd-MM-YYYY'" [(ngModel)]="toDateModel">
+                        <mat-datepicker-toggle matSuffix [for]="toDate"></mat-datepicker-toggle>
+                        <mat-datepicker #toDate></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <!-- <div class="col-0 col-md-5 d-flex justify-content-center align-items-center">
+              <img src="assets/images/money.svg" alt="" width="200px">
+            </div> -->
+            <div class="col-12" *ngIf="walletHistory != null && walletHistory.length > 0 else noHistory">
+              <div *ngFor="let item of walletHistory.slice().reverse() | keyvalue  ; let i = index">
+                <mat-card class="mt-15 milestonecard">
+                  <mat-card-header>
+                    <mat-card-title>Balance(INR): {{ item.value.balance | number: '1.0-0'}}</mat-card-title>
+                    <mat-card-subtitle>
+                      <ul class="mb-2">
+                        <li><strong class="text-dark-gray">Credit(INR):</strong> {{item.value.depositAmount | number: '1.0-0' }}</li>
+                        <li><strong class="text-dark-gray">Debit(INR):</strong> {{item.value.withdrawalAmount | number: '1.0-0' }}</li>
+                      </ul>
+                      <ul class="mb-2">
+                        <li><strong class="text-dark-gray">Mode:</strong> {{item.value.transferType}}</li>
+                        <li><strong class="text-dark-gray">Date:</strong> {{convertToDate(item.value.timestamp)}}</li>
+                      </ul>
+                    </mat-card-subtitle>
+                    <mat-card-subtitle class="mb-2">
+                      <ul class="mb-2">
+                        <li><strong class="text-dark-gray">Transaction ID:</strong> {{ item.value.decentroUrn }}</li>
+                      </ul>
+                    </mat-card-subtitle>
+                  </mat-card-header>
+                  <mat-card-content>
+                    <h4 class="text-dark-gray mb-1 fs-14">Description:</h4>
+                    <p>
+                      {{item.value.description}}
+                    </p>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            </div>
+            <ng-template #noHistory>
+              <p *ngIf="loadHistory == true" class="alert alert-green w-100 mx-3">No wallet history found</p>
+            </ng-template>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <!-- <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
+            <button mat-stroked-button color="primary">Reject</button>
+            <button mat-raised-button color="primary">Approve</button>
+        </div>
+    </div> -->
+</div>

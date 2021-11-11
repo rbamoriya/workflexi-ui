@@ -1,0 +1,68 @@
+<div class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="milestoneEdit" aria-hidden="true" #milestoneEditModal>
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <h2 class="mat-dialog-title">
+              <span *ngIf="addNew == true">Add new </span>
+              <span *ngIf="addNew == false">Edit</span>
+          </h2>
+          <div class="container-fluid">
+            <form [formGroup]="editForm" *ngIf="editForm">
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                  <mat-form-field appearance="outline" >
+                    <input [disabled]="milestoneData.milestones.length == this.uniqueId+1" autocomplete="off" matInput [matDatepicker]="endDate" [min]="minDate" [max]="maxDate" formControlName="endDate"  placeholder="Choose a date">
+                    <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                    <mat-datepicker #endDate></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                    <mat-form-field appearance="outline">
+                        <input matInput type="number" placeholder="Enter Amount" formControlName="amount" autocomplete="off">
+                      </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <editor formControlName="description"
+                    [init]="{
+                      height: 150,
+                      menubar: false,
+                      statusbar: false,
+                      mobile: {
+                        menubar: true,
+                        height: 250
+                      },
+                      plugins: [
+                        'advlist autolink lists link image charmap print preview anchor',
+                        'searchreplace visualblocks code fullscreen',
+                        'insertdatetime media table paste code help wordcount'
+                      ],
+                      toolbar:
+                        'formatselect | bold italic backcolor | \
+                        alignleft aligncenter alignright alignjustify | \
+                        bullist numlist outdent indent | removeformat | help'
+                    }"
+                  ></editor> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
+                    <button mat-stroked-button color="primary" (click)="close()">Cancel</button>
+                    <button type="submit" mat-raised-button color="primary" (click)="submit()">
+                        <span *ngIf="addNew == true">Add new </span>
+                        <span *ngIf="addNew == false">Update</span>
+                    </button>
+                </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

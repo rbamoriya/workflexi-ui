@@ -1,0 +1,283 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center" *ngIf="taskData">
+            <h2>Workflexi Task Detail</h2>
+            <div class="col-md-12 data-sec d-block">
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Start Date</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{taskData.startDate}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>End Date</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{taskData.endDate}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Task from Status</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{taskData.fromStatus}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Task to Status</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{taskData.toStatus}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h2>User Details</h2>
+            <div class="col-md-12 data-sec d-block">
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Name</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{taskData.user.name}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Mobile</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{taskData.user.mobile}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Email</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{taskData.user.email}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Location</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{taskData.user.location}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Gender</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{taskData.user.gender}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mt-1 d-block">
+                <div class="row" *ngFor="let milestone of taskData.milestones; let i = index">
+                    <div class="col-md-12 text-left data-sec m-2">
+                        <h3 style="color: #1ABC9C; text-align: center;">Task {{i+1}}</h3>
+                        <div class="col-md-6 d-inline-flex">
+                            <span class="col-md-6"><strong>End Date</strong></span>
+                            <span class="col-md-6">{{milestone.endDate}}</span>
+                        </div>
+                        <div class="col-md-6 d-inline-flex">
+                            <span class="col-md-6"><strong>Amount</strong></span>
+                            <span class="col-md-6">{{milestone.amount}}</span>
+                        </div>
+                        <div class="col-md-6 d-inline-flex">
+                            <span class="col-md-6"><strong>Is Paid</strong></span>
+                            <span class="col-md-6">{{milestone.isPaid}}</span>
+                        </div>
+                        <div class="col-md-6 d-inline-flex">
+                            <span class="col-md-6"><strong>Description</strong></span>
+                            <small class="col-md-6">{{milestone.description}}</small>
+                        </div>
+                        <div class="col-md-6 d-inline-flex">
+                            <span class="col-md-6"><strong>Is Disbursed</strong></span>
+                            <span class="col-md-6">{{milestone.isDisbursed}}</span>
+                        </div>
+                        <div class="col-md-6 d-inline-flex">
+                            <span class="col-md-6"><strong>Status</strong></span>
+                            <span class="col-md-6">{{milestone.status}}</span>
+                        </div>
+                        <div class="col-md-6 d-inline-flex">
+                            <span class="col-md-6"><strong>Unique Id</strong></span>
+                            <span class="col-md-6">{{milestone.uniqueId}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <h2 *ngIf="taskdata.user">Company Details</h2>
+            <div class="col-md-12 data-sec d-block" *ngIf="taskData.user">
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Company Name</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{taskdata.user.company.companyName}}
+                        </div>
+                    </div>
+                </div> 
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Company Description</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{taskdata.user.company.companyDescription}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Company Website</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{taskdata.user.company.companyWebsite}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Company Is Verified</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{taskdata.user.company.companyIsVerified}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Company Gst Number</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{taskdata.user.company.companyGstnumber}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Company Pan Number</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{taskdata.user.company.companyPannumber}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Company Address</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{taskdata.user.company.companyAddress}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Company City</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{taskdata.user.company.companyCity}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Company State</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{taskdata.user.company.companyState}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Company Pincode</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{taskdata.user.company.companyPincode}}
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- <h2 *ngIf="taskdata">Comapany Bank details</h2>
+            <div class="col-md-12 data-sec d-block" *ngIf="taskdata">
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Bank Name</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{taskdata.user.company.bank.bankName}}
+                        </div>
+                    </div>
+                </div> 
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Account Number</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{taskdata.user.company.bank.accountNumber}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Name In Bank</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{taskdata.user.company.bank.nameInBank}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>IFSC Code</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{taskdata.user.company.bank.ifscCode}}
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>

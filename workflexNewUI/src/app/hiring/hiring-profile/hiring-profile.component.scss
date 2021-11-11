@@ -1,0 +1,85 @@
+.profilecard{
+    box-shadow: none;
+    background: transparent;
+   padding: 40px 0;
+    .mat-card-subtitle{
+        ul{margin: 0;
+            padding: 0px;
+            li{
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                padding-left: 20px;
+                padding-right: 10px;
+                color:rgba($color: #455A64, $alpha: 0.63);
+                &:first-child{
+                    padding-left: 0px;
+                    &::before{
+                        display: none;
+                    }
+                }
+                &::before{
+                    content: '\00B7';
+                    font-size: 3rem;
+                     left: 0px;
+                    position: absolute;
+                    top: 0px;
+                     margin-top: -24px;
+                }
+                span{
+                    display: inline-block;
+                    padding: 0 0 0 5px;
+                }
+            }
+        }
+    }
+    .mat-card-header{
+        align-items: center;
+    }
+}
+.avtrcard{
+    width: 120px;
+    height: 120px;
+    background-size: cover;
+}
+.profileheader{
+    background-color: #fff;
+    margin-top: -28px;
+}
+.img-border{
+    max-width: 100%;
+    border: 1px solid grey;
+    padding: 5px;
+}
+.box{
+    
+    padding: 10px 0;
+    h3,h4,h5{
+        color: #087DC3;
+    }
+    p{
+        font-weight: 400;
+        color: rgba($color: #455A64, $alpha: 0.8);
+    }
+}
+.edu{
+    h3,p{
+        margin: 0px;
+        padding: 0px;
+    }
+    p{
+        font-size: 0.875rem;
+    }
+}
+hr{
+    opacity: 0.3 !important;
+}
+
+.box-1{
+    text-align: center;
+}
+.text-experience{
+//  /   font-weight: 400;
+    color: rgba($color: #455A64, $alpha: 0.8);
+}

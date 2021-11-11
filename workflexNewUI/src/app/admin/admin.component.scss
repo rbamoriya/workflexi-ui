@@ -1,0 +1,22 @@
+.side-nav  {
+    width: 24%;
+}
+
+.main-content {
+    width: 76%
+}
+
+.menu-open {
+    .side-nav {
+        width: 0%;
+        transition: width 2s;
+    }
+    .main-content{
+        width: 100%;
+        background: #f8f9fa;
+    }
+    .w3-sidebar {
+        width: 0;
+        transition: width 0.5s;
+    }
+}

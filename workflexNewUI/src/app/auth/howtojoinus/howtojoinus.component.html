@@ -1,0 +1,80 @@
+<div class="container-fluid" *ngIf="showpage">
+    <div class="row">
+
+        <div class="col-12 col-sm-4 col-md-4 col-lg-4 sidleft">
+            <div class="logo">
+                <a href="#"><img src="assets/images/logo.png"></a>
+            </div>
+            <div class="bottompart d-flex flex-column">
+            <h1>A few clicks away from joining us</h1>
+            <img src="assets/images/working.svg" class="d-none d-sm-block">
+        </div>
+        <div class="example-spacer"></div>
+        </div>
+
+        <div class="col-12 col-sm-8 col-md-8 col-lg-8 d-flex align-items-center justify-content-center flex-column
+        ">
+            <div class="loginbox" [ngClass]="hide">
+                <h1>How do you want to join or login with us</h1>
+               <div class="joincheckbox">
+                   <label >
+                       <input type="checkbox" value="GIG" (click)="getValueAndUrl(1)" >
+                       <span class="icon">
+                        <span class="icon-gig"></span>
+                       </span>
+                       <p>Gig Worker</p>
+                   </label>
+                   <label>
+                    <input type="checkbox" value="Hirer" (click)="getValueAndUrl(2)"/>
+                    <span class="icon">
+                        <span class="icon-hiring"></span>
+                    </span>
+                    <p>Hirer</p>
+                </label>
+               </div>
+
+            </div>
+            <div class="loginbox d-none" [ngClass]="showMenu">
+                <h1>You are logging in or joining us as {{valueName}}</h1>
+               <div class="joincheckbox">
+                   <label >
+                       <input type="checkbox" value="Individual" (click)="getValueAndUrl(3)" />
+                       <span class="icon">
+                        <span class="icon-individual"></span>
+                       </span>
+                       <p> Individual </p>
+                   </label>
+                   <label >
+                    <input type="checkbox" value="Company" (click)="getValueAndUrl(4)"/>
+                    <span class="icon">
+                        <span class="icon-company"></span>
+                    </span>
+                    <p>Company</p>
+                </label>
+               </div>
+
+            </div>
+            <!-- <div class="loginbox d-none" [ngClass]="hire">
+                <h1>Your are joing us as GiG</h1>
+               <div class="joincheckbox">
+                   <label >
+                       <input type="checkbox" value="Company" [routerLink]="['/individual/basicinfo']"/>
+                       <span class="icon">
+                        <span class="icon-individual"></span>
+                       </span>
+                       <p> Individual </p>
+                   </label>
+                   <label >
+                    <input type="checkbox" value="Individual" [routerLink]="['/individual/basicinfo']" />
+                    <span class="icon">
+                        <span class="icon-company"></span>
+                    </span>
+                    <p>Company</p>
+                </label>
+               </div>
+
+            </div> -->
+        </div>
+
+    </div>
+</div>

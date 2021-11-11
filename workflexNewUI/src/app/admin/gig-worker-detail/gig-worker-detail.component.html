@@ -1,0 +1,114 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>Workflexi Gig-Worker Detail</h2>
+            <div class="col-md-12 data-sec d-block" *ngIf="gigData">
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Name</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{gigData.user.name}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Title</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{gigData.data.title}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Total Experience</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{gigData.data.totalExperienceInYears}}Year{{gigData.data.totalExperienceInMonths}}Months
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Skills</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            <ul *ngFor="let skill of gigData.data.skill">
+                                <li>{{skill}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Descriptions</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{gigData.data.descriptions}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Location</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{gigData.data.location}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Request Type</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{gigData.data.requestType}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Remuneration Type</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{gigData.data.remunerationType}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Remuneration</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{gigData.data.remuneration}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h2 *ngIf="videoLink">Uploaded Video</h2>
+            <div class="col-md-12 data-sec d-block" *ngIf="videoLink">
+                <div>
+                    <video width="320" height="240" controls>
+                        <source src="videoLink" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div>
+                    <button class="btn btn-success" *ngIf="!isVideoApproved" (click)="approveVideo();">Approve Video</button>&nbsp;
+                    <button class="btn btn-danger" *ngIf="isVideoApproved" (click)="unapproveVideo();">Unapprove Video</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

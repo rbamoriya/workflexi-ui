@@ -1,0 +1,116 @@
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h2>Workflexi Gig-Worker List</h2>
+        <div class="col-md-4 pt-4 pb-2">
+            <span class="d-flex">
+                <h5 class="p-2">Filter:</h5>
+                <select class="form-control p-1" [(ngModel)]="selectedValue" (change)="filter(selectedValue)" >
+                    <option value="">All</option>
+                    <option value="company">Companies</option>
+                    <option value="individual">Individuals</option>
+                </select>
+            </span>
+        </div>
+        <!-- <div class="col-md-12 layout" *ngIf="gigsList">
+            <table class="table-striped table">
+                <thead class="">
+                <tr>
+                    <th>Name</th>
+                    <th>Mobile</th>
+                    <th>Title</th>
+                    <th>Skill</th>
+                    <th>Descriptions</th>
+                    <th>Total Experience </th>
+                    <th>Location</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let gig of gigsList | paginate: {itemsPerPage:10, currentPage: p}">
+                        <td>{{gig.initiatedBy.name | uppercase}}</td>
+                        <td>{{gig.initiatedBy.mobile}}</td>
+                        <td>{{gig.data.title}}</td>
+                        <td>
+                            <ul *ngFor="let skill of gig.data.skill">
+                                <li>{{skill}}</li>
+                            </ul>
+                        </td>
+                        <td>{{gig.data.descriptions}}</td>
+                        <td>{{gig.data.totalExperienceInYears}}Year{{gig.data.totalExperienceInMonths}}Months</td>
+                        <td>
+                            <ul *ngFor="let location of gig.data.location">
+                                <li>{{location}}</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <button mat-stroked-button class="mat-flat-button mat-button-base mat-primary" 
+                            color="primary" (click)="navigateDetail(gig.id)" >Detail</button>&nbsp;
+                            <button mat-stroked-button class="btn btn-danger" 
+                            (click)="deleteGig(gig.id)" >Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+            <pagination-controls (pageChange)="p=$event"></pagination-controls>
+        </div> -->
+        <div class="col-md-12 layout">
+            <div class="example-header">
+                <mat-form-field class="float-left">
+                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                </mat-form-field>
+            </div>
+            <table mat-table [dataSource]="dataSource" matSort class="table-striped table mat-elevation-z8 font">
+                    <ng-container matColumnDef="name">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                        <td class="text-left data-cell" mat-cell *matCellDef="let element"> {{element.initiatedBy.name | uppercase}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="mobile">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Mobile </th>
+                        <td class="text-left data-cell" mat-cell *matCellDef="let element"> {{element.initiatedBy.mobile}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="title">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+                        <td class="text-left data-cell " mat-cell *matCellDef="let element"> {{element.data.title}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="skill">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Skill </th>
+                        <td class="text-left data-cell" mat-cell *matCellDef="let element"> 
+                            <ul *ngFor="let skill of element.data.skill">
+                                <li>{{skill}}</li>
+                            </ul>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="totalExperience">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Total Experience </th>
+                        <td class="text-left data-cell" mat-cell *matCellDef="let element"> {{element.data.totalExperienceInYears}}Year{{element.data.totalExperienceInMonths}}Month </td>
+                    </ng-container>
+                    <ng-container matColumnDef="descriptions">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Descriptions </th>
+                        <td class="text-left data-cell" mat-cell *matCellDef="let element"> {{element.data.descriptions}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="location">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Location </th>
+                        <td class="text-left data-cell" mat-cell *matCellDef="let element">
+                            <ul *ngFor="let location of element.data.location">
+                                <li>{{location}}</li>
+                            </ul>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="action">
+                        <th class="text-left" mat-header-cell *matHeaderCellDef> Action </th>
+                        <td class="text-left data-cell" mat-cell *matCellDef="let element">
+                            <button mat-raised-button color="primary" (click)="navigateDetail(element.id)">Details</button> &nbsp;
+                            <button mat-stroked-button class="btn btn-danger" (click)="deleteGig(element.id)" >Delete</button>
+                        </td>
+                      </ng-container>
+                  
+                    <tr class="pt-2" mat-header-row *matHeaderRowDef="tableColumns"></tr>
+                    <tr class="pt-2" mat-row *matRowDef="let row; columns: tableColumns;"></tr>
+            </table>
+            <mat-paginator class="mat-elevation-z8" #paginator [pageSizeOptions]="pageList" showFirstLastButtons></mat-paginator>
+
+        </div>
+    </div>
+</div>
+

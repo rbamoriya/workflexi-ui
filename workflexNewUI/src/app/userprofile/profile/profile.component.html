@@ -1,0 +1,403 @@
+<app-individualheader></app-individualheader>
+<!-- <div class="profileheader" *ngIf="userDetails && providerDetails">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <mat-card class="profilecard">
+              <mat-card-header>
+                <div mat-card-avatar class="avtrcard" style="background-image: url('https://scontent.fdel27-1.fna.fbcdn.net/v/t1.0-1/p480x480/83016143_10221474843407643_6898953543193985024_n.jpg?_nc_cat=109&_nc_sid=7206a8&_nc_ohc=05eht-XNN6wAX9AD3LK&_nc_ht=scontent.fdel27-1.fna&tp=6&oh=e8ef2b5e3688ac57f22b4167ff5205d2&oe=5FA8BBFB');"></div>
+                <mat-card-title>{{userDetails.name}}</mat-card-title>
+                <mat-card-subtitle>
+                  <ul>
+                      <li>{{providerDetails.title}}</li>
+                      <li>{{userDetails.location}}</li>
+                      <li><strong>Experience.</strong> <span>{{providerDetails.totalExperienceInYears}} Years</span></li>
+                      <li><strong>Mob.</strong> <span>{{userDetails.mobile}}</span></li>
+                      <li><strong>Email</strong><span>{{userDetails.email}}</span></li>
+                    </ul>
+                </mat-card-subtitle>
+              </mat-card-header>
+            </mat-card>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="container">
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card">
+        <mat-tab-group id="three-tab" [(selectedIndex)]="demo1TabIndex" class="milestone-tabs">
+          <mat-tab label="Basic Profile">
+            <div class="card">
+              <div class="card-body">
+                <div class="row  p-0 m-0 " *ngIf="userDetails">
+                  <div class="col-md-2 col-sm-12  ">
+                    <div class="text-center ">
+                      <img style="border-radius: 50%;flex-shrink: 0;object-fit: cover;" [src]="imageSrcData"
+                        alt="Profile photo" class="avtrcard mat-card-avatar mt-md-5 " *ngIf="imageSrcData"
+                        (click)="utilService.viewImage(imageSrcData, userDetails.name)">
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-12 ">
+                    <div class="text-center text-md-left">
+                      <div class="mb-2">
+                        <p class=" text-dark-gray pr-1 text-left fs-14 "><span class=" font-weight-bold ">Name: </span>
+                          <span class="mb-0">{{userDetails.name}}</span></p>
+                      </div>
+                      <div class=" ">
+                        <p class=" text-dark-gray pr-1 text-left fs-14"><span class="font-weight-bold ">Email:</span>
+                          <span class="mb-0">
+                            {{userDetails.email}}
+                          </span>
+                        </p>
+                      </div>
+                      <div>
+                        <p class="text-dark-gray pr-1 text-left fs-14"><span class="font-weight-bold ">Gender:</span>
+                          <span class="mb-0">
+                            {{userDetails.gender}}
+                          </span>
+                        </p>
+                      </div>
+                      <div>
+                        <p class="text-dark-gray pr-1 text-left fs-14"><span class="font-weight-bold">Location:</span>
+                          <span class="mb-0">
+                            {{userDetails.location}}
+                          </span>
+                        </p>
+                      </div>
+                      <div>
+                        <p class="text-dark-gray pr-1 text-left fs-14"><span class="font-weight-bold ">Mobile:</span>
+                          <span class="mb-0">
+                            {{userDetails.mobile}}
+                          </span>
+                        </p>
+                      </div>
+                      <button mat-raised-button color="primary" [routerLink]="[ROUTS.USER_PROFILE_EDIT]"
+                        class="my-2">Edit
+                        Profile</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="d-flex justify-content-between">
+                        <span></span>
+                         <button mat-stroked-button color="primary" [routerLink]="[ROUTS.USER_PROFILE_EDIT]">Edit</button>
+                     </div> -->
+            <!-- <div class="box" *ngIf="userDetails">
+                      <div class="mb-3">
+                          <h3>Profile Photo </h3>
+                          <img style="border-radius: 50%;flex-shrink: 0;object-fit: cover;" [src]="imageSrcData" alt="Profile photo" class="avtrcard mat-card-avatar"
+                          (click)="utilService.viewImage(imageSrcData, userDetails.name)">
+                      </div>
+                      <div class="mb-3">
+                          <h3>Name </h3>
+                          <p>{{userDetails.name}}</p>
+                      </div>
+
+                        <h4>Email </h4>
+
+                        <p>
+                            {{userDetails.email}}
+                          </p>
+
+                        <h4>Gender</h4>
+                        <p>
+                            {{userDetails.gender}}
+                          </p>
+
+                        <h4>Location</h4>
+                        <p>
+                            {{userDetails.location}}
+                        </p>
+
+                        <h4>Mobile</h4>
+                        <p>
+                            {{userDetails.mobile}}
+                        </p>
+
+                  </div>  -->
+          </mat-tab>
+          <mat-tab label="Skills & Experience">
+            <div *ngIf="gigsList">
+              <div *ngIf="gigsList.length==0" class="h-100 d-flex justify-content-center align-items-center">
+                <div class="box box-1 col-12 col-sm-12 col-md-6 col-lg-4">
+                  <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+                    <img class="col-12 col-sm-12 col-md-8 col-lg-6"
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px'%0Awidth='16' height='16'%0AviewBox='0 0 172 172'%0Astyle=' fill:%23000000;'%3E%3Cg fill='none' fill-rule='nonzero' stroke='none' stroke-width='1' stroke-linecap='butt' stroke-linejoin='miter' stroke-miterlimit='10' stroke-dasharray='' stroke-dashoffset='0' font-family='none' font-weight='none' font-size='none' text-anchor='none' style='mix-blend-mode: normal'%3E%3Cpath d='M0,172v-172h172v172z' fill='none'%3E%3C/path%3E%3Cg%3E%3Cpath d='M27.305,162.325c-2.58,0 -4.73,-2.15 -4.73,-4.945v-142.76c0,-2.795 2.15,-4.945 4.73,-4.945h45.15c-0.215,1.075 -0.43,2.15 -0.43,3.225c0,7.74 6.235,13.975 13.975,13.975c7.74,0 13.975,-6.235 13.975,-13.975c0,-1.075 -0.215,-2.15 -0.43,-3.225h45.15c2.58,0 4.73,2.15 4.73,4.945v142.975c0,2.795 -2.15,4.945 -4.73,4.945h-117.39z' fill='%231abc9c'%3E%3C/path%3E%3Cpath d='M144.695,10.75c2.15,0 3.655,1.72 3.655,3.87v142.975c0,2.15 -1.72,3.87 -3.655,3.87h-117.39c-2.15,0 -3.655,-1.72 -3.655,-3.87v-142.975c0,-2.15 1.72,-3.87 3.655,-3.87h43.86c-0.215,0.645 -0.215,1.505 -0.215,2.15c0,8.385 6.665,15.05 15.05,15.05c8.385,0 15.05,-6.665 15.05,-15.05c0,-0.645 0,-1.505 -0.215,-2.15h43.86M144.695,8.6h-46.655c0.645,1.29 0.86,2.795 0.86,4.3c0,7.095 -5.805,12.9 -12.9,12.9c-7.095,0 -12.9,-5.805 -12.9,-12.9c0,-1.505 0.215,-3.01 0.86,-4.3h-46.655c-3.225,0 -5.805,2.58 -5.805,6.02v142.975c0,3.225 2.58,6.02 5.805,6.02h117.175c3.225,0 5.805,-2.58 5.805,-6.02v-142.975c0.215,-3.44 -2.365,-6.02 -5.59,-6.02z' fill='%23087dc3'%3E%3C/path%3E%3Cpath d='M86,2.15c4.73,0 8.6,3.87 8.6,8.6c0,4.73 -3.87,8.6 -8.6,8.6c-4.73,0 -8.6,-3.87 -8.6,-8.6c0,-4.73 3.87,-8.6 8.6,-8.6M86,0c-6.02,0 -10.75,4.73 -10.75,10.75c0,6.02 4.73,10.75 10.75,10.75c6.02,0 10.75,-4.73 10.75,-10.75c0,-6.02 -4.73,-10.75 -10.75,-10.75z' fill='%2366798f'%3E%3C/path%3E%3Cpath d='M34.4,21.5h103.2v129h-103.2z' fill='%23ffffff'%3E%3C/path%3E%3Cpath d='M103.2,58.05h21.5v2.15h-21.5zM103.2,75.25h21.5v2.15h-21.5zM103.2,92.45h21.5v2.15h-21.5zM47.3,109.65h77.4v2.15h-77.4zM47.3,126.85h77.4v2.15h-77.4z' fill='%2384d9c6'%3E%3C/path%3E%3Cpath d='M68.8,48.375c-6.53077,0 -11.825,5.29423 -11.825,11.825c0,6.53077 5.29423,11.825 11.825,11.825c6.53077,0 11.825,-5.29423 11.825,-11.825c0,-6.53077 -5.29423,-11.825 -11.825,-11.825z' fill='%23abe6d8'%3E%3C/path%3E%3Cpath d='M68.8,49.45c6.02,0 10.75,4.73 10.75,10.75c0,6.02 -4.73,10.75 -10.75,10.75c-6.02,0 -10.75,-4.73 -10.75,-10.75c0,-6.02 4.73,-10.75 10.75,-10.75M68.8,47.3c-7.095,0 -12.9,5.805 -12.9,12.9c0,7.095 5.805,12.9 12.9,12.9c7.095,0 12.9,-5.805 12.9,-12.9c0,-7.095 -5.805,-12.9 -12.9,-12.9z' fill='%2313ab87'%3E%3C/path%3E%3Cg%3E%3Cpath d='M48.375,93.525c0.645,-10.75 9.46,-19.35 20.425,-19.35c10.965,0 19.78,8.6 20.425,19.35z' fill='%2371b9e4'%3E%3C/path%3E%3Cpath d='M68.8,75.25c9.89,0 18.06,7.525 19.135,17.2h-38.27c1.075,-9.675 9.245,-17.2 19.135,-17.2M68.8,73.1c-11.825,0 -21.5,9.675 -21.5,21.5h43c0,-11.825 -9.675,-21.5 -21.5,-21.5z' fill='%23087dc3'%3E%3C/path%3E%3C/g%3E%3Cpath d='M95.46,8.6c0.215,0.645 0.215,1.505 0.215,2.15c0,5.375 -4.3,9.675 -9.675,9.675c-5.375,0 -9.675,-4.3 -9.675,-9.675c0,-0.645 0,-1.505 0.215,-2.15h-20.64v17.2c0,4.73 3.87,8.6 8.6,8.6h43c4.73,0 8.6,-3.87 8.6,-8.6v-17.2z' fill='%2366798f'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E"
+                      alt="There is no skill available" style="height:80px;">
+                  </div>
+
+                  <h5>There are no skills added by you !</h5>
+                  <button mat-stroked-button
+                    class="mat-flat-button mat-button-base mat-primary col-10 col-sm-10 col-md-10 col-lg-10"
+                    color="primary" [routerLink]="[ROUTS.ADD_NEW_SKILL]">Please add a skill</button>
+                </div>
+              </div>
+              <ng-container>
+                <!-- <div class="row  mb-2">
+                  <span class="col-md-10"></span>
+                  <span class="col-md-12 col-12">
+                    <button mat-stroked-button class="mat-flat-button mat-button-base mat-primary  " color="primary" *ngIf="gigsList.length!=0"
+                      [routerLink]="[ROUTS.ADD_NEW_SKILL]">add a skill you are looking
+                      for</button>
+                  </span>
+                </div> -->
+                <div class="px-md-5 px-1 my-0  row ">
+                  <div class="col-md-12 col-12  mx-auto  ">
+                    <button mat-stroked-button class="mat-flat-button mat-button-base mb-3 ml-1 mat-primary  " color="primary" *ngIf="gigsList.length!=0"
+                    [routerLink]="[ROUTS.ADD_NEW_SKILL]">Add Skill</button>
+                    <div class="card  pb-1 pt-3 px-2 px-md-3  mb-4"  *ngFor="let gigs of gigsList;index as i">
+
+                      <div class="card-body box p-0 m-0">
+                        <div class="row p-0">
+                          <div class="col-md-7 pl-4 pl-md-3">
+                            <div class="d-flex mb-0">
+                              <p class="font-weight-bold text-dark-gray fs-14">Title:</p>
+                              <span class=" text-experience pl-2 pt-0 mt-0">
+                                {{gigs.data.title}}
+                              </span>
+                            </div>
+                            <div class="d-flex mb-0">
+                              <p class="font-weight-bold text-dark-gray mt-2 mb-0 fs-14">Skills:</p>
+                              <mat-chip-list class="pl-2">
+                                <mat-chip *ngFor="let skill of gigs.data.skill">{{skill}}</mat-chip>
+                              </mat-chip-list>
+                            </div>
+                            <div class="d-flex mt-2 ">
+                              <p class="font-weight-bold text-dark-gray fs-14">Experience:</p>
+
+                              <p *ngIf="gigs.data.totalExperienceInYears" class="text-experience pl-2  mb-0 pb-0  ">
+                                {{gigs.data.totalExperienceInYears}} Year(s)</p>&nbsp;
+                              <span *ngIf="gigs.data.totalExperienceInMonths" class="text-experience ">
+                                {{gigs.data.totalExperienceInMonths}} Month(s)</span>
+                            </div>
+                            <div class="d-flex">
+                              <p class="font-weight-bold text-dark-gray fs-14">Remuneration(in INR) :</p> <span
+                                *ngIf="gigs.data.remuneration"
+                                class="text-experience  pt-md-0 pl-1">{{gigs.data.remuneration}}
+                              </span>
+                            </div>
+                            <div class="d-flex">
+                              <p class="font-weight-bold text-dark-gray fs-14">Remuneration Type :</p> <span
+                                *ngIf="gigs.data.remunerationType"
+                                class="text-experience pl-1">{{gigs.data.remunerationType}}
+                              </span>
+                            </div>
+                            <div class="d-flex">
+                              <p class="font-weight-bold text-dark-gray fs-14">About Me :</p> <span
+                                class="text-experience pl-1" style="max-width: calc(100% - 76px);">{{gigs.data.descriptions}}
+                              </span>
+                            </div>
+                          </div>
+
+
+                          <div class="col-md-5">
+                            <div class="ml-video d-md-block d-none">
+                              <span class="float-md-right  pb-4">
+                                <button mat-flat-button class="mr-3" color="primary"
+                                  [routerLink]="[ROUTS.UPDATE_SKILL + '/'+gigs.id]">
+                                  Edit</button>
+                                <button mat-flat-button color="warn" (click)="delete(gigs.id,'provider')"
+                                  class="m-0">Delete</button>
+
+                              </span>
+                              <div *ngIf="gigs.data.document &&
+                              gigs.isApproved == true">
+                                <video [src]="gigs.data.document" class="card ml-md-2" width="350" height="200"
+                                  *ngIf="gigs.isApproved == true && gigs.data.document && gigs.data.document.toString().includes('blob')"
+                                  controls></video>
+                                <p class="font-weight-bold text-dark-gray fs-14 my-0 text-center">Video</p>
+                              </div>
+
+                            </div>
+                            <div class=" d-md-none d-lg-none d-xl-none ">
+                              <div *ngIf="gigs.data.document &&
+                              gigs.isApproved == true">
+                                <video [src]="gigs.data.document" class="card" width="300" height="170"
+                                  *ngIf="gigs.isApproved == true && gigs.data.document && gigs.data.document.toString().includes('blob')"
+                                  controls></video>
+                                <p class="font-weight-bold text-dark-gray fs-14 my-3 text-center">Video</p>
+                              </div>
+                              <span>
+                                <button mat-flat-button class="mr-3" color="primary"
+                                  [routerLink]="[ROUTS.UPDATE_SKILL + '/'+gigs.id]">
+                                  Edit</button>
+                                <button mat-flat-button color="warn" (click)="delete(gigs.id,'provider')"
+                                  class="m-0">Delete</button>
+
+                              </span>
+
+                            </div>
+
+                            <!--
+                              *ngIf="gigs.data.document &&
+                            gigs.isApproved == true" <video [src]="gigs.data.document"
+                              *ngIf="gigs.isApproved == true && gigs.data.document && gigs.data.document.toString().includes('blob')"
+                              width="350" height="200" controls></video> -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="d-flex justify-content-between">
+                  <span></span>
+                  <span>
+                    <button mat-stroked-button *ngIf="i == 0" class="mat-flat-button mat-button-base mat-primary mr-5"
+                      color="primary" [routerLink]="[ROUTS.ADD_NEW_SKILL]">Add Skill</button>
+                    <button mat-stroked-button class="mr-2" color="primary"
+                      [routerLink]="[ROUTS.UPDATE_SKILL + '/'+gigs.id]">Edit</button>
+                    <button mat-stroked-button color="primary" (click)="delete(gigs.id,'provider')">Delete</button>
+
+                  </span>
+                </div> -->
+                <!-- <div class="box">
+
+                  <h3>Title</h3>
+                  <p><b> {{gigs.data.title}} </b></p>
+                  <h3 *ngIf="gigs.data.document && gigs.isApproved == true">Video</h3>
+                  <video [src]="gigs.data.document"
+                    *ngIf="gigs.isApproved == true && gigs.data.document && gigs.data.document.toString().includes('blob')"
+                    width="350" height="200" controls></video>
+                  <h3 class="mt-3">Skills</h3>
+                  <mat-chip-list>
+                    <mat-chip *ngFor="let skill of gigs.data.skill">{{skill}}</mat-chip>
+                  </mat-chip-list>
+                </div>
+                <div class="box">
+                  <p> <b>Experience : </b>
+                    <span *ngIf="gigs.data.totalExperienceInYears">{{gigs.data.totalExperienceInYears}} Year(s) </span>
+                    <span *ngIf="gigs.data.totalExperienceInMonths">{{gigs.data.totalExperienceInMonths}}
+                      Month(s)</span> ,
+
+                    <b>Remuneration : </b>
+                    <span *ngIf="gigs.data.remuneration">{{gigs.data.remuneration}} , </span>
+                    <b>Remuneration Type : </b>
+                    <span *ngIf="gigs.data.remunerationType">{{gigs.data.remunerationType}}</span>
+                  </p>
+                  <h3>About Me</h3>
+                  <p>
+                    {{gigs.data.descriptions}}
+                  </p>
+                </div>
+                <hr /> -->
+              </ng-container>
+            </div>
+            <!-- <div class="box">
+                    <h3>Language</h3>
+                    <mat-chip-list>
+                        <mat-chip>English - Conversational</mat-chip>
+                        <mat-chip>Hindi - Native/Bilingual</mat-chip>
+
+                      </mat-chip-list>
+                      </div> -->
+            <!-- <div class="box">
+                      <h3>Work History</h3>
+                      <mat-list>
+                        <mat-list-item>
+                          <img matListAvatar src="https://myremotedevelopers.com/assets/img/default-logo.png" alt="default">
+                          <h3 matLine> Atlogys Technical Consulting </h3>
+                          <p matLine>
+                            <span> Sr. UI designer</span>
+
+                          </p>
+                          <p matLine> 2014/11 - 2019/08</p>
+                        </mat-list-item>
+                      </mat-list>
+                      <h3>Role</h3>
+                      <p>Designed UI for client interfaces which includes understanding the
+                        functionality from use cases and design UI according to UI specifications and
+                        meeting the business requirement with work flow</p>
+                        </div> -->
+            <!-- <div class="box edu">
+                            <h3>Education</h3>
+                            <p><strong>Babasaheb Bhimrao Ambedkar University</strong></p>
+                                <p>Bachelor of Arts (BA, AB, BS, BSc, SB, ScB) </p>
+                                <p>2008 - 2012</p>
+                        </div> -->
+          </mat-tab>
+          <mat-tab label="Bank Details">
+            <!-- <div class="d-flex justify-content-between"
+              *ngIf="userDetails && userDetails.bank.accountNumber && userDetails.bank.bankName">
+              <span></span>
+              <button mat-stroked-button color="primary" [routerLink]="[ROUTS.USER_PAYMENTS_EDIT]">Edit</button>
+            </div> -->
+
+            <div class="px-md-5 px-1 my-0  row "
+              *ngIf="userDetails && userDetails.bank.accountNumber && userDetails.bank.bankName">
+              <div class="col-md-9 col-12  mx-auto  ">
+
+                <div class="card  pb-1 pt-3 px-2 px-md-3  mb-4">
+
+                  <div class="card-body box p-0 m-0">
+                    <div class="row p-0">
+                      <div class="col-md-10 col-12 pl-4 pl-md-3">
+                        <div class="d-flex mb-0">
+                          <p class="font-weight-bold text-dark-gray fs-14">Account Number:</p>
+                          <span class=" text-experience pl-2 pt-0 mt-0">
+                            {{userDetails.bank.accountNumber}}
+                          </span>
+                        </div>
+                        <div class="d-flex mb-0">
+                          <p class="font-weight-bold text-dark-gray fs-14">Bank Name:</p>
+                          <span class=" text-experience pl-2 pt-0 mt-0">
+                            {{userDetails.bank.bankName}}
+                          </span>
+                        </div>
+                        <div class="d-flex mb-0">
+                          <p class="font-weight-bold text-dark-gray fs-14">Ifsc Code:</p>
+                          <span class=" text-experience pl-2 pt-0 mt-0">
+                            {{userDetails.bank.ifscCode}}
+                          </span>
+                        </div>
+                        <div class="d-flex mb-0">
+                          <p class="font-weight-bold text-dark-gray fs-14">Name In Bank:</p>
+                          <span class=" text-experience pl-2 pt-0 mt-0">
+                            {{userDetails.bank.nameInBank}}
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-md-2 col-12 ">
+                        <button  mat-flat-button color="primary" class="ml-1 ml-md-4"
+                          [routerLink]="[ROUTS.USER_PAYMENTS_EDIT]">Edit</button>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="box" *ngIf="userDetails && userDetails.bank.accountNumber && userDetails.bank.bankName">
+              <h4>Account Number</h4>
+              <p>{{userDetails.bank.accountNumber}}</p>
+              <h4>Bank Name</h4>
+              <p>{{userDetails.bank.bankName}}</p>
+              <h4>Ifsc Code</h4>
+              <p>{{userDetails.bank.ifscCode}}</p>
+              <h4>Name In Bank</h4>
+              <p>{{userDetails.bank.nameInBank}}</p>
+            </div> -->
+            <div *ngIf="userDetails && !userDetails.bank.accountNumber && !userDetails.bank.bankName">
+              <div class="h-100 d-flex justify-content-center align-items-center">
+                <div class="box box-1 col-8 col-sm-8 col-md-4 col-lg-2">
+                  <img class="col-12 col-sm-12 col-md-12 col-lg-12"
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px'%0Awidth='64' height='64'%0AviewBox='0 0 172 172'%0Astyle=' fill:%23000000;'%3E%3Cg fill='none' fill-rule='nonzero' stroke='none' stroke-width='1' stroke-linecap='butt' stroke-linejoin='miter' stroke-miterlimit='10' stroke-dasharray='' stroke-dashoffset='0' font-family='none' font-weight='none' font-size='none' text-anchor='none' style='mix-blend-mode: normal'%3E%3Cpath d='M0,172v-172h172v172z' fill='none'%3E%3C/path%3E%3Cg fill='%231abc9c'%3E%3Cpath d='M99.4375,5.375c-0.68733,0 -1.37474,0.26195 -1.90015,0.78735l-11.53735,11.53735l-6.16235,-6.16235c-1.05081,-1.05081 -2.74948,-1.05081 -3.80029,0l-18.02515,18.02515h-17.69971c-0.3521,0 -0.70372,0.07208 -1.03406,0.20996c-0.32522,0.13597 -0.62052,0.33199 -0.86609,0.57739l-21.5,21.5c-0.77998,0.77998 -0.97631,1.91779 -0.59839,2.88171c-0.11954,0.55128 -0.18896,1.11942 -0.18896,1.70593v91.375c0,4.44513 3.61737,8.0625 8.0625,8.0625h129c4.44513,0 8.0625,-3.61737 8.0625,-8.0625v-91.375c0,-0.58651 -0.06942,-1.15465 -0.18896,-1.70593c0.37792,-0.96392 0.18159,-2.10173 -0.59839,-2.88171l-21.5,-21.5c-0.24557,-0.2454 -0.54087,-0.44142 -0.86609,-0.57739c-0.33034,-0.13788 -0.68196,-0.20996 -1.03406,-0.20996h-12.32471l-23.40015,-23.40015c-0.52541,-0.52541 -1.21282,-0.78735 -1.90015,-0.78735zM99.4375,11.86279l22.28735,22.28735l8.0625,8.0625c0.52406,0.52406 1.21215,0.78735 1.90015,0.78735c0.688,0 1.37608,-0.26329 1.90015,-0.78735c1.05081,-1.05081 1.05081,-2.74948 0,-3.80029l-3.47485,-3.47485h5.83692l13.4375,13.4375h-121.39942l13.4375,-13.4375h11.21192l-3.47485,3.47485c-1.05081,1.05081 -1.05081,2.74948 0,3.80029c1.05081,1.05081 2.74948,1.05081 3.80029,0l24.97485,-24.97485l6.16235,6.16235l18.8125,18.8125c0.52406,0.52406 1.21215,0.78735 1.90015,0.78735c0.688,0 1.37608,-0.26329 1.90015,-0.78735c1.05081,-1.05081 1.05081,-2.74948 0,-3.80029l-16.91235,-16.91235zM24.1875,53.75h129c1.48081,0 2.6875,1.204 2.6875,2.6875v91.375c0,1.4835 -1.20669,2.6875 -2.6875,2.6875h-129c-1.48081,0 -2.6875,-1.204 -2.6875,-2.6875v-91.375c0,-1.4835 1.20669,-2.6875 2.6875,-2.6875zM69.875,86c-5.93669,0 -10.75,4.81331 -10.75,10.75c0,5.93669 4.81331,10.75 10.75,10.75h37.625c5.93669,0 10.75,-4.81331 10.75,-10.75c0,-5.93669 -4.81331,-10.75 -10.75,-10.75zM69.875,91.375h37.625c2.96969,0 5.375,2.40531 5.375,5.375c0,2.96969 -2.40531,5.375 -5.375,5.375h-37.625c-2.96969,0 -5.375,-2.40531 -5.375,-5.375c0,-2.96969 2.40531,-5.375 5.375,-5.375zM34.9375,134.53772c-1.4835,0 -2.6875,1.204 -2.6875,2.6875v5.375c0,1.4835 1.204,2.6875 2.6875,2.6875c1.4835,0 2.6875,-1.204 2.6875,-2.6875v-5.375c0,-1.4835 -1.204,-2.6875 -2.6875,-2.6875zM48.375,134.53772c-1.4835,0 -2.6875,1.204 -2.6875,2.6875v5.375c0,1.4835 1.204,2.6875 2.6875,2.6875c1.4835,0 2.6875,-1.204 2.6875,-2.6875v-5.375c0,-1.4835 -1.204,-2.6875 -2.6875,-2.6875zM61.8125,134.53772c-1.4835,0 -2.6875,1.204 -2.6875,2.6875v5.375c0,1.4835 1.204,2.6875 2.6875,2.6875c1.4835,0 2.6875,-1.204 2.6875,-2.6875v-5.375c0,-1.4835 -1.204,-2.6875 -2.6875,-2.6875zM75.25,134.53772c-1.4835,0 -2.6875,1.204 -2.6875,2.6875v5.375c0,1.4835 1.204,2.6875 2.6875,2.6875c1.4835,0 2.6875,-1.204 2.6875,-2.6875v-5.375c0,-1.4835 -1.204,-2.6875 -2.6875,-2.6875zM88.6875,134.53772c-1.4835,0 -2.6875,1.204 -2.6875,2.6875v5.375c0,1.4835 1.204,2.6875 2.6875,2.6875c1.4835,0 2.6875,-1.204 2.6875,-2.6875v-5.375c0,-1.4835 -1.204,-2.6875 -2.6875,-2.6875zM102.125,134.53772c-1.4835,0 -2.6875,1.204 -2.6875,2.6875v5.375c0,1.4835 1.204,2.6875 2.6875,2.6875c1.4835,0 2.6875,-1.204 2.6875,-2.6875v-5.375c0,-1.4835 -1.204,-2.6875 -2.6875,-2.6875zM115.5625,134.53772c-1.4835,0 -2.6875,1.204 -2.6875,2.6875v5.375c0,1.4835 1.204,2.6875 2.6875,2.6875c1.4835,0 2.6875,-1.204 2.6875,-2.6875v-5.375c0,-1.4835 -1.204,-2.6875 -2.6875,-2.6875zM129,134.53772c-1.4835,0 -2.6875,1.204 -2.6875,2.6875v5.375c0,1.4835 1.204,2.6875 2.6875,2.6875c1.4835,0 2.6875,-1.204 2.6875,-2.6875v-5.375c0,-1.4835 -1.204,-2.6875 -2.6875,-2.6875zM142.4375,134.53772c-1.4835,0 -2.6875,1.204 -2.6875,2.6875v5.375c0,1.4835 1.204,2.6875 2.6875,2.6875c1.4835,0 2.6875,-1.204 2.6875,-2.6875v-5.375c0,-1.4835 -1.204,-2.6875 -2.6875,-2.6875z'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E"
+                    alt="There is no bank details" style="height: 80px;">
+                  <br>
+                  <h5>There is no bank details available!</h5>
+                  <button mat-stroked-button
+                    class="mat-flat-button mat-button-base mat-primary col-12 col-sm-12 col-md-12 col-lg-12"
+                    color="primary" [routerLink]="[ROUTS.USER_PAYMENTS_EDIT]">Add bank details</button>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+
+    </div>
+  </div>
+
+
+  <ngx-spinner type="ball-clip-rotate-multiple" size="medium"></ngx-spinner>

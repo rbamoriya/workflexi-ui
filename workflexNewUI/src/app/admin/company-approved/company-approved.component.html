@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 p-2">
+            <h2 class="text-center">Workflexi Company List</h2>
+            <div class="col-md-4 pt-4 pb-2">
+                <span class="d-flex">
+                    <h5 class="p-2">Filter:</h5>
+                    <select class="form-control p-1" [(ngModel)]="selectedValue" (change)="filter(selectedValue)" >
+                        <option value="">All</option>
+                        <option value="Verified">Verified Companies</option>
+                        <option value="Unverified">Unverified Companies</option>
+                    </select>
+                </span>
+                <!--[(ngModel)]="selectedValue" (change)="filter(selectedValue)"-->
+                <span>
+                    
+                </span>
+            </div>
+            <div class="col-md-12" *ngIf="companyList">
+                <table class="table-striped table">
+                    <thead class="">
+                    <tr>
+                        <th>Name</th>
+                        <th>Website</th>
+                        <th>Gst Number</th>
+                        <th>Pan Number</th>
+                        <th>Is Verified</th>
+                        <th>Address</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let company of filteredCompanyList | paginate: {itemsPerPage:10, currentPage :p}">
+                            <td>{{company.companyName}}</td>
+                            <td>{{company.companyWebsite}}</td>
+                            <td>{{company.companyGstnumber}}</td>
+                            <td>{{company.companyPannumber}}</td>
+                            <td>{{company.companyIsVerified}}</td>
+                            <td>{{company.companyAddress}}</td>
+                            <td>
+                                <button mat-stroked-button class="mat-flat-button mat-button-base mat-primary" 
+                                color="primary" (click)="navigateDetail(company.id)" >Detail</button> &nbsp;
+
+                                <button *ngIf="!company.companyIsVerified" mat-stroked-button class="mat-flat-button mat-button-base" 
+                                style="background-color: #FFC300; color: #fff;" 
+                                (click)="verifyCompany(company.id)" >Verify</button>
+
+                                <button *ngIf="company.companyIsVerified" mat-stroked-button class="mat-flat-button mat-button-base mat-warn"
+                                (click)="unVerifyCompany(company.id)" >Decline</button>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+                <pagination-controls (pageChange)="p=$event"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>

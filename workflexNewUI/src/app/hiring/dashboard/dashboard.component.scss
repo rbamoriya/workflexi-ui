@@ -1,0 +1,297 @@
+@import '../../userprofile/basicinfo/basicinfo.component';
+
+.mat-card-avatar{
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+    background-position: center;
+}
+.mat-card-header{
+    position: relative;
+}
+.pricing{
+    position: absolute;    
+    font-size: 15px;
+    right: 0px;
+    top: -13px;
+    font-weight: 600;
+    color:#07669F;
+    span{
+        font-size: small;
+    }
+}
+.mat-card-header-text{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+}
+.heading{
+    flex: 1 0 auto;
+}
+.top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.hiring-card{
+    width: 99%;
+    margin: 0 auto 20px;
+}
+// Chat css
+
+.chatseciton{
+    position: relative;
+    display: none;
+}
+.inside{
+    position: fixed;
+    height: 100vh;
+    width: 50%;
+    right: 0;
+    max-width: 500px;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+background-color: #fff;
+top: 0px;
+z-index: 11;
+
+}
+.menushow{
+    display: block;
+    .inside{
+        transform: translateX(0);
+
+    }
+    .overlay{
+        display: block;
+    }
+}
+.overlay{
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    z-index: 9;
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+.topblock,.footer-section{
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.16);
+    padding: 15px 10px;
+    h3{
+margin: 0px;
+    }
+}
+.suggetstionlist .mat-chip-list{
+    .mat-chip.mat-accent.mat-standard-chip{
+        background-color: #07669F;
+        color: #fff;
+        cursor: pointer;
+    }
+}
+.middle-section{
+    max-height:calc(100vh - 200px);
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    padding: 25px 25px 0 25px;
+    overflow-y: auto;
+    .hour{
+        color: rgba(0, 0, 0, 0.16);
+    }
+    .sent{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+       
+        .sent-bubble{
+            border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+    width: 100%;
+    max-width: 70%;
+    padding: 10px;
+    margin: 10px 0 20px;
+    background-color: #e6edf6;
+    position: relative;
+    text-align: left;
+    color: rgba($color: #455A64, $alpha: 0.63);
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -6px;
+        width: 0px;
+        height: 0px;
+        border-top: 0px solid transparent;
+        border-bottom: 20px solid transparent;
+        border-right: 10px solid #e6edf6;
+    }
+        }
+        
+    }
+    .received{
+        display: flex;
+flex-direction: column;
+align-items: flex-end;
+    }
+    .received-bubble{
+        background-color: #f2f2f2;
+        max-width: 70%;
+    padding: 10px;
+    margin: 10px 0 20px;
+    text-align: left;
+    position: relative;
+    color: rgba($color: #455A64, $alpha: 0.63);
+    width: 100%;
+    
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: -6px;
+        width: 0px;
+        height: 0px;
+        border-top: 0px solid transparent;
+        border-bottom: 20px solid transparent;
+        border-left: 10px solid #f2f2f2;
+    }
+}
+h3{
+    color: #07669F;
+    border-bottom: 1px solid #07669F;
+    text-align: center;
+    line-height: 0.1rem;
+    margin: 10px 0 30px;
+    text-transform: uppercase;
+    font-size: 1rem;
+    color: rgba($color: #455A64, $alpha: 0.63);
+}
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  .errors{
+      color: red;
+  }
+  .padding-3-percent {
+      padding: 3%;
+  }
+  p{
+    color: #007EC2;
+  }
+  mat-ink-bar {
+      background-color: transparent !important;
+  }
+  .blue_color{
+    color:#007dc3;
+    text-align: center;
+  }
+  .no-bullet li{
+    list-style:none;
+  }
+  .userMessage{
+    padding: 6px 15px;
+    background: #19bc9c;
+    color: #fff;
+    border-radius: 3px;
+    float: left;
+    display: block;
+    width: 60%;
+    font-size: 13px;
+    margin-bottom: 10px;
+    box-shadow: 1px 2px 3px 0px #026d58;
+  }
+  .myMessage{
+    padding: 6px 15px;
+    background: #07669F;
+    color: #fff;
+    border-radius: 3px;
+    float: right;
+    display: block;
+    width: 60%;
+    font-size: 13px;
+    margin-bottom: 10px;
+    box-shadow: 1px 2px 3px 0px gray;
+  }
+  .modal-body{
+    min-height: 50px;
+    overflow-y: scroll;
+  }
+  .time{
+    font-size: 10px;
+    margin-top: 5px;
+    color: #fff;
+    font-style: italic;
+    position: unset;
+    margin-bottom: 0;
+  }
+  .messageSuggestionParent{
+    padding: 5px 10px;
+    box-shadow: 2px 2px 2px #e0e0e0;
+  }
+  .messageSuggestion{
+      color: #fff;
+      background: #07669F;
+      padding: 3px 7px;
+      margin-right: 5px;
+      border-radius: 20px;
+      font-size: 12px;
+      cursor: pointer;
+      box-shadow: 1px 2px 2px 0px #e0e0e0;
+  }
+  .modal-header{
+    box-shadow: 1px 2px 3px 0px #e0e0e0;
+  }
+  .chatButton{
+    padding: 5px;
+    box-shadow: 6px 0px 2px #e0e0e0;
+    text-align: center;
+  }
+  .color_green{
+    color:#1abc9c !important;
+  }
+  
+  .modal-dialog{
+    margin: 0px 0px !important;
+    float: right !important;
+    height: 100% !important;
+  }
+  .modal-content{
+    height: 100% !important;
+  }
+
+.notification{
+    background-color: #C12335;
+    color: #fff;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    font-size: small;
+    top:-2px;
+    right: 12px;
+}
+
+.alert-info p{
+  color: #1ABC9C !important;
+}

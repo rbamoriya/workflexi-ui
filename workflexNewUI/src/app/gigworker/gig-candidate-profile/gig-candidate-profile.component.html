@@ -1,0 +1,84 @@
+<app-individualheader></app-individualheader>
+<div class="container" *ngIf="seekerDetails">
+  <div class="row">
+    <div class="col-12 col-sm-9 col-md-9 col-lg-9">
+      <div class="profileheader">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <mat-card class="profilecard pt-2 pt-md-5">
+              <div class="text-center  d-md-none py-0 my-0">
+                <img style="border-radius: 50%;flex-shrink: 0;object-fit: cover;" [src]="userImgSrc" alt="image"
+                  class="example-header-image avtrcard mat-card-avatar text-center  py-0 my-0">
+              </div>
+              <img style="border-radius: 50%;flex-shrink: 0;object-fit: cover;float: left;" [src]="userImgSrc"
+                alt="image" class="example-header-image avtrcard mat-card-avatar d-md-block d-none">
+              <mat-card-header style="margin-top: 25px;">
+                <!-- <img style="border-radius: 50%;flex-shrink: 0;object-fit: cover;" [src]="profileImgSrcData" alt="image" class="avtrcard mat-card-avatar" *ngIf="profileImgSrcData"> -->
+                <mat-card-title
+                  *ngIf="seekerDetails.user && seekerDetails.user.name != null && seekerDetails.user.name != null && seekerDetails.user.name != undefined">
+                  {{seekerDetails.user.name}}</mat-card-title>
+                <mat-card-title
+                  *ngIf="seekerDetails.company && seekerDetails.company != null && seekerDetails.company.companyName != null && seekerDetails.company.companyName != undefined">
+                  <h4 class="text-dark-gray"> {{ seekerDetails.company.companyName }}</h4>
+                </mat-card-title>
+                <mat-card-subtitle>
+                  <ul>
+                    <li *ngIf="seekerDetails.data.locationPreferences[0]"> <strong>Location.</strong>
+                      {{seekerDetails.data.locationPreferences[0]}}</li>
+                    <li><strong>Required Experience.</strong> <span
+                        *ngIf="seekerDetails.data.totalExperienceInYears">{{seekerDetails.data.totalExperienceInYears}}</span>
+                      <span *ngIf="seekerDetails.data.maximumExperienceInYears"> -
+                        {{seekerDetails.data.maximumExperienceInYears}}</span> <span> year(s)</span></li>
+                    <li *ngIf="seekerDetails.user && seekerDetails.user.mobile"><strong>Mobile Number.</strong> <span
+                        *ngIf="seekerDetails.user.mobile">{{seekerDetails.user.mobile}}</span> </li>
+                  </ul>
+                </mat-card-subtitle>
+              </mat-card-header>
+            </mat-card>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+            <div class="box">
+              <h6 class="text-dark-gray">Skills looking for</h6>
+              <mat-chip-list>
+                <mat-chip *ngFor="let skill of seekerDetails.data.skill">{{skill}}</mat-chip>
+              </mat-chip-list>
+            </div>
+            <div class="box">
+              <h6 class="text-dark-gray">Engagement Period</h6>
+              <p>
+                {{seekerDetails.data.engagementPeriod}} month(s)
+              </p>
+            </div>
+            <div class="box" *ngIf="seekerDetails.data.remarks">
+              <h6 class="text-dark-gray">Remarks</h6>
+              <p>
+                {{seekerDetails.data.remarks}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-3 col-md-3 col-lg-3 m-fixed">
+      <div class="candidate-info-price text-center">
+        <img src="assets/images/time.svg" class="w-50" />
+        <mat-list class="mt-3">
+          <mat-list-item>
+            <span matLine class="text-center text-green my-0">
+              <strong>Engagement Period</strong>
+              <p>{{seekerDetails.data.engagementPeriod}} month(s)</p>
+            </span>
+          </mat-list-item>
+        </mat-list>
+        <button mat-flat-button color="primary" *ngIf="!isSeekerShortlisted"
+          (click)="shortlistSeeker(seekerDetails.id)">Shortlist</button>
+        <button style="min-width: 180px;border-color: #1abc9c;height: 45px;" mat-stroked-button color="primary"
+          *ngIf="isSeekerShortlisted">
+          <img src="assets/images/dashboard/check.png" class="icon-hw"> Shortlisted</button>
+      </div>
+    </div>
+  </div>
+</div>

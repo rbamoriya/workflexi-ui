@@ -1,0 +1,20 @@
+@import '../../userprofile/basicinfo/basicinfo.component';
+h4{
+    color: #455a64;
+    font-size: 18px;
+}
+.infoarea-1{
+    max-width: 800px !important;
+}
+.infoarea-1 ul p{
+    margin-bottom: 0.5rem !important;
+    padding-right: 15px !important;
+    padding-left: 15px !important; 
+}
+.title{
+    color: #087DC3 !important;
+}
+
+.selectSkill{
+    display: none !important;
+}

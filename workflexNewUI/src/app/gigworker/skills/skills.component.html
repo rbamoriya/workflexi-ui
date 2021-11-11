@@ -1,0 +1,170 @@
+<div class="container-fluid bg">
+    <div class="row">
+
+        <div class="col-12 col-sm-2 col-md-2 col-lg-2">
+            <div class="sideleft">
+                <app-ind-sidenav [nextTrue]="nextTrue" [isEmailVarify]="true"></app-ind-sidenav>
+            </div>
+
+        </div>
+
+        <div style="border:none !important;" class="col-12 col-sm-10 col-md-10 col-lg-10">
+            <form (ngSubmit)="createProvider('gig')" [formGroup]="basicInfoForm">
+                <mat-toolbar class="trasnparent">
+                    <mat-toolbar-row>
+                        <span class="example-spacer"></span>
+                        Having trouble? &nbsp;<a href="#"> Get Help</a>
+                    </mat-toolbar-row>
+                </mat-toolbar>
+                <div class="row">
+                            <div class="infoarea p-0">
+                                <h1 class="title ml-2 mr-2">Add your Skill & Experience </h1>
+                            </div>
+                            <div class="row col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="col-12 col-sm-12 col-md-7 col-lg-7">
+                                    <div class="infoarea infoarea-1">
+                                        <p>  Please upload a 30sec video, giving a short bio. It should cover your skill, experience, location and how you can value add. Make it as creative as possible.
+                                        </p>
+                                        <p>Answer these 3 questions.</p>
+                                        <ul>
+                                            <li><p> One skill that you are good at, experience</p></li>
+                                            <li><p>What kind of gig interests you</p></li>
+                                            <li><p>Wow us with what you can bring to the table</p></li>
+                                        </ul>
+                                        <p>Showcase your work, if possible.</p>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-5 col-lg-5">
+                                    <video src="assets/images/introduction.mp4" width="400" height="250" class="card"
+                                    controls></video>
+                                </div>
+                            </div>
+                    <div class="col-12 col-sm-9 col-md-9 col-lg-9">
+
+                        <div class="infoarea">
+                            <!-- <h1>Add your skill & Experience</h1> -->
+                            <p>Fill your details before you explore page</p>
+                            <h4>Describe your expertise<sup>*</sup></h4>
+                            <mat-form-field style="border:none !important;" appearance="outline" floatLabel="never">
+
+                                <input style="border:none !important;" matInput placeholder="Ex. Backed Devloper"
+                                    [ngClass]="{'form-submitted': formSubmitted}" formControlName="title" required>
+                            </mat-form-field>
+                            <h4>Upload an instruction video to showcase your skill(max size 50mb)<sup>*</sup></h4>
+                            <!-- <mat-form-field appearance="outline"  floatLabel="never"> -->
+
+                            <video [src]="url" *ngIf="format==='video' && url" width="350" height="200" class="card"
+                                controls></video> <br />
+                            <input id="video-file" style="margin-bottom: 20px;" type='file' accept="video/mp4, video/mov" (change)="onSelectFile($event)" />
+                            <!-- </mat-form-field> -->
+                            <h4>Choose your skill<sup>*</sup></h4>
+                            <!-- <mat-form-field style="border:none !important;" appearance="outline" floatLabel="never"> -->
+
+                                <!-- <mat-select style="border:none !important;" placeholder="Select"
+                                    style="display:none;">
+                                    <mat-option value="UI / UX">UX Designer</mat-option>
+                                    <mat-option value="Java">Java</mat-option>
+                                </mat-select> -->
+                                
+                                <ng-multiselect-dropdown 
+                                    [placeholder]="'Select Skill'"
+                                    [data]="skillList"
+                                    [disabled]="disabled"
+                                    [settings]="dropdownSettings"
+                                    [ngClass]="{'form-submitted': formSubmitted}" formControlName="skill" required>
+                                </ng-multiselect-dropdown>
+                            
+                            <!-- </mat-form-field> -->
+                            <div class="row" style="margin-top: 20px;">
+
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <h4>Total Experience (in year)</h4>
+                                    <mat-form-field style="border:none !important;" appearance="outline"
+                                        floatLabel="never">
+
+                                        <input style="border:none !important;" matInput placeholder="Ex.5" type="number"
+                                            formControlName="totalExperienceInYears">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <h4>Total Experience (in Month)</h4>
+                                    <mat-form-field style="border:none !important;" appearance="outline"
+                                        floatLabel="never">
+
+                                        <input style="border:none !important;" type="number" matInput placeholder="Ex.06"
+                                            formControlName="totalExperienceInMonths">
+                                    </mat-form-field>
+                                </div>
+
+                            </div>
+                            <div class="row">
+
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <h4>Remuneration Type<sup>*</sup></h4>
+                                    <!-- <mat-form-field style="border:none !important;" appearance="outline"
+                                        [floatLabel]="never">
+
+                                        <input style="border:none !important;" matInput placeholder="Ex.500"
+                                            [ngClass]="{'form-submitted': formSubmitted}"
+                                            formControlName="remunerationType" required>
+                                        <mat-hint>Per Hour</mat-hint>
+                                    </mat-form-field> -->
+                                    <ng-multiselect-dropdown style="border:none !important;"
+                                    [placeholder]="'Select Remuneration Type'"
+                                    [data]="rnumarationType"
+                                    [disabled]="disabled"
+                                    [settings]="dropdownSettings"
+                                    [ngClass]="{'form-submitted': formSubmitted}" formControlName="remunerationType" required>
+                                </ng-multiselect-dropdown>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <h4>Expected Remuneration(in INR)<sup>*</sup></h4>
+                                    <mat-form-field style="border:none !important;" appearance="outline"
+                                        floatLabel="never">
+
+                                        <input style="border:none !important;" type="number" matInput placeholder="Ex.600"
+                                            [ngClass]="{'form-submitted': formSubmitted}" formControlName="remuneration"
+                                            required>
+                                        <!-- <mat-hint>Per Hour</mat-hint> -->
+                                    </mat-form-field>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="bottom-part">
+                            <br>
+                            <h4>Short description about yourself(within 250 characters)<sup>*</sup></h4>
+                            <mat-form-field style="border:none !important;" appearance="outline" floatLabel="never">
+                                <textarea style="border:none !important;" matInput name="" id="" cols="30" rows="10"
+                                    [ngClass]="{'form-submitted': formSubmitted}" formControlName="descriptions"
+                                    required></textarea>
+
+
+
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="bottom-part d-flex justify-content-between">
+                            <button mat-stroked-button color="primary"
+                                [routerLink]="['/userprofile/basicinfo']">Previous</button>
+                            <!-- <button mat-flat-button color="primary" [routerLink]="['/userprofile/payments']">Next</button> -->
+                            <button mat-flat-button color="primary" type="submit">Next</button>
+
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+            <button class="selectSkill" id="selectSkill" type="submit">Next</button>
+        </div>
+
+    </div>
+</div>
+
+<ngx-spinner type="ball-clip-rotate-multiple" size="medium"></ngx-spinner>

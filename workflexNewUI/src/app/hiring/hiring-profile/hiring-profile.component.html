@@ -1,0 +1,186 @@
+<app-individualheader></app-individualheader>
+<div class="container">
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card">
+        <mat-tab-group [(selectedIndex)]="demo1TabIndex" class="milestone-tabs">
+
+          <mat-tab label="Basic Profile">
+            <div class="card">
+              <div class="card-body">
+            <!-- <div class="ml-auto pt-2">
+
+              <button mat-raised-button color="primary" [routerLink]="[ROUTS.USER_PROFILE_EDIT]">Edit Profile</button>
+
+            </div> -->
+            <div class="row  p-0 m-0 " *ngIf="userDetails">
+              <div class="col-md-2 col-sm-12  ">
+                <div class="text-center ">
+                  <img style="border-radius: 50%;flex-shrink: 0;object-fit: cover;" [src]="hirerImgSrcData"
+                    alt="Profile photo" class="avtrcard mat-card-avatar mt-md-5 " *ngIf="hirerImgSrcData"
+                    (click)="utilService.viewImage(hirerImgSrcData, userDetails.name)">
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12 ">
+                <div class="text-center text-md-left">
+                  <div class="mb-2">
+                    <p class=" text-dark-gray pr-1 text-left fs-14 "><span class=" font-weight-bold ">Name: </span>
+                    <span class="mb-0">{{userDetails.name}}</span></p>
+                  </div>
+                   <div class=" ">
+                    <p class=" text-dark-gray pr-1 text-left fs-14"><span class="font-weight-bold ">Email:</span>
+                    <span class="mb-0">
+                      {{userDetails.email}}
+                    </span>
+                    </p>
+                  </div>
+                 <div>
+                    <p class="text-dark-gray pr-1 text-left fs-14"><span class="font-weight-bold ">Gender:</span>
+                    <span class="mb-0">
+                      {{userDetails.gender}}
+                    </span>
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-dark-gray pr-1 text-left fs-14"><span class="font-weight-bold">Location:</span>
+                    <span class="mb-0">
+                      {{userDetails.location}}
+                    </span>
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-dark-gray pr-1 text-left fs-14"><span class="font-weight-bold ">Mobile:</span>
+                    <span class="mb-0">
+                      {{userDetails.mobile}}
+                    </span>
+                    </p>
+                  </div>
+                  <button mat-raised-button color="primary" [routerLink]="[ROUTS.USER_PROFILE_EDIT]" class="my-2">Edit
+                    Profile</button>
+                </div>
+              </div>
+            </div>
+              </div>
+            </div>
+            <!-- <h3>Profile Photo </h3> -->
+
+          </mat-tab>
+          <mat-tab label="Skills Looking For">
+
+            <div *ngIf="seekerProfiles != null && seekerProfiles.length > 0 else noProfile">
+
+              <ng-container>
+                <div class="px-md-5 px-1 row  mb-2">
+                  <span class="col-12">
+                    <button mat-stroked-button class="mat-flat-button mat-button-base mat-primary  " color="primary"
+                      [routerLink]="[ROUTS.HIRER_NEW_SKILLOOKIG]">Add a Skill you are looking for</button>
+                  </span>
+                </div>
+                <!--  <button mat-stroked-button class="mr-2" color="primary"
+                      [routerLink]="[ROUTS.HIRER_EDIT_SKILL_LOOKING + '/'+seeker.id]">Edit</button>
+                    <button mat-stroked-button color="primary" (click)="delete(seeker.id,'seeker')">Delete</button>
+
+                  </span>
+                </div> -->
+
+                <div class="px-md-5 px-1 my-0  row " *ngFor="let seeker of seekerProfiles;index as i">
+                  <div class="col-12 mx-auto">
+
+                    <div class="card  pb-1 pt-3 px-2 px-md-3  mb-4">
+
+                      <div class="card-body box p-0 m-0">
+                        <div class="row p-0">
+                          <div class="col-md-8 pl-4 pl-md-3">
+                            <div class="d-flex mb-0">
+                              <p class="font-weight-bold text-dark-gray mt-2 mb-0 fs-14">Skills:</p>
+                              <mat-chip-list class="pl-2">
+                                <mat-chip  *ngFor="let skill of seeker.data.skill">{{skill}}</mat-chip>
+                              </mat-chip-list>
+                            </div>
+                            <div class=" mt-1 d-md-flex ">
+                              <p class="font-weight-bold text-dark-gray mb-0 mb-md-1 mt-md-2 mt-0 fs-14 pr-2">Location Preferences:</p>
+                              <mat-chip-list class="m-0 ">
+                                <mat-chip  *ngFor="let location of seeker.data.locationPreferences">{{location}}
+                                </mat-chip>
+                              </mat-chip-list>
+                            </div>
+
+                            <div class="d-flex mt-2 ">
+                              <p class="font-weight-bold text-dark-gray fs-14">Experience:</p>
+
+                              <p *ngIf="seeker.data.totalExperienceInYears" class="text-experience pl-2 pt-1 mb-0 pb-0 pt-md-0 ">
+                                {{seeker.data.totalExperienceInYears}}</p>
+                              <span *ngIf="seeker.data.maximumExperienceInYears" class="text-experience pl-1 pt-1 pt-md-0"> -
+                                {{seeker.data.maximumExperienceInYears}}</span>
+                              <span>
+                                <p class="text-experience pl-1 pt-1 pt-md-0">Year(s)</p>
+                              </span>,
+
+
+                            </div>
+                            <div class="d-flex">
+                              <p class="font-weight-bold text-dark-gray fs-14">Engagement Period :</p> <span
+                                *ngIf="seeker.data.engagementPeriod"
+                                class="text-experience  pt-1 pt-md-0 pl-1">{{seeker.data.engagementPeriod}}
+                                Month(s) </span>
+                            </div>
+                            <div class="d-flex mt-0">
+                              <p class="font-weight-bold text-dark-gray fs-14" *ngIf="seeker.data.remarks">Remarks
+                                Preferences:</p>
+                              <span *ngIf="seeker.data.remarks" class=" text-experience pl-2 pt-0 mt-0">
+                                {{seeker.data.remarks}}
+                              </span>
+                            </div>
+                          </div>
+
+
+                          <div class="col-md-4 pb-2">
+                            <span class="float-md-right float-left">
+                              <button mat-flat-button class="mr-3" color="primary"
+                                [routerLink]="[ROUTS.HIRER_EDIT_SKILL_LOOKING + '/'+seeker.id]">
+                                Edit</button>
+                              <button mat-flat-button color="warn" (click)="delete(seeker.id,'seeker')"
+                                class="m-0">Delete</button>
+
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+
+
+            </div>
+
+            <ng-template #noProfile>
+              <div class="h-100 d-flex justify-content-center align-items-center">
+                <div class="box box-1 col-12 col-sm-12 col-md-6 col-lg-4">
+                  <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+                    <img class="col-12 col-sm-12 col-md-8 col-lg-6"
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px'%0Awidth='16' height='16'%0AviewBox='0 0 172 172'%0Astyle=' fill:%23000000;'%3E%3Cg fill='none' fill-rule='nonzero' stroke='none' stroke-width='1' stroke-linecap='butt' stroke-linejoin='miter' stroke-miterlimit='10' stroke-dasharray='' stroke-dashoffset='0' font-family='none' font-weight='none' font-size='none' text-anchor='none' style='mix-blend-mode: normal'%3E%3Cpath d='M0,172v-172h172v172z' fill='none'%3E%3C/path%3E%3Cg%3E%3Cpath d='M27.305,162.325c-2.58,0 -4.73,-2.15 -4.73,-4.945v-142.76c0,-2.795 2.15,-4.945 4.73,-4.945h45.15c-0.215,1.075 -0.43,2.15 -0.43,3.225c0,7.74 6.235,13.975 13.975,13.975c7.74,0 13.975,-6.235 13.975,-13.975c0,-1.075 -0.215,-2.15 -0.43,-3.225h45.15c2.58,0 4.73,2.15 4.73,4.945v142.975c0,2.795 -2.15,4.945 -4.73,4.945h-117.39z' fill='%231abc9c'%3E%3C/path%3E%3Cpath d='M144.695,10.75c2.15,0 3.655,1.72 3.655,3.87v142.975c0,2.15 -1.72,3.87 -3.655,3.87h-117.39c-2.15,0 -3.655,-1.72 -3.655,-3.87v-142.975c0,-2.15 1.72,-3.87 3.655,-3.87h43.86c-0.215,0.645 -0.215,1.505 -0.215,2.15c0,8.385 6.665,15.05 15.05,15.05c8.385,0 15.05,-6.665 15.05,-15.05c0,-0.645 0,-1.505 -0.215,-2.15h43.86M144.695,8.6h-46.655c0.645,1.29 0.86,2.795 0.86,4.3c0,7.095 -5.805,12.9 -12.9,12.9c-7.095,0 -12.9,-5.805 -12.9,-12.9c0,-1.505 0.215,-3.01 0.86,-4.3h-46.655c-3.225,0 -5.805,2.58 -5.805,6.02v142.975c0,3.225 2.58,6.02 5.805,6.02h117.175c3.225,0 5.805,-2.58 5.805,-6.02v-142.975c0.215,-3.44 -2.365,-6.02 -5.59,-6.02z' fill='%23087dc3'%3E%3C/path%3E%3Cpath d='M86,2.15c4.73,0 8.6,3.87 8.6,8.6c0,4.73 -3.87,8.6 -8.6,8.6c-4.73,0 -8.6,-3.87 -8.6,-8.6c0,-4.73 3.87,-8.6 8.6,-8.6M86,0c-6.02,0 -10.75,4.73 -10.75,10.75c0,6.02 4.73,10.75 10.75,10.75c6.02,0 10.75,-4.73 10.75,-10.75c0,-6.02 -4.73,-10.75 -10.75,-10.75z' fill='%2366798f'%3E%3C/path%3E%3Cpath d='M34.4,21.5h103.2v129h-103.2z' fill='%23ffffff'%3E%3C/path%3E%3Cpath d='M103.2,58.05h21.5v2.15h-21.5zM103.2,75.25h21.5v2.15h-21.5zM103.2,92.45h21.5v2.15h-21.5zM47.3,109.65h77.4v2.15h-77.4zM47.3,126.85h77.4v2.15h-77.4z' fill='%2384d9c6'%3E%3C/path%3E%3Cpath d='M68.8,48.375c-6.53077,0 -11.825,5.29423 -11.825,11.825c0,6.53077 5.29423,11.825 11.825,11.825c6.53077,0 11.825,-5.29423 11.825,-11.825c0,-6.53077 -5.29423,-11.825 -11.825,-11.825z' fill='%23abe6d8'%3E%3C/path%3E%3Cpath d='M68.8,49.45c6.02,0 10.75,4.73 10.75,10.75c0,6.02 -4.73,10.75 -10.75,10.75c-6.02,0 -10.75,-4.73 -10.75,-10.75c0,-6.02 4.73,-10.75 10.75,-10.75M68.8,47.3c-7.095,0 -12.9,5.805 -12.9,12.9c0,7.095 5.805,12.9 12.9,12.9c7.095,0 12.9,-5.805 12.9,-12.9c0,-7.095 -5.805,-12.9 -12.9,-12.9z' fill='%2313ab87'%3E%3C/path%3E%3Cg%3E%3Cpath d='M48.375,93.525c0.645,-10.75 9.46,-19.35 20.425,-19.35c10.965,0 19.78,8.6 20.425,19.35z' fill='%2371b9e4'%3E%3C/path%3E%3Cpath d='M68.8,75.25c9.89,0 18.06,7.525 19.135,17.2h-38.27c1.075,-9.675 9.245,-17.2 19.135,-17.2M68.8,73.1c-11.825,0 -21.5,9.675 -21.5,21.5h43c0,-11.825 -9.675,-21.5 -21.5,-21.5z' fill='%23087dc3'%3E%3C/path%3E%3C/g%3E%3Cpath d='M95.46,8.6c0.215,0.645 0.215,1.505 0.215,2.15c0,5.375 -4.3,9.675 -9.675,9.675c-5.375,0 -9.675,-4.3 -9.675,-9.675c0,-0.645 0,-1.505 0.215,-2.15h-20.64v17.2c0,4.73 3.87,8.6 8.6,8.6h43c4.73,0 8.6,-3.87 8.6,-8.6v-17.2z' fill='%2366798f'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E"
+                      alt="There is no skill available" style="height: 80px;">
+                  </div>
+                  <h5>There is no skills you are looking for !</h5>
+                  <button mat-stroked-button
+                    class="mat-flat-button mat-button-base mat-primary col-10 col-sm-10 col-md-10 col-lg-10"
+                    color="primary" [routerLink]="[ROUTS.HIRER_NEW_SKILLOOKIG]">Please add a skill you are looking
+                    for</button>
+                </div>
+              </div>
+            </ng-template>
+          </mat-tab>
+
+
+
+        </mat-tab-group>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- </div> -->
+
+
+<ngx-spinner type="ball-clip-rotate-multiple" size="medium"></ngx-spinner>

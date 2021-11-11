@@ -1,0 +1,139 @@
+.profilecard{
+    box-shadow: none;
+    background: transparent;
+   padding: 40px 0;
+    .mat-card-subtitle{
+        ul{margin: 0;
+            padding: 0px;
+            li{
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                padding-left: 20px;
+                padding-right: 10px;
+                color:rgba($color: #455A64, $alpha: 0.63);
+                &:first-child{
+                    padding-left: 0px;
+                    &::before{
+                        display: none;
+                    }
+                }
+                &::before{
+                    content: '\00B7';
+                    font-size: 3rem;
+                     left: 0px;
+                    position: absolute;
+                    top: 0px;
+                     margin-top: -24px;
+                }
+                span{
+                    display: inline-block;
+                    padding: 0 0 0 5px;
+                }
+            }
+        }
+    }
+    .mat-card-header{
+        align-items: center;
+    }
+}
+.avtrcard{
+    width: 120px;
+    height: 120px;
+    background-size: cover;
+}
+.avtrcard1{
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+}
+.profileheader{
+    background-color: #fff;
+    margin-top: -28px;
+}
+.img-border{
+    max-width: 100%;
+    border: 1px solid grey;
+    padding: 5px;
+}
+.box{
+    
+    padding: 10px 0;
+    h3,h4{
+        color: #087DC3;
+    }
+    p{
+        font-weight: 400;
+        color: rgba($color: #455A64, $alpha: 0.8);
+    }
+}
+.edu{
+    h3,p{
+        margin: 0px;
+        padding: 0px;
+    }
+    p{
+        font-size: 0.875rem;
+    }
+}
+
+
+.alert-error{
+    background-color: rgba(240,128,128,0.2);
+    color:lightcoral;
+    padding: 1rem !important;
+}
+
+.alert-info{
+    background-color: #D3F4DE;
+    color: #1ABC9C;
+    padding: 1rem !important;
+}
+
+@media only screen and (max-width: 767px){
+    .profileheader {
+        margin-bottom: 40px !important;
+    }
+}
+
+
+.example-card{
+    color: rgba($color: #455A64, $alpha: 0.73);
+    margin-bottom: 20px;
+}
+.mat-card-subtitle {
+    ul {
+        padding: 0px;
+        li{
+            display: inline;
+            margin-right: 20px;
+        }
+    }
+}
+.heading{
+    h3,h4,p{
+        color: #1ABC9C;
+    }
+}
+.mat-card-title{
+    color: #1ABC9C;
+}
+.text-green{
+    color: #1ABC9C;
+}
+button + button{
+    margin-left: 20px;
+}
+
+.alert-green{
+    background-color: #D3F4DE;
+    color: #15A346;
+    padding: 1rem !important;
+    margin-top: 20px !important;
+
+}
+
+.mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 0 0 0.6em 0 !important;
+}

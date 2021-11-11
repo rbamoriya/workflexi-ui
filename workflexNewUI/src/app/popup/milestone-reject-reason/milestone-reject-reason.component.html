@@ -1,0 +1,26 @@
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="milestoneRejectReasonAdd" aria-hidden="true" #milestoneRejectReasonModal>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="card" style="border: none !important;"> 
+                    <div class="card-body p-0">
+                        <form class="w-100" [formGroup]="addReason" *ngIf="addReason">
+                            <textarea *ngIf="!isApproved" placeholder="Write here..." class="form-control mb-3" [ngClass]="{'form-submitted':formSubmit}" formControlName="reason" id="reason" #reason></textarea>
+                            <p *ngIf="isApproved">Are you sure?</p>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
+                                    <button mat-stroked-button color="primary" (click)="close()">Cancel</button>
+                                    <button type="submit" mat-raised-button color="primary" (click)="submit()">
+                                        <span *ngIf="isApproved">Approve</span>
+                                        <span *ngIf="!isApproved">Reject</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+      

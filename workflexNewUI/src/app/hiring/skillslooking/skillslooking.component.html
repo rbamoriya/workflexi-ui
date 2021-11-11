@@ -1,0 +1,90 @@
+<div class="container-fluid bg">
+    <div class="row">
+        <div class="col-12 col-sm-2 col-md-2 col-lg-2">
+            <div class="sideleft">
+                <app-hiring-ind [isEmailVarify]="true"></app-hiring-ind>
+            </div>
+        </div>
+        <div style="border:none !important;" class="col-12 col-sm-10 col-md-10 col-lg-10">
+            <form (ngSubmit)="createSeeker()" [formGroup]="basicInfoForm">
+                <mat-toolbar class="trasnparent">
+                    <mat-toolbar-row>
+                        <span class="example-spacer"></span>
+                        Having trouble? &nbsp;<a href="#"> Get Help</a>
+                    </mat-toolbar-row>
+                </mat-toolbar>
+                <div class="row">
+
+                    <div class="col-12 col-sm-9 col-md-9 col-lg-9">
+                        <div class="infoarea">
+                            <h1>Skill Looking For</h1>
+
+                            <h4>Looking for skill<sup>*</sup></h4>
+                            <!-- <mat-form-field appearance="outline" floatLabel="never" style="border:none !important;">
+
+                                <mat-select placeholder="Select">
+                                    <mat-option value="option">UX Designer</mat-option>
+                                </mat-select>
+                            </mat-form-field> -->
+                            <ng-multiselect-dropdown style="border:none !important;"
+                                [placeholder]="'Select Skill'"
+                                [data]="skillList"
+                                [disabled]="disabled"
+                                [settings]="dropdownSettings"
+                                [ngClass]="{'form-submitted': formSubmitted}" formControlName="skill" required>
+                            </ng-multiselect-dropdown>
+                            <h4 style="margin-top: 20px;">Location Preference<sup>*</sup></h4>
+                            <mat-form-field style="border:none !important;" appearance="outline" floatLabel="never">
+
+                                <input style="border:none !important;" matInput  matGoogleMapsAutocomplete 
+                                (onAutocompleteSelected)="onAutocompleteSelected($event)" placeholder="Ex. Australia" [ngClass]="{'form-submitted': formSubmitted}" formControlName="locationPreferences" required>
+                            </mat-form-field>
+                            <h4>Minimum Experience(in Years)<sup>*</sup></h4>
+                            <mat-form-field style="border:none !important;" appearance="outline" floatLabel="never">
+
+                                <input type="number" style="border:none !important;" matInput placeholder="Ex. 5" [ngClass]="{'form-submitted': formSubmitted}" formControlName="totalExperienceInYears" required>
+                            </mat-form-field>
+                            <h4>Maximum Experience(in Years)</h4>
+                            <mat-form-field style="border:none !important;" appearance="outline" floatLabel="never">
+
+                                <input type="number" style="border:none !important;" matInput placeholder="Ex. 10" [ngClass]="{'form-submitted': formSubmitted}" formControlName="maximumExperienceInYears">
+                                <mat-error *ngIf="basicInfoForm.get('maximumExperienceInYears').invalid">Maximum experience should be greater than minimum experience</mat-error>
+                            </mat-form-field>
+                            <h4>Engagement Period(in Months)<sup>*</sup></h4>
+                            <mat-form-field style="border:none !important;" appearance="outline" floatLabel="never">
+
+                                <input style="border:none !important;" matInput placeholder="Ex. 4" [ngClass]="{'form-submitted': formSubmitted}" formControlName="engagementPeriod" required>
+                            </mat-form-field>
+
+                        </div>
+                        <div class="bottom-part">
+                            <br>
+                            <h4>Remarks(within 250 characters)<sup>*</sup></h4>
+                            <mat-form-field style="border:none !important;" appearance="outline" floatLabel="never">
+                                <textarea style="border:none !important;" matInput name="" id="" cols="30" rows="10" [ngClass]="{'form-submitted': formSubmitted}" formControlName="remarks" required></textarea>
+                            </mat-form-field>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="bottom-part d-flex justify-content-between">
+                            <button mat-stroked-button color="primary"
+                                [routerLink]="['/hiring/basicinfo']">Previous</button>
+                            <!-- <button mat-flat-button color="primary" [routerLink]="['/hiring/dashboard']">Next</button> -->
+                            <button mat-flat-button color="primary" type="submit">Next</button>
+
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

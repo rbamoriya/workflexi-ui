@@ -1,0 +1,508 @@
+<app-header></app-header>
+<div class="container pb-4">
+  <div class="card my-5">
+    <div class="card-body ps-4 pl-md-5">
+      <div class="card-title text-center">
+        <h2 class="font-weight-bold text-dark-gray my-3">Frequently Asked Questions</h2>
+      </div>
+      <div class="font-400 row p-0">
+        <div class="col-md-9 col-12 mx-auto">
+          <mat-accordion>
+            <mat-expansion-panel *ngFor="let faq of faqs; let i = index;" class="my-3">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <h6>{{faq.que}}</h6>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <p [innerHTML]="faq.ans"></p>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body ps-4 px-md-5">
+      <div class="card-title text-center">
+        <h1 class="font-weight-bold text-dark-gray my-3">Why Us</h1>
+      </div>
+      <div class="font-400 row">
+        <h5 class="font-400 col-12" style="font-size: 1rem; line-height: 1.6rem;">If you want to balance work and your
+          various passions, Workflexi is the best available option. Here are some features of fixed term contract
+          jobs that stand out in the fixed term employment market:</h5>
+        <div class="col-md-4 d-none d-md-block p-0 pt-1">
+          <img src="assets/images/faq/Why_Us.jpg" class="img-why">
+        </div>
+        <div class="col-md-8 col-12">
+          <ul style="line-height: 1.6rem;" class="font-400 pt-4">
+            <li>Fast hires at minimal cost.</li>
+            <li> Indian IT flexi staffing industry was worth USD 3.04
+              billion in 2016-2017 and is expected to witness significant growth till 2021 (Source: India Staffing
+              Federation).</li>
+            <li> Indian IT flexi staffing industry is expected to register
+              14-16 per cent growth per annum in the next few years(Source: India Staffing Federation).</li>
+            <li> The notion of permanency is fading and people no longer
+              want to be tied to a job or company if they have better chances of getting ahead and avoiding monotony
+              and stagnation.</li>
+            <li> Millennials and senior professionals want to engage in
+              short-term work and use the interim breaks more effectively.</li>
+            <li> The need for flexi staffing is growing at work places,
+              with the key drivers being the increasing cost of living, higher number of jobs that pay well and
+              greater adoption of contingent staffers by different sectors, and particularly healthcare and
+              information technology.</li>
+            <li> Workflexi is the only curated platform for contract
+              employment that takes care of the job security concerns of both the employees and the employers.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <main class="mt-5 pt-2 pb-5">
+  <div class="container"> -->
+<!-- <div class="section-header">
+			  <h2 class="text-center">Why Us</h2>
+			</div> -->
+<!-- <div class="col-md-12 text-justify">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="section-header">
+            <h1 class="text-center">Why Us</h1>
+          </div>
+          <!-- <div class="col-md-12"> -->
+<!-- <div class="content">
+            <h5 class="font-400" style="font-size: 1rem; line-height: 1.6rem;">If you want to balance work and your
+              various passions, Workflexi is the best available option. Here are some features of fixed term contract
+              jobs that stand out in the fixed term employment market:</h5>
+            <ul style="line-height: 1.6rem;" class="font-400 pt-4">
+              <li><i class="ion-android-checkmark-circle"></i> Fast hires at minimal cost.</li>
+              <li><i class="ion-android-checkmark-circle"></i> Indian IT flexi staffing industry was worth USD 3.04
+                billion in 2016-2017 and is expected to witness significant growth till 2021 (Source: India Staffing
+                Federation).</li>
+              <li><i class="ion-android-checkmark-circle"></i> Indian IT flexi staffing industry is expected to register
+                14-16 per cent growth per annum in the next few years(Source: India Staffing Federation).</li>
+              <li><i class="ion-android-checkmark-circle"></i> The notion of permanency is fading and people no longer
+                want to be tied to a job or company if they have better chances of getting ahead and avoiding monotony
+                and stagnation.</li>
+              <li><i class="ion-android-checkmark-circle"></i> Millennials and senior professionals want to engage in
+                short-term work and use the interim breaks more effectively.</li>
+              <li><i class="ion-android-checkmark-circle"></i> The need for flexi staffing is growing at work places,
+                with the key drivers being the increasing cost of living, higher number of jobs that pay well and
+                greater adoption of contingent staffers by different sectors, and particularly healthcare and
+                information technology.</li>
+              <li><i class="ion-android-checkmark-circle"></i> Workflexi is the only curated platform for contract
+                employment that takes care of the job security concerns of both the employees and the employers.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-3">
+          <div class="section-header">
+            <h2 class="text-center">Frequently Asked Questions</h2>
+          </div>
+
+          <div class="accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+            <div class="card">
+              <div class="card-header pt-0" role="tab" id="headingOne">
+                <a data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne"
+                  class="collapsed">
+                  <h5 class="mb-0 dark-grey-text onerem-font"><strong>
+                      What is a gig? </strong><i class="fa fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+              <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne"
+                data-parent="#accordionEx" style="">
+                <div class="card-body font-400">
+                  A Gig is a short-term job that gives you quick money. The gig duration could vary from 1day to 1year
+
+                </div>
+              </div>
+            </div>
+            <div class="card">
+
+                           <div class="card-header" role="tab" id="headingTwo">
+                <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false"
+                  aria-controls="collapseTwo">
+                  <h5 class="mb-0 dark-grey-text onerem-font"><strong>Who is a gig worker?</strong> <i
+                      class="fa fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+                          <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo"
+                data-parent="#accordionEx">
+                <div class="card-body font-400">
+                  A skilled professional who chooses to work on short-term assignments
+                </div>
+              </div>
+            </div>
+           
+
+           
+            <div class="card">
+
+                           <div class="card-header" role="tab" id="headingThree">
+                <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false"
+                  aria-controls="collapseThree">
+                  <h5 class="mb-0 dark-grey-text onerem-font"><strong>What kind of skills?</strong> <i
+                      class="fa fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+                          <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree"
+                data-parent="#accordionEx">
+                <div class="card-body font-400">
+                  IT skills, Accounting, Taxation, Digital marketing, Interior designing, Baking, Creative skills such
+                  as photography, dancing, singing, sketching, cinematography etc.
+                </div>
+              </div>
+            </div>
+           
+
+           
+            <div class="card">
+
+                           <div class="card-header" role="tab" id="headingFour">
+                <a class="collapsed" data-toggle="collapse" href="#collapseSix" aria-expanded="false"
+                  aria-controls="collapseSix">
+                  <h5 class="mb-0 dark-grey-text onerem-font"><strong>What is the duration of a gig?</strong> <i
+                      class="fa fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+                          <div id="collapseSix" class="collapse" role="tabpanel" aria-labelledby="headingFour"
+                data-parent="#accordionEx">
+                <div class="card-body font-400">
+                  Gig could be for a few months or a few days or a few hours.
+                </div>
+              </div>
+            </div>
+           
+
+           
+            <div class="card">
+
+                           <div class="card-header" role="tab" id="headingFive">
+                <a class="collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="false"
+                  aria-controls="collapseFour">
+                  <h5 class="mb-0 dark-grey-text onerem-font"><strong>How do I register?</strong> <i
+                      class="fa fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+                          <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFive"
+                data-parent="#accordionEx">
+                <div class="card-body font-400">
+                  Just click on “Get started” and register!
+                </div>
+              </div>
+            </div>
+           
+
+         
+            <div class="card">
+
+                           <div class="card-header" role="tab" id="headingSix">
+                <a class="collapsed" data-toggle="collapse" href="#collapseFive" aria-expanded="false"
+                  aria-controls="collapseFive">
+                  <h5 class="mb-0 dark-grey-text onerem-font"><strong>Can I work as a gig worker while holding a day
+                      job?</strong> <i class="fa fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div> -->
+
+<!-- Card body -->
+<!-- <div id="collapseFive" class="collapse" role="tabpanel" aria-labelledby="headingSix"
+                data-parent="#accordionEx">
+                <div class="card-body font-400">
+                  Yes, you can.
+                </div>
+              </div>
+            </div>
+           
+            <div class="card">
+
+                           <div class="card-header" role="tab" id="headingSeven">
+                <a class="collapsed" data-toggle="collapse" href="#collapsebpsOne" aria-expanded="false"
+                  aria-controls="collapsebpsOne">
+                  <h5 class="mb-0 dark-grey-text onerem-font"><strong>Can I be both a gig-worker and a hirer?</strong>
+                    <i class="fa fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+              <div id="collapsebpsOne" class="collapse" role="tabpanel" aria-labelledby="headingSeven"
+                data-parent="#accordionEx">
+                <div class="card-body font-400">
+                  Yes. You can toggle between your role, on the dashboard.
+                </div>
+              </div>
+            </div>
+         
+
+
+         
+            <div class="card">
+
+                           <div class="card-header" role="tab" id="headingEight">
+                <a class="collapsed" data-toggle="collapse" href="#collapseBpsTtwo" aria-expanded="false"
+                  aria-controls="collapseBpsTtwo">
+                  <h5 class="mb-0 dark-grey-text onerem-font"><strong>What is the process of taking up a gig?</strong>
+                    <i class="fa fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+                          <div id="collapseBpsTtwo" class="collapse" role="tabpanel" aria-labelledby="headingEight"
+                data-parent="#accordionEx">
+                <div class="card-body font-400">
+                  Post your skill on Workflexi.in. Wait for an employer to shortlist you. Or actively apply for a gig.
+                  Chat with employers. Showcase your work. Receive and approve milestones from the employer. Once the
+                  employer funds his wallet, start work!
+                </div>
+              </div>
+            </div> -->
+
+
+
+<!-- <div class="card">
+
+                           <div class="card-header" role="tab" id="headingNine">
+                <a class="collapsed" data-toggle="collapse" href="#collapseBpsThree" aria-expanded="false"
+                  aria-controls="collapseBpsThree">
+                  <h5 class="mb-0 dark-grey-text onerem-font"><strong>Why should I come to Workflexi.in?</strong> <i
+                      class="fa fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+                          <div id="collapseBpsThree" class="collapse" role="tabpanel" aria-labelledby="headingNine"
+                data-parent="#accordionEx">
+                <div class="card-body font-400">
+                  <ul>
+                    <li>The biggest advantage for a gig worker is on-time-payment and payment assurance without
+                      follow-ups.</li>
+                    <li>The biggest advantage for a hirer is the assurance of on time and quality work</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+           
+
+           
+            <div class="card">
+
+                           <div class="card-header" role="tab" id="headingTen">
+                <a class="collapsed" data-toggle="collapse" href="#collapseBpsFour" aria-expanded="false"
+                  aria-controls="collapseBpsFour">
+                  <h5 class="mb-0 dark-grey-text onerem-font"><strong>Who can give me gigs?</strong> <i
+                      class="fa fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+                          <div id="collapseBpsFour" class="collapse" role="tabpanel" aria-labelledby="headingTen"
+                data-parent="#accordionEx">
+                <div class="card-body font-400">
+                  A company or an individual
+                </div>
+              </div>
+            </div>
+           
+
+           
+            <div class="card">
+
+                           <div class="card-header" role="tab" id="headingEleven">
+                <a class="collapsed" data-toggle="collapse" href="#collapseBpssix" aria-expanded="false"
+                  aria-controls="collapseBpssix">
+                  <h5 class="mb-0 dark-grey-text onerem-font"><strong>Can I give gigs to someone? </strong> <i
+                      class="fa fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+                          <div id="collapseBpssix" class="collapse" role="tabpanel" aria-labelledby="headingEleven"
+                data-parent="#accordionEx">
+                <div class="card-body font-400">
+                  Yes. If you want a particular task to be executed, you can hire a gig worker yourself.
+                </div>
+              </div>
+            </div>
+           
+
+           
+            <div class="card">
+
+                           <div class="card-header" role="tab" id="headingTwelve">
+                <a class="collapsed" data-toggle="collapse" href="#collapseBpsFive" aria-expanded="false"
+                  aria-controls="collapseBpsFive">
+                  <h5 class="mb-0 dark-grey-text onerem-font"><strong>Nature of different gigs? </strong> <i
+                      class="fa fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+                          <div id="collapseBpsFive" class="collapse" role="tabpanel" aria-labelledby="headingTwelve"
+                data-parent="#accordionEx">
+                <div class="card-body font-400">
+                  Gigs could be contractual (bound by a contract for a few months) or freelancing in nature
+                </div>
+              </div>
+            </div>
+           
+
+           
+            <div class="card">
+
+                           <div class="card-header" role="tab" id="headingThirteen">
+                <a class="collapsed" data-toggle="collapse" href="#collapseBpseight" aria-expanded="false"
+                  aria-controls="collapseBpseight">
+                  <h5 class="mb-0 dark-grey-text onerem-font"><strong>How much do I have to pay? </strong> <i
+                      class="fa fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+                          <div id="collapseBpseight" class="collapse" role="tabpanel" aria-labelledby="headingThirteen"
+                data-parent="#accordionEx">
+                <div class="card-body font-400">
+                  <ul>
+                    <li>Nothing, if you are a gig worker</li>
+                    <li>Pay-as-you-go, for the hirer. 15% mark up fee on every gig.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+           
+
+           
+            <div class="card">
+
+                           <div class="card-header" role="tab" id="headingFourteen">
+                <a class="collapsed" data-toggle="collapse" href="#collapseBpsseven" aria-expanded="false"
+                  aria-controls="collapseBpsseven">
+                  <h5 class="mb-0 dark-grey-text onerem-font"><strong>What kind of gigs can I find on Workflexi.in?
+                    </strong> <i class="fa fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+                          <div id="collapseBpsseven" class="collapse" role="tabpanel" aria-labelledby="headingFourteen"
+                data-parent="#accordionEx">
+                <div class="card-body font-400">
+                  Technical, non-technical and creative gigs
+                </div>
+              </div>
+            </div>
+           
+            <div class="card">
+
+                           <div class="card-header" role="tab" id="headingThirteen">
+                <a class="collapsed" data-toggle="collapse" href="#collapseBpseight" aria-expanded="false"
+                  aria-controls="collapseBpseight">
+                  <h5 class="mb-0 dark-grey-text onerem-font"><strong>Examples for technical gigs? </strong> <i
+                      class="fa fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+                          <div id="collapseBpseight" class="collapse" role="tabpanel" aria-labelledby="headingThirteen"
+                data-parent="#accordionEx">
+                <div class="card-body font-400">
+                  Mobile app development, web development, UI/UX, graphic designer
+                </div>
+              </div>
+            </div>
+            -->
+<!-- <div class="card"> -->
+
+<!-- <div class="card-header" role="tab" id="headingThirteen">
+                <a class="collapsed" data-toggle="collapse" href="#collapseBpseight" aria-expanded="false"
+                  aria-controls="collapseBpseight">
+                  <h5 class="mb-0 dark-grey-text onerem-font"><strong>Examples for non-technical gigs?</strong> <i
+                      class="fa fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div> -->
+
+<!-- <div id="collapseBpseight" class="collapse" role="tabpanel" aria-labelledby="headingThirteen"
+                data-parent="#accordionEx">
+                <div class="card-body font-400">
+                  Digital marketing expert, taxation work, accounting work, online sales, trainer
+                </div>
+              </div>
+            </div> -->
+
+<!-- <div class="card"> -->
+
+<!-- Card header
+              <div class="card-header" role="tab" id="headingThirteen">
+                <a class="collapsed" data-toggle="collapse" href="#collapseBpseight" aria-expanded="false"
+                  aria-controls="collapseBpseight">
+                  <h5 class="mb-0 dark-grey-text onerem-font"><strong>Examples for creative gigs?</strong> <i
+                      class="fa fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div> -->
+
+<!-- <div id="collapseBpseight" class="collapse" role="tabpanel" aria-labelledby="headingThirteen"
+                data-parent="#accordionEx">
+                <div class="card-body font-400">
+                  Cinematographer, photographer, art director, costume designer
+                </div>
+              </div>
+            </div> -->
+
+<!-- <div class="card"> -->
+
+<!-- <div class="card-header" role="tab" id="headingThirteen">
+                <a class="collapsed" data-toggle="collapse" href="#collapseBpseight" aria-expanded="false"
+                  aria-controls="collapseBpseight">
+                  <h5 class="mb-0 dark-grey-text onerem-font"><strong>Examples for passion related gigs?</strong> <i
+                      class="fa fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div> -->
+
+<!-- <div id="collapseBpseight" class="collapse" role="tabpanel" aria-labelledby="headingThirteen"
+                data-parent="#accordionEx">
+                <div class="card-body font-400">
+                  Trek co-ordinator, Pottery trainer, cycling expedition co-ordinator
+                </div>
+              </div>
+            </div> -->
+
+<!-- <div class="card"> -->
+
+<!-- <div class="card-header" role="tab" id="headingThirteen">
+                <a class="collapsed" data-toggle="collapse" href="#collapseBpseight" aria-expanded="false"
+                  aria-controls="collapseBpseight">
+                  <h5 class="mb-0 dark-grey-text onerem-font"><strong>What remuneration can I expect?</strong> <i
+                      class="fa fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div> -->
+
+<!-- <div id="collapseBpseight" class="collapse" role="tabpanel" aria-labelledby="headingThirteen"
+                data-parent="#accordionEx">
+                <div class="card-body font-400">
+                  Varies from INR 500 to INR50,000 per gig
+                </div>
+              </div>
+            </div> -->
+
+<!-- </div>
+        </div> -->
+
+<!-- <div class="col-md-6">
+                        <img src="{{asset('img/whyus/why-us-first-image.png')}}" class="img-fluid" alt="">
+                    </div> -->
+<!-- </div>
+    </div>
+  </div>
+</main> -->

@@ -1,0 +1,229 @@
+.mat-card-avatar{
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+  background-position: center;
+}
+.mat-card-subtitle{
+    ul{margin: 0;
+        padding: 0px;
+        li{
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding-left: 20px;
+            padding-right: 10px;
+            color:rgba($color: #455A64, $alpha: 0.63);
+            &:first-child{
+                padding-left: 0px;
+                &::before{
+                    display: none;
+                }
+            }
+            &::before{
+                content: '\00B7';
+                font-size: 3rem;
+                 left: 0px;
+                position: absolute;
+                top: 0px;
+                 margin-top: -24px;
+            }
+        }
+    }
+}
+.example-card{
+    box-shadow: 0px 3px 6px rgba($color: #455A64, $alpha: 0.15);
+    margin-bottom: 30px;
+    .mat-card-header{
+        .mat-card-title{
+            a{
+                color: #1ABC9C;
+            }
+        }
+    }
+   .mat-card-content{
+    color:rgba($color: #455A64, $alpha: 0.9);
+    font-size: 0.9375rem;
+   }
+   
+}
+.profile{
+    box-shadow: 0px 3px 6px rgba($color: #455A64, $alpha: 0.03);
+    margin-top: 119px;
+    h4{
+        margin: 0px;
+    }
+    .mat-card-header .mat-card-title{
+        font-size: 14px;
+        margin-bottom: 0px;
+        display: flex;
+        color:rgba($color: #455A64, $alpha: 0.9);
+    }
+    .mat-card-header{
+        align-items: center;
+      
+    }
+    .mat-card-content{
+        color:rgba($color: #455A64, $alpha: 0.9);
+        font-size: 0.9375rem;
+        padding-top: 20px;
+       }
+}
+.pr{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; 
+    margin-bottom: 0.5rem;
+}
+.he{
+    position: relative;
+}
+.shorting{
+    position: absolute;
+    right: 0px;
+    top:0;
+    
+    color:rgba($color: #455A64, $alpha: 0.9);
+    font-family: "Poppins", "Helvetica Neue", sans-serif;
+}
+.heading{
+    color:rgba($color: #455A64, $alpha: 0.9); 
+    margin-top: 20px;
+
+}
+.show {
+    opacity: 1;
+    transition: opacity 1s;
+  }
+
+  .hide {
+    opacity: 0;
+    transition: opacity 1s;
+  }
+  .top{
+      position: relative;
+  }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  .errors{
+      color: red;
+  }
+  .padding-3-percent {
+      padding: 3%;
+  }
+  p{
+    color: #007EC2;
+  }
+  mat-ink-bar {
+      background-color: transparent !important;
+  }
+  .blue_color{
+    color:#007dc3;
+    text-align: center;
+  }
+  .no-bullet li{
+    list-style:none;
+  }
+  .userMessage{
+    padding: 6px 15px;
+    background: #19bc9c;
+    color: #fff;
+    border-radius: 3px;
+    float: left;
+    display: block;
+    width: 60%;
+    font-size: 13px;
+    margin-bottom: 10px;
+    box-shadow: 1px 2px 3px 0px #026d58;
+  }
+  .myMessage{
+    padding: 6px 15px;
+    background: #07669F;
+    color: #fff;
+    border-radius: 3px;
+    float: right;
+    display: block;
+    width: 60%;
+    font-size: 13px;
+    margin-bottom: 10px;
+    box-shadow: 1px 2px 3px 0px gray;
+  }
+  .modal-body{
+    min-height: 50px;
+    overflow-y: scroll;
+  }
+  .time{
+    font-size: 10px;
+    margin-top: 5px;
+    color: #fff;
+    font-style: italic;
+    position: unset;
+    margin-bottom: 0;
+  }
+  .messageSuggestionParent{
+    padding: 5px 10px;
+    box-shadow: 2px 2px 2px #e0e0e0;
+  }
+  .messageSuggestion{
+      color: #fff;
+      background: #07669F;
+      padding: 3px 7px;
+      margin-right: 5px;
+      border-radius: 20px;
+      font-size: 12px;
+      cursor: pointer;
+      box-shadow: 1px 2px 2px 0px #e0e0e0;
+  }
+  .modal-header{
+    box-shadow: 1px 2px 3px 0px #e0e0e0;
+  }
+  .chatButton{
+    padding: 5px;
+    box-shadow: 6px 0px 2px #e0e0e0;
+    text-align: center;
+  }
+  .color_green{
+    color:#1abc9c !important;
+  }
+  
+  .modal-dialog{
+    margin: 0px 0px !important;
+    float: right !important;
+    height: 100% !important;
+  }
+  .modal-content{
+    height: 100% !important;
+  }
+
+.notification{
+    background-color: #C12335;
+    color: #fff;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    font-size: small;
+    top:-2px;
+    right: 12px;
+}
+
+.alert-info p{
+  color: #1ABC9C !important;
+}

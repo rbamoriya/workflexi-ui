@@ -1,0 +1,18 @@
+<a href="javascript:void(0)" class="logo"><img src="assets/images/logo.png" alt="workflexi" /></a>
+<mat-nav-list>
+  <mat-list-item>
+    <a matLine href="#" [routerLinkActive]="'active'" [routerLink]="['/gigworker/edit/skills/'+id]"
+      *ngIf="id != undefined">
+      <!-- <span> -->
+      <!-- <span class="steps">1</span> -->
+       <span class="text-wrap fs-18">Update Skills & Experience</span>
+      <!-- </span> -->
+    </a>
+    <a matLine href="#" [routerLinkActive]="'active'" class="text-wrap" [routerLink]="[ROUTS.ADD_NEW_SKILL]"
+      *ngIf="id == undefined">
+      <!-- <span class="steps">1</span> -->
+      <span class="fs-18"> Add Skills & Experience</span>
+
+    </a>
+  </mat-list-item>
+</mat-nav-list>

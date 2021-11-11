@@ -1,0 +1,153 @@
+.profilecard {
+  box-shadow: none;
+  background: transparent;
+  padding-top: 40px;
+
+  .mat-card-subtitle {
+    ul {
+      margin: 0;
+      padding: 1.5rem;
+
+      li {
+        // display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        // padding-left: 20px;
+        padding-right: 10px;
+        color: rgba($color: #455A64, $alpha: 0.63);
+
+        // &:first-child{
+        //     padding-left: 0px;
+        //     &::before{
+        //         display: none;
+        //     }
+        // }
+        // &::before{
+        //     content: '\00B7';
+        //     font-size: 3rem;
+        //      left: 0px;
+        //     position: absolute;
+        //     top: 0px;
+        //      margin-top: -24px;
+        // }
+        span {
+          display: inline-block;
+          padding: 0 0 0 5px;
+        }
+      }
+    }
+  }
+
+  .mat-card-header {
+    align-items: center;
+  }
+}
+
+.avtrcard {
+  width: 120px;
+  height: 120px;
+  background-size: cover;
+}
+
+.profileheader {
+  background-color: #fff;
+  padding: 0 15px;
+  margin-bottom: 10px;
+}
+
+.img-border {
+  max-width: 100%;
+  border: 1px solid grey;
+  padding: 5px;
+}
+
+.box {
+
+  padding: 10px 0;
+
+  h3,
+  h4 {
+    color: #087DC3;
+  }
+
+  p {
+    font-weight: 400;
+    color: rgba($color: #455A64, $alpha: 0.8);
+  }
+}
+
+.edu {
+
+  h3,
+  p {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  p {
+    font-size: 0.875rem;
+  }
+}
+
+.bottom-part {
+  padding: 0 30px;
+
+  .mat-button-base.mat-primary {
+    min-width: 180px;
+    color: #fff;
+    height: 45px;
+    margin-bottom: 10px;
+
+    &.mat-stroked-button {
+      color: #1abc9c;
+      border-color: #1abc9c;
+    }
+  }
+}
+
+.candidate-info-price {
+  box-shadow: 0px 3px 6px rgba(69, 90, 100, 0.15);
+  font-family: "Poppins", "Helvetica Neue", sans-serif;
+  background-color: #fff;
+  padding: 15px;
+
+  h3.mat-line {
+    font-size: 1.5rem;
+    color: #087DC3;
+    font-family: "Poppins", "Helvetica Neue", sans-serif;
+
+  }
+
+  h3 {
+    color: #087DC3;
+  }
+
+  p.mat-line {
+    font-weight: 400;
+    color: rgba(69, 90, 100, 0.8);
+    font-family: "Poppins", "Helvetica Neue", sans-serif;
+    padding: 10px 0;
+
+  }
+}
+
+.mat-button-base.mat-primary {
+  min-width: 100%;
+  color: #fff;
+  height: 45px;
+  margin-bottom: 10px;
+
+  &.mat-stroked-button {
+    color: #1abc9c;
+    border-color: #1abc9c;
+  }
+}
+
+.videocantainer {
+  margin-bottom: 10px;
+}
+
+.mat-list {
+  margin-bottom: 10px;
+}

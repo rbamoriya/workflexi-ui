@@ -1,0 +1,208 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>Workflexi User Detail</h2>
+            <div class="col-md-12 data-sec d-block" *ngIf="userData">
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h3><strong>Name</strong></h3>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{userData.name}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex" *ngIf="userData.mobile">
+                        <div class="col-md-6 text-left">
+                            <h3><strong>Phone Number</strong></h3>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{userData.mobile}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex" *ngIf="userData.alternatePhone">
+                        <div class="col-md-6 text-left">
+                            <h3><strong>Alternate Phone Number</strong></h3>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{userData.alternatePhone}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex" *ngIf="userData.gender">
+                        <div class="col-md-6 text-left">
+                            <h3><strong>Gender</strong></h3>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{userData.gender}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex" *ngIf="userData.gender">
+                        <div class="col-md-6 text-left">
+                            <h3><strong>Email</strong></h3>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{userData.email}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex" *ngIf="userData.isEmailVerified">
+                        <div class="col-md-6 text-left">
+                            <h3><strong>Is Email Verified</strong></h3>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{userData.isEmailVerified}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h3><strong>Location</strong></h3>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{userData.location}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex" *ngIf="userData.isEmailVerified">
+                        <div class="col-md-6 text-left">
+                            <h3><strong>Regstration Date</strong></h3>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{user_regstration_date}}
+                        </div>
+                    </div>
+                </div>
+                <h4 *ngIf="userData.bank.accountNumber" class="col-md-12 text-center">User Bank Details</h4>
+                <div class="col-md-12 d-inline-flex" *ngIf="userData.bank.accountNumber">
+                    <div class="col-md-6 text-left">
+                        <h3><strong>Account Number</strong></h3>
+                    </div>
+                    <div class="col-md-6 text-left">
+                        {{userData.bank.accountNumber}}
+                    </div>
+                </div>
+                <div class="col-md-12 d-inline-flex" *ngIf="userData.bank.accountNumber">
+                    <div class="col-md-6 text-left">
+                        <h3><strong>Bank Name</strong></h3>
+                    </div>
+                    <div class="col-md-6 text-left">
+                        {{userData.bank.bankName}}
+                    </div>
+                </div>
+                <div class="col-md-12 d-inline-flex" *ngIf="userData.bank.accountNumber">
+                    <div class="col-md-6 text-left">
+                        <h3><strong>Name In Bank</strong></h3>
+                    </div>
+                    <div class="col-md-6 text-left">
+                        {{userData.bank.nameInBank}}
+                    </div>
+                </div>
+                <div class="col-md-12 d-inline-flex" *ngIf="userData.bank.accountNumber">
+                    <div class="col-md-6 text-left">
+                        <h3><strong>IFSC Code</strong></h3>
+                    </div>
+                    <div class="col-md-6 text-left">
+                        {{userData.bank.ifscCode}}
+                    </div>
+                </div>
+            </div>
+            <h2 *ngIf="userData.company">User Company Detail</h2>
+            <div class="col-md-12 data-sec d-block" *ngIf="userData.company">
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h3><strong>Company Name</strong></h3>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{userData.company.companyName}}
+                        </div>
+                    </div>
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h3><strong>Company Website</strong></h3>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{userData.company.companyWebsite}}
+                        </div>
+                    </div>
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h3><strong>Company PAN Number</strong></h3>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{userData.company.companyPannumber}}
+                        </div>
+                    </div>
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h3><strong>Company Is Verified</strong></h3>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{userData.company.companyIsVerified}}
+                        </div>
+                    </div>
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h3><strong>Company GST Number</strong></h3>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{userData.company.companyGstnumber}}
+                        </div>
+                    </div>
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h3><strong>Company Address</strong></h3>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{userData.company.companyAddress}}
+                        </div>
+                    </div>
+                    <h4 *ngIf="userData.company.bank" class="col-md-12 text-center">Company Bank Details</h4>
+                    <div class="col-md-12 d-inline-flex" *ngIf="userData.company.bank">
+                        <div class="col-md-6 text-left">
+                            <h3><strong>Company Account Number</strong></h3>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{userData.company.bank.accountNumber}}
+                        </div>
+                    </div>
+                    <div class="col-md-12 d-inline-flex" *ngIf="userData.company.bank">
+                        <div class="col-md-6 text-left">
+                            <h3><strong>Bank Name</strong></h3>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{userData.company.bank.bankName}}
+                        </div>
+                    </div>
+                    <div class="col-md-12 d-inline-flex" *ngIf="userData.company.bank">
+                        <div class="col-md-6 text-left">
+                            <h3><strong>Company Name In Bank</strong></h3>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{userData.company.bank.nameInBank}}
+                        </div>
+                    </div>
+                    <div class="col-md-12 d-inline-flex" *ngIf="userData.company.bank">
+                        <div class="col-md-6 text-left">
+                            <h3><strong>IFSC Code</strong></h3>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{userData.company.bank.ifscCode}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

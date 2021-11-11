@@ -1,0 +1,33 @@
+<div class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="milestoneEdit" aria-hidden="true" #endDateChangeModal>
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <h2 class="mat-dialog-title">
+                    End date change
+                </h2>
+                <div class="container-fluid">
+                  <form [formGroup]="milestoneForm" *ngIf="milestoneForm">
+                  <div class="row">
+                      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                        <mat-form-field appearance="outline" >
+                            <input matInput [matDatepicker]="endDate" [min]="minDate" formControlName="endDate"  placeholder="Choose a date">
+                            <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                            <mat-datepicker #endDate></mat-datepicker>
+                        </mat-form-field>
+                      </div>
+                  </div>
+                </form>
+                  <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
+                          <button mat-stroked-button color="primary" (click)="close()">Cancel</button>
+                          <button type="submit" mat-raised-button color="primary" (click)="submit()">
+                              Change
+                          </button>
+                      </div>
+                  </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

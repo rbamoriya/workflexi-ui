@@ -1,0 +1,78 @@
+<div class="container-fluid bg">
+    <div class="row">
+
+        <div class="col-12 col-sm-2 col-md-2 col-lg-2">
+            <div class="sideleft">
+                <app-ind-sidenav [nextTrue]="true" [isEmailVarify]="true"></app-ind-sidenav>
+            </div>
+
+        </div>
+
+        <div *ngIf="basicInfoForm" style="border:none !important;" class="col-12 col-sm-10 col-md-10 col-lg-10">
+            <form (ngSubmit)="submitForm()" [formGroup]="basicInfoForm">
+                <mat-toolbar class="trasnparent">
+                    <mat-toolbar-row>
+                        <span class="example-spacer"></span>
+                        Having trouble? &nbsp;<a href="#"> Get Help</a>
+                    </mat-toolbar-row>
+                </mat-toolbar>
+                <div class="row">
+
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="infoarea">
+                            <h1>Add your payment detail</h1>
+                            <p>Fill your details before you explore page</p>
+                            <!-- <a href="#" class="skip">Skip</a> -->
+                            <h4>Bank account number<sup>*</sup></h4>
+                            <mat-form-field style="border:none !important;" appearance="outline" floatLabel="never">
+
+                                <input style="border:none !important;" matInput  placeholder="Ex. 1001001001001001" [ngClass]="{'form-submitted': formSubmitted}" formControlName="accountNumber" required>
+                            </mat-form-field>
+                            <h4>Confirm Bank account number</h4>
+                            <mat-form-field style="border:none !important;" appearance="outline" floatLabel="never">
+
+                                <input style="border:none !important;" matInput placeholder="Ex. 1001001001001001" [ngClass]="{'form-submitted': formSubmitted}" formControlName="confirmAccountNumber" required>
+                            </mat-form-field>
+                            <h4>Ifsc code</h4>
+                            <mat-form-field style="border:none !important;" appearance="outline" floatLabel="never">
+
+                                <input style="border:none !important;" matInput placeholder="Ex. HDFC0000231" [ngClass]="{'form-submitted': formSubmitted}" formControlName="ifsc" required>
+                            </mat-form-field>
+                            <h4>Bank Name</h4>
+                            <mat-form-field style="border:none !important;" appearance="outline" floatLabel="never">
+
+                                <input style="border:none !important;" matInput placeholder="Ex. HDFC Bank" [ngClass]="{'form-submitted': formSubmitted}" formControlName="bankName" required>
+                            </mat-form-field>
+                            <h4>Name in your bank account</h4>
+                            <mat-form-field style="border:none !important;" appearance="outline" floatLabel="never">
+
+                                <input style="border:none !important;" matInput placeholder="Ex. John Doe" [ngClass]="{'form-submitted': formSubmitted}" formControlName="nameInBank" required>
+                            </mat-form-field>
+
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="bottom-part d-flex justify-content-between">
+                            <button mat-stroked-button  color="primary" [routerLink]="['/gigworker/dashboard']">Skip</button>
+                            <button mat-flat-button color="primary" type="submit">Submit</button>
+                            
+
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<ngx-spinner type="ball-clip-rotate-multiple" size="medium"></ngx-spinner>

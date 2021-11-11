@@ -1,0 +1,64 @@
+<div class="header">
+  <div class="container">
+    <mat-toolbar>
+      <div class="hlogo">
+        <!-- <button mat-icon-button aria-label="Mobile Navigation" (click)=toggleDisplayDiv() [ngClass]="hide" class="d-block d-sm-none ">
+          <mat-icon>menu</mat-icon>
+        </button> -->
+      <a href="#"><img src="assets/images/logo.png"></a>
+    </div>
+    <span class="example-spacer"></span>
+    <div class="nav">
+      <ul class="nav d-none d-md-none d-lg-inline-block">
+        <!--li class="nav-item">
+          <a mat-button href="#" class="active">Home</a>
+        </li>
+        <li class="nav-item">
+          <a mat-button href="#">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a mat-button href="#">Faq</a>
+        </li>
+        <li class="nav-item">
+          <a mat-button href="#">Blog</a>
+        </li>
+        <li class="nav-item">
+          <a mat-button href="#">Contact</a>
+        </li-->
+      </ul>
+      <button *ngIf="!isLoginDisable" mat-stroked-button color="accent" class="login" [routerLinkActive]="'active'"
+      [routerLink]="['/auth/login']">Login</button>
+    </div>
+    </mat-toolbar>
+  </div>
+</div>
+<!-- <div class="sidenav d-none hm" [ngClass]="showMenu">
+  <div class="op"></div>
+  <div class="inside">
+    <div class="logo">
+
+      <a href="#"><img src="assets/images/logo.png"></a>
+      <button mat-icon-button aria-label="Mobile Navigation" (click)=toggleHideDiv()>
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
+  <div class="nav">
+    <ul class="nav d-none d-sm-inline-block" [ngClass]="status ? 'd-block' : 'd-none'">
+      <li class="nav-item">
+        <a mat-button href="#" class="active">Home</a>
+      </li>
+      <li class="nav-item">
+        <a mat-button href="#">About Us</a>
+      </li>
+      <li class="nav-item">
+        <a mat-button href="#">Faq</a>
+      </li>
+      <li class="nav-item">
+        <a mat-button href="#">Blog</a>
+      </li>
+      <li class="nav-item">
+        <a mat-button href="#">Contact</a>
+      </li>
+    </ul>
+  </div>
+</div> -->

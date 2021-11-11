@@ -1,0 +1,111 @@
+.page-header {
+  width: 100%;
+  min-height: 300px;
+  background: linear-gradient(to right top, rgba(11, 125, 195, 0.6), rgba(34, 47, 45, 0.6)), url('../../assets/images/about/about-bg.jpg');
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-position-y: 43%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.vision-mission-main {
+  .mission-box {
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    height: 100%;
+
+    .img-our-mission {
+      width: 100%;
+      max-height: 200px;
+      object-fit: contain;
+    }
+  }
+}
+
+section.team-section .avatar img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flip .card .front {
+  position: unset !important;
+}
+
+.point-eight-font {
+  font-size: 0.8rem !important;
+}
+
+h1,
+h2,
+h3,
+h6,
+h5,
+p {
+  color: #455a64;
+}
+
+.text-content {
+  font-size: 18px;
+  line-height: 33px;
+}
+
+.card-image1 {
+  width: 100%;
+  height: 100%;
+  max-width: 150px;
+  max-height: 150px;
+  border: 3px solid #087dc3 !important;
+  border-radius: 5rem;
+  margin: 1.3rem auto 1rem auto;
+}
+
+.card-title {
+  font-size: 1rem;
+  margin-bottom: 0;
+  /* font-weight: bold; */
+  font-family: 'IM Fell French Canon SC'
+}
+
+.card-text {
+  text-align: center;
+  padding: 1rem 1rem;
+  font-size: 0.8rem;
+  color: rgb(82, 81, 81);
+  line-height: 1.4rem
+}
+
+.footer {
+  border-top: none;
+  text-align: center;
+  line-height: 1.2rem;
+  /* padding: 1rem 0 1.4rem 0; */
+  font-family: 'Varela Round'
+}
+
+.card-box {
+  height: 100%;
+  border-radius: 1rem;
+  box-shadow: 0px -10px 0px #0b7dc3;
+  position: relative;
+  padding-bottom: 20px;
+
+  .card-image {
+    transition: transform 0.3s;
+  }
+
+  &:hover {
+    .card-image {
+      position: relative;
+      transform: scale(1.1);
+    }
+  }
+
+  .footer {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 16px;
+  }
+}

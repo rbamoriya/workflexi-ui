@@ -1,0 +1,324 @@
+<app-individualheader></app-individualheader>
+<div class="container">
+  <div class="row" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="50"
+    (scrolled)="hiringDashboardService.onScroll()">
+
+    <div class="col-12 col-sm-3 col-md-3 ">
+      <!-- <button mat-flat-button color="primary" (click)="clickEvent()" class="d-block d-sm-none f-button">Filter</button>
+      <div class="mob" [ngClass]="classA">
+        <div class="filter"><button mat-icon-button aria-label="Example icon-button with a heart icon"
+            (click)="clickClose()" class="close">
+            <mat-icon>clear</mat-icon>
+          </button></div>
+        <app-filter (filterEmiiter)="applyFilter()"></app-filter>
+      </div> -->
+
+
+      <app-filter (hirerFilter)="applyAdditionalFilter($event)"></app-filter>
+
+    </div>
+
+    <div class="col-12 col-sm-9 col-md-9 ">
+
+      <div *ngIf="showNotification" class="alert alert-success alert-dismissible fade show" role="alert">
+          {{hiringDashboardService.messageNotification}} 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="top">
+        <h3 class="text-dark-gray mt-3 ">Gig workers based on your requirement</h3>
+        <!-- <button mat-button [matMenuTriggerFor]="filter" class="shorting">
+          <mat-icon aria-hidden="false" aria-label="Example filter icon">filter_list
+          </mat-icon>
+          Short
+        </button>
+        <mat-menu #filter="matMenu">
+          <button mat-menu-item>Most Recent</button>
+          <button mat-menu-item>Time ago</button>
+        </mat-menu> -->
+      </div>
+
+      <div class="he">
+
+        <mat-tab-group color="primary" class="milestone-tabs" (selectedIndexChange)="tabChangeEvent($event)">
+          <mat-tab label="All Gig Workers ">
+            <div class="row" *ngIf="hiringDashboardService.gigsList.length > 0">
+
+              <div *ngFor="let item of hiringDashboardService.gigsList"
+                class="mt-3 col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <mat-card class="example-card hiring-card h-100">
+                  <mat-card-header>
+                    <img mat-card-avatar style="border-radius: 50%;flex-shrink: 0;object-fit: cover;" *ngIf="item.user"
+                      [src]="item.user.photo" alt="Profile photo" class="avtrcard mat-card-avatar example-header-image">
+                    <mat-card-title *ngIf="item.user && item.user.name"><a href="javascript:void(0)" target="_blank" class="text-green"
+                        [routerLink]="[ROUTS.HIRER_CANDIDATE + '/'+item.id]">{{ item.user.name }}</a></mat-card-title>
+                    <mat-card-title *ngIf="item.company && item.company.companyName"><a href="javascript:void(0)" target="_blank"
+                        class="text-green" [routerLink]="[ROUTS.HIRER_CANDIDATE + '/'+item.id]">{{
+                        item.company.companyName }}</a>
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                      <ul>
+                        <li *ngIf="item.data.location != ''">{{ item.data.location }}</li>
+                        <li>Experience : {{ item.data.totalExperienceInYears }} <span
+                            *ngIf="item.data.totalExperienceInYears">year(s)</span> {{
+                          item.data.totalExperienceInMonths }} <span
+                            *ngIf="item.data.totalExperienceInMonths">month(s)</span></li>
+                        <li *ngIf="item.createdAt">Posted on : {{item.createdAt | date: 'dd MMM yyyy'}}</li>
+
+                      </ul>
+                    </mat-card-subtitle>
+                    <span class="pricing">₹{{ item.data.remuneration }} <span>/ {{
+                        item.data.remunerationType }}</span></span>
+                  </mat-card-header>
+
+                  <mat-card-content>
+                    <p>
+                      {{ item.data.descriptions }}
+                    </p>
+                    <mat-chip-list aria-label="Fish selection">
+                      <span>Skill&nbsp;</span>
+                      <mat-chip *ngFor="let skill of item.data.skill">{{skill}}</mat-chip>
+                    </mat-chip-list>
+                  </mat-card-content>
+
+                  <mat-card-actions align="end" style="position: absolute;
+                    float: right;
+                    bottom: 10px;
+                    right: 18px;">
+
+                    <button mat-flat-button color="primary" *ngIf="!item.isApproved"
+                      (click)="applyGig(item.id)">Shortlist</button>
+                    <button style="min-width: 180px;border-color: #1abc9c;height: 45px;margin-bottom: 10px;"
+                      mat-stroked-button color="primary" *ngIf="item.isApproved">
+                      <img src="assets/images/dashboard/check.png" class="icon-hw">
+                      Shortlisted</button>
+                  </mat-card-actions>
+                </mat-card>
+              </div>
+
+            </div>
+            <ng-template #noAppliedGigsList>
+              <p class="alert alert-info">No candidates found.</p>
+            </ng-template>
+          </mat-tab>
+          <mat-tab label=" Shortlisted Gig Workers ({{appliedGigsListLength}}) ">
+            <div class="row" *ngIf="appliedGigsList != null && appliedGigsList.length > 0 else noAppliedGigsList">
+
+              <div *ngFor="let item of appliedGigsList | keyvalue ; let i = index"
+                class="mt-3 col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <mat-card class="h-100 example-card hiring-card">
+                  <mat-card-header>
+                    <!-- {{ item.value.provider.user.photo }}    -->
+                    <!-- <div mat-card-avatar class="example-header-image"
+                      style="background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80');">
+                    </div> -->
+                    <img mat-card-avatar style="border-radius: 50%;flex-shrink: 0;object-fit: cover;"
+                      *ngIf="item.value.provider.user" [src]="item.value.provider.user.photo" alt="Profile photo"
+                      class="avtrcard mat-card-avatar example-header-image">
+                    <mat-card-title
+                      *ngIf="item.value.provider && item.value.provider.user && item.value.provider.user.name"><a
+                        href="javascript:void(0)" target="_blank" class="text-green" (click)="clickEvent()"
+                        [routerLink]="[ROUTS.HIRER_CANDIDATE + '/'+item.value.providerId]">{{
+                        item.value.provider.user.name }}</a>
+                    </mat-card-title>
+                    <mat-card-title
+                      *ngIf="item.value.provider && item.value.provider.company && item.value.provider.company.companyName">
+                      <a href="javascript:void(0)" target="_blank" class="text-green" (click)="clickEvent()"
+                        [routerLink]="[ROUTS.HIRER_CANDIDATE + '/'+item.value.providerId]">{{
+                        item.value.provider.company.companyName }}</a>
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                      <ul>
+                        <li *ngIf="item.value.createdAt">Shortlisted on : {{item.value.createdAt | date: 'dd MMM yyyy'}}
+                        </li>
+                        <li>Experience : {{ item.value.provider.data.totalExperienceInYears }} <span
+                            *ngIf="item.value.provider.data.totalExperienceInYears">year(s)</span> {{
+                          item.value.provider.data.totalExperienceInMonths }} <span
+                            *ngIf="item.value.provider.data.totalExperienceInMonths">month(s)</span></li>
+
+                      </ul>
+                    </mat-card-subtitle>
+                    <span class="pricing">₹{{ item.value.provider.data.remuneration }} <span>/ {{
+                        item.value.provider.data.remunerationType }}</span></span>
+                  </mat-card-header>
+
+                  <mat-card-content class="mb-md-5 mb-4">
+                    <p>
+                      {{ item.value.provider.data.descriptions }}
+                    </p>
+                    <mat-chip-list aria-label="Fish selection">
+                      <span>Skill&nbsp;</span>
+                      <mat-chip *ngFor="let skill of item.value.provider.data.skill">{{skill}}</mat-chip>
+                      <!-- <mat-chip>Visual designer</mat-chip> -->
+                    </mat-chip-list>
+                    <div class="ml-0 pl-0 pt-2 pb-0 d-md-none ">
+                      <button mat-button color="primary" class="font-weight-bold pl-0">
+
+                        <img src="assets/images/dashboard/check.png" class="icon-hw">
+                        Shortlisted
+                      </button>
+                    </div>
+                  </mat-card-content>
+                  <mat-card-actions align="end" style="position: absolute;
+                  bottom: 15px;width: 100%;">
+                    <!-- <button matTooltip="Milestone" matTooltipPosition="above" mat-button color="primary" *ngIf="startedMilestones == null || startedMilestones.includes(item.value.id)" (click)="checkIfMilestoneExistForRoute(item.value.id,item.value.providerId)">
+                      <mat-icon>source</mat-icon><span class="notification" *ngIf="item.value.isUnreadMilestone">1</span>
+                    </button> -->
+                    <button matTooltip="Milestone" matTooltipPosition="above" mat-button
+                      *ngIf="startedMilestones == null || startedMilestones.includes(item.value.id)"
+                      (click)="checkIfMilestoneExistForRoute(item.value.id,item.value.providerId)">
+                      <img src="assets/images/dashboard/clipboard.png" class="icon-hw">
+                      <span class="notification" *ngIf="item.value.isUnreadMilestone">1</span>
+                    </button>
+                    <button mat-button (click)="open(mymodal, item.value, '')" matTooltip="chat"
+                      matTooltipPosition="above" class="mt-2">
+                      <!-- <mat-icon>textsms</mat-icon> -->
+                      <img src="assets/images/dashboard/chat.png" class="icon-hw">
+                      <span class="notification" *ngIf="item.value.unread">1</span>
+                    </button>
+                    <button mat-button color="primary" class="font-weight-bold d-none d-md-block">
+
+                      <img src="assets/images/dashboard/check.png" class="icon-hw">
+                      Shortlisted
+                    </button>
+                    <button type="button" class="btn btn-outline-info  btn-sm p-1 "
+                      *ngIf="startedMilestones != null && !startedMilestones.includes(item.value.id)"
+                      (click)="gigProcess(true, false, false, item.value.id, item.value.providerId)">
+
+                      Create Milestone</button>
+                    <button mat-button (click)="shortlistDelete(item.value.id,'provider')" matTooltip="delete"
+                      matTooltipPosition="above">
+                      <img src="assets/images/dashboard/delete.png" class="icon-hw">
+                      <!-- <mat-icon>delete</mat-icon> -->
+                    </button>
+                  </mat-card-actions>
+                </mat-card>
+              </div>
+
+            </div>
+            <ng-template #noAppliedGigsList>
+              <p class="alert alert-info">No gig workers shortlisted.</p>
+            </ng-template>
+          </mat-tab>
+
+
+        </mat-tab-group>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<!-- Chat Html -->
+<div class="chatseciton" [ngClass]="showMenu">
+  <div class="overlay"></div>
+  <div class="inside">
+    <div class="d-flex justify-content-between topblock align-items-center">
+      <h3>To: Vigour Contingent Pvt Ltd (Workflexi)</h3>
+      <button mat-icon-button aria-label="Mobile Navigation" (click)=toggleHideDiv()>
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
+    <div class="middle-section">
+      <div class="received">
+        <h5 class="hour">10:57</h5>
+        <p class="received-bubble">
+          Yo! Send it to my assistant and we'll review it during the year.
+        </p>
+      </div>
+      <div class="sent">
+        <h5 class="hour">11:03</h5>
+        <p class="sent-bubble">But Mark...</p>
+      </div>
+    </div>
+    <div class="footer-section">
+      <div class="suggetstionlist">
+        <mat-chip-list>
+          <mat-chip color="accent">Showcase your skill</mat-chip>
+          <mat-chip color="accent">Total skill exp?</mat-chip>
+          <mat-chip color="accent">Your location?</mat-chip>
+        </mat-chip-list>
+      </div>
+      <div class="d-flex align-items-center mesage-bo">
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Type your Message here">
+
+        </mat-form-field>
+        <button mat-button color="primary">Send</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title text-center" id="modal-basic-title">
+      <div *ngIf="type == 'who' else notWho">
+        <span
+          *ngIf="this.dataList.company != undefined && dataList.company != null && dataList.company.companyName != undefined else userShowDetails">To:
+          {{ dataList.provider.company.companyName }}</span>
+        <ng-template #userShowDetails>
+          <span *ngIf="this.dataList.user != undefined && dataList.user != null && dataList.user.name != undefined">To:
+            {{ dataList.provider.user.name }}</span>
+        </ng-template>
+      </div>
+      <ng-template #notWho>
+        <span
+          *ngIf="dataList.provider != null && this.dataList.provider.company != undefined && dataList.provider.company != null && dataList.provider.company.companyName != undefined else userShowDetails">To:
+          {{ dataList.provider.company.companyName }}</span>
+        <ng-template #userShowDetails>
+          <span
+            *ngIf="dataList.provider != null && this.dataList.provider.user != undefined && dataList.provider.user != null && dataList.provider.user.name != undefined">To:
+            {{ dataList.provider.user.name }}</span>
+        </ng-template>
+      </ng-template>
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <!-- <div class="modal-body" #scrollMe [scrollTop]="scrollMe.scrollHeight"> -->
+  <div class="modal-body">
+    <ul *ngIf="messageList != null else noMessageFound" class="no-bullet p-0">
+      <li *ngFor="let mes of messageList | keyvalue ; let i = index">
+        <div class="userMessage"
+          *ngIf="(messageList[i]['user'] != null && messageList[i]['user'] != userId) || (messageList[i]['company'] != null && messageList[i]['company'] != companyId) else myMessage">
+          {{ messageList[i]['message'] }} <p class="time">{{ messageList[i]['sentTime'] }}</p>
+        </div>
+        <ng-template #myMessage>
+          <div class="myMessage">{{ messageList[i]['message'] }} <p class="time">{{ messageList[i]['sentTime'] }}</p>
+          </div>
+        </ng-template>
+      </li>
+    </ul>
+    <ng-template #noMessageFound>
+      <p class="alert alert-info">No message found</p>
+    </ng-template>
+  </div>
+  <!-- <div *ngIf="type != 'who'" class="chatButton">
+    <button class="btn btn-sm btn-success" (click)="gigProcess(true, false, false)">Create Milestone</button>
+    <button class="btn btn-sm btn-danger" (click)="gigProcess(false, true, false)">Not Interested</button>
+  </div> -->
+  <div class="messageSuggestionParent text-center">
+    <span class="messageSuggestion" (click)="sendMessage('Showcase your skill')">Showcase your skill</span>
+    <span class="messageSuggestion" (click)="sendMessage('Total skill exp?')">Total skill exp?</span>
+    <span class="messageSuggestion" (click)="sendMessage('Your location?')">Your location?</span>
+    <br />
+    <span class="messageSuggestion" (click)="sendMessage('Share link to your work')">Share link to your work</span>
+    <span class="messageSuggestion" (click)="sendMessage('Fee per hr (INR)')">Fee per hr (INR)</span>
+    <span class="messageSuggestion" (click)="sendMessage('Fee per month (INR)')">Fee per month (INR)</span>
+    <br />
+    <span class="messageSuggestion" (click)="sendMessage('Good morning')">Good morning</span>
+    <span class="messageSuggestion" (click)="sendMessage('Thank you')">Thank you</span>
+    <span class="messageSuggestion" (click)="sendMessage('Have a nice day!')">Have a nice day!</span>
+  </div>
+  <div class="modal-footer">
+    <input type="text" class="form-control" (keyup.enter)="sendMessage(messageText.value)" id="messageText"
+      name="messageText" #messageText />
+    <button type="button" class="mat-flat-button mat-button-base mat-primary ng-star-inserted"
+      (click)="sendMessage(messageText.value)">Send</button>
+  </div>
+</ng-template>

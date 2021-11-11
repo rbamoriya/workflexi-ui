@@ -1,0 +1,155 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>Workflexi Company Detail</h2>
+            <div class="col-md-12 data-sec d-block" *ngIf="companyData">
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Name</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{companyData.companyName}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Website</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{companyData.companyWebsite}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Pan Number</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{companyData.companyPannumber}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Gst Number</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{companyData.companyGstnumber}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Verified</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{companyData.companyIsVerified}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Address</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{companyData.companyAddress}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>City</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{companyData.companyCity}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>State</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{companyData.companyState}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Description</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{companyData.companyDescription}}
+                        </div>
+                    </div>
+                </div>
+                <!--Company Bank Details-->
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Bank Name</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{companyData.bank.bankName}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Account Number</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{companyData.bank.accountNumber}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Bank IFSC Code</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{companyData.bank.ifscCode}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Name in Bank</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{companyData.bank.nameInBank}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <button *ngIf="!companyData.companyIsVerified" mat-stroked-button class="mat-flat-button mat-button-base" 
+                            style="background-color: #FFC300; color: #fff;" 
+                            (click)="verifyCompany(companyData.id)" >Verify</button>
+                            <button *ngIf="companyData.companyIsVerified" mat-stroked-button class="mat-flat-button mat-button-base mat-warn"
+                            (click)="unVerifyCompany(companyData.id)" >Decline</button>
+                        </div>
+                        <div class="col-md-6 text-left">
+                        
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

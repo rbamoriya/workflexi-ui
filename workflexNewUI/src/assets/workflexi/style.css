@@ -1,0 +1,106 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?7ysl3i');
+  src:  url('fonts/icomoon.eot?7ysl3i#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?7ysl3i') format('truetype'),
+    url('fonts/icomoon.woff?7ysl3i') format('woff'),
+    url('fonts/icomoon.svg?7ysl3i#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-facebook-2:before {
+  content: "\e907";
+  
+}
+.icon-instagram-1:before {
+  content: "\e908";
+  
+}
+.icon-linkedin-1:before {
+  content: "\e909";
+  
+}
+.icon-twitter-1:before {
+  content: "\e90a";
+  
+}
+.icon-youtube .path1:before {
+  content: "\e90b";
+  
+}
+.icon-youtube .path2:before {
+  content: "\e90c";
+  margin-left: -1.4287109375em;
+  
+}
+.icon-Female:before {
+  content: "\e904";
+ 
+}
+.icon-male:before {
+  content: "\e905";
+ 
+}
+.icon-Other_Gender:before {
+  content: "\e906";
+ 
+}
+.icon-company:before {
+  content: "\e900";
+ 
+}
+.icon-gig:before {
+  content: "\e901";
+ 
+}
+.icon-hiring:before {
+  content: "\e902";
+ 
+}
+.icon-individual:before {
+  content: "\e903";
+ 
+}
+
+.modal-dialog{
+  margin: 0px 0px !important;
+  float: right !important;
+  height: 100% !important;
+}
+.modal-content{
+  height: 100% !important;
+}
+.alert-info p{
+  color: #1ABC9C !important;
+}
+.alert-info{
+  background-color: #D3F4DE;
+  color: #1ABC9C;
+  padding: 1rem !important;
+  margin-top: 20px !important;
+}
+
+.mat-tab-body-content {
+  overflow: hidden !important;
+  overflow-y: hidden !important;
+}
+.cdk-overlay-container{
+  z-index: 1070 !important;
+}

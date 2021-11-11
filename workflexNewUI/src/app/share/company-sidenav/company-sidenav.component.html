@@ -1,0 +1,41 @@
+<a class="logo"><img src="assets/images/logo.png" alt="workflexi" /></a>
+<mat-nav-list *ngIf="edit == true">
+  <mat-list-item>
+    <a matLine href="#" [routerLinkActive]="'active'" [routerLink]="['/company/edit']">
+      <ul>
+        <li class="fs-20">
+          <span> Company detail</span>
+        </li>
+      </ul>
+
+    </a>
+
+  </mat-list-item>
+</mat-nav-list>
+<mat-nav-list *ngIf="edit == false">
+  <mat-list-item>
+    <a matLine href="#" [routerLinkActive]="'active'" [routerLink]="['/company/basicinfo']">
+      <ul>
+        <li class="fs-20">
+          <span> Company detail</span>
+        </li>
+      </ul>
+    </a>
+
+  </mat-list-item>
+  <!-- <mat-list-item >
+        <a matLine href="#" [routerLinkActive]="'active'"
+        [routerLink]="['/company/setup']">
+            <span class="steps">2</span> Basic Setup
+        </a>
+
+     </mat-list-item>
+
+     <mat-list-item >
+        <a matLine href="#" [routerLinkActive]="'active'"
+        [routerLink]="['/company/bank-details']">
+            <span class="steps">3</span> Payment Detail
+        </a>
+
+     </mat-list-item> -->
+</mat-nav-list>

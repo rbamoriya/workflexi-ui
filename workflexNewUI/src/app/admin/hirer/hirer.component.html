@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>Workflexi Hirer List</h2>
+            <div class="col-md-4 pt-4 pb-2">
+                <span class="d-flex">
+                    <h5 class="p-2">Filter:</h5>
+                    <select class="form-control p-1" [(ngModel)]="selectedValue" (change)="filter(selectedValue)" >
+                        <option value="">All</option>
+                        <option value="company">Companies</option>
+                        <option value="individual">Individuals</option>
+                    </select>
+                </span>
+                <span>
+                    
+                </span>
+            </div>
+            <div class="col-md-12 layout" *ngIf="hirerList">
+                <table class="table-striped table">
+                    <thead class="">
+                    <tr>
+                        <th>Name</th>
+                        <th>Mobile</th>
+                        <th>Engagement Period</th>
+                        <th>Maximum Experience</th>
+                        <th>Skills</th>
+                        <th>Total Experience</th>
+                        <th>Location Preferences</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let hirer of hirerList | paginate: {itemsPerPage: 10, currentPage: p}">
+                            <td>{{hirer.initiatedBy.name}}</td>
+                            <td>{{hirer.initiatedBy.mobile}}</td>
+                            <td>{{hirer.data.engagementPeriod}}</td>
+                            <td>{{hirer.data.maximumExperienceInYears}} Years</td>
+                            <td>
+                                <ul *ngFor="let skill of hirer.data.skill">
+                                    <li>{{skill}}</li>
+                                </ul>
+                            </td>
+                            <td>{{hirer.data.totalExperienceInYears}} Years</td>
+                            <td>
+                                <ul *ngFor="let location of hirer.data.locationPreferences">
+                                    <li>{{location}}</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <button mat-stroked-button class="mat-flat-button mat-button-base mat-primary" 
+                                color="primary" (click)="navigateDetail(hirer.id)" >Detail</button>&nbsp;
+                                <button mat-stroked-button class="btn btn-danger" 
+                                (click)="deleteHirer(hirer.id)" >Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+                <pagination-controls (pageChange)="p=$event"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>

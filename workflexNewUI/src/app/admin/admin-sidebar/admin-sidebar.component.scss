@@ -1,0 +1,18 @@
+::ng-deep{ .menu-open {
+     
+    .w3-sidebar {
+        width: 0% !important;
+    }
+}
+.w3-sidebar {
+    width: 20% !important;
+}
+}
+
+.active {
+    background-color:#ccc;
+}
+
+a {
+    text-decoration: none;
+}

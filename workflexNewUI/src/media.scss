@@ -1,0 +1,296 @@
+@media only screen and (max-width: 767px) {
+  html,
+  body {
+    font-size: 14px !important;
+    font-weight: 300 !important;
+  }
+  .sidleft {
+    height: auto !important;
+
+    h1 {
+      margin-bottom: 0px !important;
+      text-align: center;
+    }
+  }
+  .logo {
+    text-align: center;
+  }
+  .bottompart {
+    padding: 20px !important;
+  }
+  .searchbox {
+    input,
+    .searchbtn {
+      min-width: auto !important;
+    }
+  }
+  .mob {
+    position: fixed;
+    left: -80vw;
+    height: 100vh;
+    overflow-y: scroll;
+    transition: all 0.5s;
+    width: 80vw;
+    background-color: #fff;
+    top: 0;
+    z-index: 999;
+    max-height: 100% !important;
+
+    .mat-list {
+      max-height: calc(100vh - 165px) !important;
+    }
+  }
+  .success {
+    left: 0;
+  }
+  .page-header {
+    h1 {
+      font-size: 30px !important;
+    }
+  }
+  .filter {
+    position: relative;
+    display: block;
+    background-color: #fff;
+    display: flex;
+    justify-content: flex-end;
+    .cross {
+      position: absolute;
+      right: 0;
+    }
+  }
+  .mob {
+    &.success {
+      &::before {
+        display: block;
+      }
+    }
+    &::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      z-index: -1;
+      background-color: rgba($color: #000000, $alpha: 0.25);
+      display: none;
+    }
+    app-filter {
+      display: block;
+      background-color: #fff;
+      padding-bottom: 20px;
+    }
+  }
+  .logo {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .sidenav {
+    display: flex !important;
+    flex-direction: column;
+    position: fixed;
+    left: -80%;
+    height: 100%;
+    overflow-y: scroll;
+    transition: all 0.5s;
+    width: 80%;
+    z-index: 9;
+    top: 0px;
+  }
+  .menushow {
+    left: 0;
+    .searchbox {
+      padding: 0px !important;
+    }
+    .nav {
+      display: flex !important;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .op {
+      display: block;
+      position: fixed;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      width: 100%;
+      z-index: 9;
+    }
+    .logo {
+      padding: 20px 0;
+    }
+  }
+  .inside {
+    background-color: #fff;
+    height: 100vh;
+    position: relative;
+    z-index: 99;
+    padding: 10px;
+  }
+  .testimonial .left-bg {
+    min-height: auto !important;
+    border-radius: 0px !important;
+    h1::after {
+      display: none;
+    }
+  }
+  .banner {
+    height: auto !important;
+    background: none !important;
+    margin-top: 0px !important;
+    padding-left: 20px !important;
+  }
+  .hm {
+    .nav {
+      padding: 0px !important;
+    }
+  }
+  .hlogo {
+    .d-block {
+      display: inline-flex !important;
+    }
+    img {
+      max-width: 170px;
+    }
+  }
+  .mat-dialog-container {
+    min-width: 100% !important;
+  }
+  .footer-menu {
+    .p-5 {
+      padding: 0rem !important;
+    }
+  }
+  .sideleft {
+    position: static !important;
+    height: auto !important;
+    width: 100% !important;
+  }
+  .joincheckbox {
+    label {
+      margin: 0 16px 0 0 !important;
+      .icon {
+        width: 90px !important;
+        height: 90px !important;
+      }
+    }
+  }
+  .infoarea {
+    padding: 0px !important;
+  }
+  .upload {
+    margin: 0 auto 20px !important;
+  }
+  .bottom-part {
+    padding: 0 !important;
+    .mat-button-base.mat-primary {
+      min-width: 150px !important;
+    }
+  }
+  .bottom-footer {
+    .mat-toolbar-row,
+    .mat-toolbar-single-row {
+      flex-direction: column;
+      height: auto !important;
+    }
+    .left {
+      display: flex;
+    }
+  }
+  .join,
+  .trends,
+  .aboutus,
+  .banner {
+    h1 {
+      font-size: 2rem !important;
+    }
+  }
+  .banner,
+  .trends {
+    h2 {
+      font-size: 2rem !important;
+    }
+  }
+  .profilecard{
+      text-align: center;
+      font-weight: 400 !important;
+      .avtrcard{
+          width: 85px !important;
+          height: 85px !important;
+          margin-bottom: 20px;
+      }
+      .mat-card-header{
+          flex-direction: column !important;
+          .mat-card-header-text{
+            // margin: 0 !important
+          }
+      }
+  }
+  .profilecard .mat-card-subtitle ul li::before{
+      display: none;
+  }
+  .profilecard .mat-card-subtitle ul li{
+      padding-left: 0px !important;
+  }
+  .hiring-card{
+    .mat-card-header{
+      margin-top: 15px !important;
+    }
+    .pricing{
+      top:-23px !important
+    }
+  }
+  img{
+    max-width: 100%;
+  }
+  .m-fixed{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    padding-top: 10px;
+    .candidate-info-price{
+      position: relative;
+      z-index: 999;
+
+      img {
+        display: none;
+        width: 100px !important;
+      }
+    }
+    .mat-list {
+      padding:  0 !important;
+      margin: 0 !important;
+    }
+    .mat-button-base.mat-primary {
+      margin-bottom: 0px !important;
+    }
+    &::after{
+      content: '';
+      background: rgba(0, 0, 0, 0.16);
+      width: 100%;
+      z-index: 1;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 110%;
+      
+    }
+  }
+  .profileheader{
+    margin-bottom: 400px !important;
+  }
+  .chatseciton .inside{
+    width: 80% !important;
+    padding: 0px;
+    .received-bubble,.sent-bubble{
+      max-width: 90% !important;
+    }
+  }
+  .top{
+    .heading{
+      max-width: calc(100% - 100px);
+    }
+  }
+}

@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>Workflexi Skill List</h2>
+            <div class="col-md-12 layout" *ngIf="skillList">
+                <table class="table-striped table">
+                    <thead class="">
+                    <tr>
+                        <th>Name</th>
+                        <th>Mobile</th>
+                        <th>Engagement Period</th>
+                        <th>Maximum Experience</th>
+                        <th>Skills</th>
+                        <th>Total Experience</th>
+                        <th>Remark</th>
+                        <th>Location Preferences</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let hirer of skillList | paginate: {itemsPerPage: 10, currentPage: p}">
+                            <td>{{hirer.initiatedBy.name}}</td>
+                            <td>{{hirer.initiatedBy.mobile}}</td>
+                            <td>{{hirer.data.engagementPeriod}}</td>
+                            <td>{{hirer.data.maximumExperienceInYears}} Years</td>
+                            <td>
+                                <ul *ngFor="let skill of hirer.data.skill">
+                                    <li>{{skill}}</li>
+                                </ul>
+                            </td>
+                            <td>{{hirer.data.totalExperienceInYears}} Years</td>
+                            <td>{{hirer.data.remarks}}</td>
+                            <td>
+                                <ul *ngFor="let location of hirer.data.locationPreferences">
+                                    <li>{{location}}</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <button mat-stroked-button class="btn btn-danger" 
+                                (click)="deleteSkill(hirer.id)">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+                <pagination-controls (pageChange)="p=$event"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>

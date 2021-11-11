@@ -1,0 +1,19 @@
+<a href="#" class="logo"><img src="assets/images/logo.png" alt="workflexi"/></a>
+<mat-nav-list>
+    <mat-list-item >
+       <a matLine href="#" [routerLinkActive]="'active'"
+       [routerLink]="['/hiring/basicinfo']">
+           <span class="steps">1</span> Basic Information
+       </a>
+    
+    </mat-list-item>
+  
+     <mat-list-item >
+        <a matLine href="#" [routerLinkActive]="'active'"
+        [routerLink]="['/hiring/skillslooking']" *ngIf="isEmailVarify == true">
+            <span class="steps">2</span> Skill which you looking
+        </a>
+     
+     </mat-list-item>
+  </mat-nav-list>
+  

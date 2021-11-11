@@ -1,0 +1,81 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-sm-4 col-md-4 col-lg-4 sidleft">
+      <div class="logo">
+        <a href="#"><img src="assets/images/logo.png"></a>
+      </div>
+      <div class="bottompart d-flex flex-column">
+        <h2 class="mb-2 mb-md-5">A few clicks away from joining us</h2>
+        <img src="assets/images/working.svg" class="d-none d-sm-block mt-4" style="height: 50vh;">
+      </div>
+      <div class="example-spacer"></div>
+    </div>
+
+    <div class="col-12 col-sm-8 col-md-8 col-lg-8 d-flex align-items-center justify-content-center">
+      <div class="loginbox">
+        <h1 *ngIf="!isForgotPassword">Sign In / Sign Up</h1>
+        <div *ngIf="message" class="alert alert-green">
+          {{ message }}
+        </div>
+        <form *ngIf="isGenerate" #loginForm="ngForm" (ngSubmit)="sendOtp(mobile.value)">
+          <mat-form-field appearance="outline">
+            <mat-label>Mobile Number</mat-label>
+            <input id="mobile" matInput placeholder="9999999999" #mobile type="number" autocomplete="off">
+          </mat-form-field>
+          <mat-error *ngIf="errors">
+            {{ errors }}
+          </mat-error>
+          <div id="recaptcha-container-send-otp" class="recaptcha-container-for-login"></div>
+          <button type="submit" mat-flat-button color="primary">Generate OTP</button>
+
+          <h4 class="or-devider my-4">
+            OR
+          </h4>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input [errorStateMatcher]="matcher" [(ngModel)]="usernameModel" id="username" name="username" matInput #username type="text" (focusout)="validateEmail(username.value)" autocomplete="off">
+            <mat-error *ngIf="isEmailDuplicate">This email is associated with multiple accounts. Please try logging in using mobile otp</mat-error>
+          </mat-form-field>
+          
+          <mat-form-field appearance="outline" [ngStyle]="{'margin': isEmailDuplicate? '1em 0': '0'}">
+            <mat-label>Password</mat-label>
+            <input id="password" matInput placeholder="**********" #password type="password">
+          </mat-form-field>
+          <button type="button" [disabled]="isEmailDuplicate" (click)="login(username.value, password.value)" mat-flat-button color="primary">Login</button>
+          <!-- <button type="button" class="register-btn" (click)="register()" color="primary" mat-flat-button >Register</button> -->
+          <p class="text-green mt-4 mb-1 text-center"><a (click)="forgotPassword()" class="cursor-pointer">Forgot password?</a></p>
+          <p class="text-gray  mt-1 text-center">Don't have an account?<a (click)="register()" class="text-primary cursor-pointer">&nbsp;Sign up</a></p>
+        </form>
+        <form *ngIf="isValidate" #otpForm="ngForm" (ngSubmit)="validateOtp(otp.value)">
+          <div *ngIf="otpErrors" class="alert alert-green">
+            {{ otpErrors }}
+          </div>
+          <div class="ch-number  pb-2"><a mat-button (click)="showGenerateDiv()" color="accent"class="font-weight-bold"> <mat-icon>smartphone</mat-icon>Change Number</a></div>
+          <mat-form-field appearance="outline">
+            <mat-label>Enter OTP</mat-label>
+            <input id="otp" matInput placeholder="999999" #otp autocomplete="off">
+          </mat-form-field>
+          <div class="ch-number">
+            <button type="submit" mat-flat-button color="primary">Validate OTP</button>
+            <a mat-button color="accent" (click)="reSendOtp()" id="resendBtn" class="float-right pt-1 font-weight-bold">Resend OTP</a>
+            <div id="recaptcha-container-resend-otp" class="recaptcha-container"></div></div>
+         
+        </form>
+        <!-- Reset Password form -->
+        <form *ngIf="isForgotPassword" #forgotPassword="ngForm" (ngSubmit)="sendResetPasswordLink(email.value)">
+          <h2>Forgot password?</h2>
+          <p>Don't worry! Please provide the registered Email Id and get a reset link </p>
+          <mat-form-field appearance="outline" style="margin-bottom: 10px;">
+            <mat-label>Email</mat-label>
+            <input id="email" name="email" matInput placeholder="Eg. james@gmail.com" #email autocomplete="off">
+          </mat-form-field>
+          <div class="ch-number">
+            <button type="submit" [disabled]="isEmailDuplicate" mat-flat-button color="primary">Send Reset Link</button>
+          </div>
+          <div id="recaptcha-container-send-reset-link" class="recaptcha-container"></div>
+         
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

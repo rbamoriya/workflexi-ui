@@ -1,0 +1,99 @@
+<div class="container-fluid bg">
+    <div class="row">
+        <div class="col-12 col-sm-2 col-md-2 col-lg-2">
+            <div class="sideleft">
+                <!-- <app-ind-sidenav></app-ind-sidenav> -->
+                <app-company-sidenav [edit]=false></app-company-sidenav>
+            </div>
+        </div>
+        <div class="col-12 col-sm-10 col-md-10 col-lg-10">
+            <mat-toolbar class="trasnparent">
+                </mat-toolbar>
+                <div class="row">
+                  <div style="margin-top: 0px !important" class="text-center col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <button style="cursor: pointer;" mat-flat-button color="primary" href="javascript:;" (click)="redirectInboarding()">Login as Individual</button>&nbsp;
+                      <button mat-flat-button color="warn" [routerLink]="['/logout']">Logout</button>
+                  </div>
+                </div>
+                <div class="row ">
+                  <div class="col-12 col-sm-12 col-md-12 col-lg-12 " [ngClass]="hide" >
+                    <div class="primary-user d-flex flex-column " *ngIf="assignRoleForm">
+                        <form [formGroup]="assignRoleForm">
+                            <mat-checkbox (click)="toggleDisplayDiv()"  formControlName="isPrimaryOwner">Are you a primary owner of the company</mat-checkbox>
+                            <span class="or">OR</span>
+                            <mat-form-field appearance="outline" class="w-100">
+                              <mat-label>Select Company</mat-label>
+                              <mat-select formControlName="companyId">
+                                <mat-option *ngFor="let company of companyList | keyvalue ; let i = index" [value]="company.value.id">
+                                  {{company.value.companyName}}
+                                </mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                            <div class="d-flex flex-row justify-content-end">
+                              <button mat-flat-button color="primary" (click)="assignRoleForCompany()" [disabled]="assignRoleForm.pristine || assignRoleForm.invalid"> Request Access </button>
+                            </div>
+                        </form>
+                      </div>
+                    </div>
+                </div>
+                <div class="d-none" [ngClass]="showMenu">
+                    <form [formGroup]="createCompanyForm" novalidate>
+                  <div class="row" >
+
+                    <div class="col-12 col-sm-9 col-md-9 col-lg-9">
+                      <div class="infoarea">
+                        <h2>Update Profile</h2>
+                        <p>Fill your details before you explore further</p>
+                        <h5>Company Name<sup>*</sup></h5>
+                        <mat-form-field appearance="outline"  floatLabel="never">
+                          <input matInput placeholder="Ex.ABC Pvt Ltd" minlength="3" formControlName="name">
+                        </mat-form-field>
+                        <h5>Address<sup>*</sup></h5>
+                        <mat-form-field appearance="outline"  floatLabel="never">
+                          <input matInput placeholder="Ex.Your Address"  formControlName="address">
+                        </mat-form-field>
+                        <h5>City<sup>*</sup></h5>
+                        <mat-form-field appearance="outline"  floatLabel="never">
+                          <input matInput matGoogleMapsAutocomplete
+                          (onAutocompleteSelected)="onAutocompleteSelected($event)"
+                          placeholder="Ex.Noida" formControlName="city">
+                        </mat-form-field>
+                        <h5>State<sup>*</sup></h5>
+                        <mat-form-field appearance="outline"  floatLabel="never">
+                          <input matInput placeholder="Ex.Odisha" formControlName="state">
+                        </mat-form-field>
+                        <h5>Pincode<sup>*</sup></h5>
+                        <mat-form-field appearance="outline"  floatLabel="never">
+                          <input matInput placeholder="Ex.110019" formControlName="pincode" minlength="6" maxlength="6">
+                          </mat-form-field>
+                          <p class="error-text" *ngIf="createCompanyForm.controls.pincode.errors && createCompanyForm.controls.pincode.touched">Add six length pincode  </p>
+
+                        <h5>Website</h5>
+                        <mat-form-field appearance="outline"  floatLabel="never">
+                          <input matInput placeholder="Ex.www.workflexi.in" formControlName="website">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="upload">
+                        <input type="file" (change)="onUploadChange($event)" formControlName="logo" accept=".png, .jpg, .jpeg" #logo>
+                        <img style="width: 100%;height: 100%;" *ngFor="let item of base64textString" #img src={{item}} alt="" id="img">
+                        <mat-icon *ngIf="base64textString.length == 0" aria-hidden="false" aria-label="Example home icon">photo_camera
+                        </mat-icon>
+                    </div>
+                    <div class="p-2 align-items-center">Upload Logo</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="bottom-part d-flex justify-content-between">
+                            <span></span>
+                            <button mat-flat-button color="primary" (click)="createCompany()">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </form>
+        </div>
+    </div>
+</div>
+</div>

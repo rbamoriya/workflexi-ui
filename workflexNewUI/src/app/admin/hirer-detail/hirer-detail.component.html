@@ -1,0 +1,104 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>Workflexi Hirer Detail</h2>
+            <div class="col-md-12 data-sec d-block" *ngIf="hirerData">
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Hirer Name</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{hirerData.user.name}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Request Type</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{hirerData.data.requestType}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Engagement Period</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{hirerData.data.engagementPeriod}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Maximum Experience</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{hirerData.data.maximumExperienceInYears}} Years
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Skills</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            <ul *ngFor="let skill of hirerData.data.skill">
+                                <li>{{skill}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Total Experience</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{hirerData.data.totalExperienceInYears}} Years
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Remarks</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{hirerData.data.remarks}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Location Preferences</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            <ul *ngFor="let locationPreference of hirerData.data.locationPreferences">
+                                <li>{{locationPreference}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-inline-flex">
+                        <div class="col-md-6 text-left">
+                            <h4>Wallet Balance</h4>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            {{walletBal}}
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

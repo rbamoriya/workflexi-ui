@@ -1,0 +1,126 @@
+<div class="container-fluid bg">
+  <div class="row ">
+    <div class="col-12 col-sm-2 col-md-2 col-lg-2">
+      <div class="sideleft">
+        <!-- <app-ind-sidenav></app-ind-sidenav> -->
+        <app-company-sidenav [edit]=true></app-company-sidenav>
+      </div>
+    </div>
+    <div class="col-12 col-sm-10 col-md-10 col-lg-10 ">
+      <div class="card ml-md-4 ml-0 px-2 px-md-1">
+        <form [formGroup]="updateCompanyForm" (ngSubmit)="updateCompany()" novalidate>
+          <mat-toolbar class="trasnparent ">
+            <mat-toolbar-row>
+              <span class="example-spacer"></span>
+              Having trouble? &nbsp;<a href="#"> Get Help</a>
+            </mat-toolbar-row>
+          </mat-toolbar>
+          <div class="">
+
+            <div class="row ">
+              <div class="col-12 col-sm-9 col-md-9 col-lg-9">
+                <div class="infoarea">
+                  <h2>Update Company</h2>
+                  <p>Fill your details before you explore page</p>
+                  <h5>Company Name<sup>*</sup></h5>
+                  <mat-form-field appearance="outline" floatLabel="never">
+                    <input matInput placeholder="Ex. John Doe" minlength="3" formControlName="name">
+                  </mat-form-field>
+                  <h5>Address<sup>*</sup></h5>
+                  <mat-form-field appearance="outline" floatLabel="never">
+                    <input matInput placeholder="Ex.your colony" formControlName="address">
+                  </mat-form-field>
+                  <h5>City<sup>*</sup></h5>
+                  <mat-form-field appearance="outline" floatLabel="never">
+                    <input matInput matGoogleMapsAutocomplete (onAutocompleteSelected)="onAutocompleteSelected($event)"
+                      placeholder="Ex.noida" formControlName="city">
+                  </mat-form-field>
+                  <h5>State<sup>*</sup></h5>
+                  <mat-form-field appearance="outline" floatLabel="never">
+                    <input matInput placeholder="Ex.9999999999" formControlName="state">
+                  </mat-form-field>
+                  <h5>Pincode<sup>*</sup></h5>
+                  <mat-form-field appearance="outline" floatLabel="never">
+                    <input matInput placeholder="Ex.110019" formControlName="pincode" minlength="6" maxlength="6">
+                  </mat-form-field>
+                  <p class="error-text"
+                    *ngIf="updateCompanyForm.controls.pincode.errors && updateCompanyForm.controls.pincode.touched">Add
+                    six length pincode </p>
+
+                  <h5>Website</h5>
+                  <mat-form-field appearance="outline" floatLabel="never">
+                    <input matInput placeholder="Ex.www.workflexi.in" formControlName="website">
+                  </mat-form-field>
+
+
+
+                  <h5>GST Number</h5>
+                  <mat-form-field appearance="outline" floatLabel="never">
+
+                    <input matInput formControlName="gstNumber" placeholder="Ex. 18AABCU9603R1ZM">
+                    <mat-error *ngIf="updateCompanyForm.get('gstNumber').hasError('pattern')">Invalid GST number
+                    </mat-error>
+                  </mat-form-field>
+                  <h5>PAN Card<sup>*</sup></h5>
+                  <mat-form-field appearance="outline" floatLabel="never">
+
+                    <input matInput formControlName="panNumber" placeholder="Ex.ALWPG5809L">
+                    <mat-error *ngIf="updateCompanyForm.get('panNumber').hasError('pattern')">Invalid PAN number
+                    </mat-error>
+                  </mat-form-field>
+
+                  <h5>Other details</h5>
+                  <mat-form-field appearance="outline" floatLabel="never">
+
+                    <textarea style="min-height: 200px;" matInput formControlName="description"
+                      placeholder="Ex.noida"></textarea>
+                  </mat-form-field>
+
+
+                  <h5>Bank Name<sup>*</sup></h5>
+                  <mat-form-field appearance="outline" floatLabel="never">
+                    <input matInput formControlName="bankName" placeholder="Ex.ALWPG5809L">
+                  </mat-form-field>
+                  <h5>Name In Bank<sup>*</sup></h5>
+                  <mat-form-field appearance="outline" floatLabel="never">
+                    <input matInput formControlName="nameInBank" placeholder="Ex.ALWPG5809L">
+                  </mat-form-field>
+
+                  <h5>Account Number<sup>*</sup></h5>
+                  <mat-form-field appearance="outline" floatLabel="never">
+                    <input matInput formControlName="accountNumber" placeholder="Ex.1001001001001">
+                  </mat-form-field>
+                  <h5>IFSC<sup>*</sup></h5>
+                  <mat-form-field appearance="outline" floatLabel="never">
+                    <input matInput formControlName="ifsc" placeholder="Ex.ALWPG5809L">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <div class="upload">
+                  <input type="file" (change)="onUploadChange($event)" formControlName="logo" accept=".png, .jpg, .jpeg"
+                    #logo>
+                  <img style="width: 100%;height: 100%;" *ngIf="base64textString.length>0" #img
+                    [src]=base64textString[0] alt="" id="img">
+                  <mat-icon *ngIf="base64textString.length == 0" aria-hidden="false" aria-label="Example home icon">
+                    photo_camera
+                  </mat-icon>
+                </div>
+                <div class="p-2 align-items-center">Upload Logo</div>
+              </div>
+              <div class="row pl-3">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 py-2">
+                  <div class="bottom-part">
+                    <span></span>
+                    <button mat-flat-button type="submit" color="primary" >Save</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

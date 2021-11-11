@@ -1,0 +1,110 @@
+<app-individualheader></app-individualheader>
+<div class="container">
+  <div class="row">
+
+    <div class="col-12 col-md-9 col-lg-9 bg milestone px-4 px-md-5 order-md-1 order-2">
+      <ng-template #popContent>
+        <ng-container *ngIf="popOverContent">
+          <div [innerHTML]="createTrustedHtml(popOverContent)"> </div>
+        </ng-container>
+    </ng-template>
+      <form [formGroup]="milestoneForm">
+        <div class="row" style="border:none !important;">
+          <div style="border:none !important;" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <p class="fs-14 text-dark-gray font-weight-bold my-0 pb-1">Start Date </p>
+            <mat-form-field style="border:none !important;" appearance="outline" appearance="outline">
+              <input [readonly]="true" style="border:none !important;" matInput [matDatepicker]="StartDate" [min]="todayDate"
+                [max]="milestones.length > 0 ? milestones[0].endDate : milestoneForm?.controls?.endDate?.value" placeholder="DD-MM-YYYY" formControlName="startDate">
+              <mat-datepicker-toggle matSuffix [for]="StartDate"></mat-datepicker-toggle>
+              <mat-datepicker #StartDate></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div style="border:none !important;" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <p class="fs-14 text-dark-gray font-weight-bold my-0 pb-1">End Date </p>
+            <mat-form-field style="border:none !important;" appearance="outline" appearance="outline">
+              <input [readonly]="true" style="border:none !important;" matInput [matDatepicker]="EndDate" 
+              [min]="milestones.length > 1 ? milestones[milestones.length-2].endDate : milestoneForm?.controls?.startDate?.value"
+                placeholder="DD-MM-YYYY" formControlName="endDate">
+              <mat-datepicker-toggle matSuffix [for]="EndDate"></mat-datepicker-toggle>
+              <mat-datepicker #EndDate></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-end">
+            <button [disabled]="!milestoneForm.valid || isMilestoneExist" mat-flat-button color="primary" (click)="openDialog()" style="margin-right: 10px;">Add Task</button>
+            <button [disabled]="milestones.length == 0 || !milestoneForm.valid || isMilestoneExist" mat-flat-button color="primary" style="margin-right: 10px;" (click)="createMilestone()"
+            >Save</button>
+          <button
+            [disabled]="disableSubmitApprovalButton || !isMilestoneExist"
+            mat-flat-button color="primary" (click)="sendForApproval()">Send For Approval</button>
+          </div>
+
+        </div>
+      </form>
+      <div class="table-responsive shadow p-3 mb-5 bg-white rounded">
+
+        <table class="table">
+          <thead>
+            <tr class="bg-color-primary">
+              <th scope="col">#</th>
+              <th scope="col">End Date</th>
+              <th scope="col">Amount (INR)</th>
+              <th scope="col">Description</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let milestone of milestones; index as i">
+              <td scope="row">{{ i + 1 }}</td>
+              <td>{{ milestone.endDate.toDate() | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ milestone.amount }}</td>
+              <td  [ngbPopover]="popContent" triggers="mouseenter:mouseleave" container="body" (mouseenter) ="mouseEnter(milestone.description) "  (mouseleave) ="mouseLeave()" style="max-width: 200px;">
+                <div class="text-truncate" [innerHTML]="createTrustedHtml(milestone.description)"> </div>
+              </td>
+              <td>
+                <button [disabled]="isMilestoneExist" mat-icon-button color="primary" aria-label="Edit Task" title="Edit Task" (click)="editTask(i)">
+                <mat-icon>edit</mat-icon>
+               </button>
+               <button [disabled]="isMilestoneExist" mat-icon-button color="primary" aria-label="Delete Task" title="Delete Task" (click)="deleteTask(i)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+    <div class="col-12 col-sm-3 col-md-3 col-lg-3 mb-4 order-md-2 order-1">
+      <mat-card class="profile" *ngIf="pDetails">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image">
+            <img style="border-radius: 50%;flex-shrink: 0;object-fit: cover;" [src]="profileImgSrcData" alt="image"
+              class="example-header-image avtrcard mat-card-avatar">
+          </div>
+          <mat-card-title class="d-flex flex-column" *ngIf="pDetails.user && pDetails.user.name">
+            <small>GIG Worker</small><span class="font-weight-bold">{{pDetails.user.name}}</span>
+          </mat-card-title>
+          <mat-card-title class="d-flex flex-column" *ngIf="pDetails.company && pDetails.company.companyName">
+            <small>GIG Worker</small> {{pDetails.company.companyName}}
+          </mat-card-title>
+
+        </mat-card-header>
+        <mat-card-content>
+          <h6 class="font-weight-bold mb-0">Title</h6>
+          <p>{{pDetails.data.title}}</p>
+          <h6 class="font-weight-bold mb-0">Skills</h6>
+          <p>{{pDetails.data.skill.join()}}</p>
+          <h6 class="font-weight-bold mb-0">Remuneration</h6>
+          <p>
+            ₹ {{pDetails.data.remuneration}} <small *ngIf="pDetails.data.remunerationType">/
+              {{pDetails.data.remunerationType}}</small>
+
+          </p>
+          <h6 class="font-weight-bold mb-0" *ngIf="pDetails.data.location[0]">Location</h6>
+          <p *ngIf="pDetails.data.location[0]">{{pDetails.data.location[0]}}</p>
+        </mat-card-content>
+
+      </mat-card>
+    </div>
+  </div>
+</div>

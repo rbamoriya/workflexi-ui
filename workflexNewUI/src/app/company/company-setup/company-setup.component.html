@@ -1,0 +1,59 @@
+<div class="container-fluid bg">
+    <div class="row">
+        <div class="col-12 col-sm-2 col-md-2 col-lg-2">
+            <div class="sideleft">
+                <!-- <app-ind-sidenav></app-ind-sidenav> -->
+                <app-company-sidenav [edit]=false></app-company-sidenav>
+            </div>
+        </div>
+        <div class="col-12 col-sm-10 col-md-10 col-lg-10">
+
+               <mat-toolbar class="trasnparent">
+                <mat-toolbar-row>
+                  <span class="example-spacer"></span>
+                  Having trouble? &nbsp;<a href="#"> Get Help</a>
+                </mat-toolbar-row>
+                </mat-toolbar>
+
+                <form [formGroup]="createCompanyForm" (ngSubmit)="createCompany()">
+                    <div class="row">
+                        <div class="col-12 col-sm-9 col-md-9 col-lg-9">
+                            <div class="infoarea">
+                            <h1>Company Information</h1>
+                            <p>Fill your details before you explore further</p>
+                            <h5>GST Number</h5>
+                            <mat-form-field appearance="outline"  floatLabel="never">
+
+                                <input matInput formControlName="gstNumber" placeholder="Ex.18AABCU9603R1ZM">
+                                <mat-error *ngIf="createCompanyForm.get('gstNumber').invalid">Invalid GST number</mat-error>
+                            </mat-form-field>
+                            <h5>PAN Card<sup>*</sup></h5>
+                            <mat-form-field appearance="outline"  floatLabel="never">
+
+                                <input matInput formControlName="panNumber" placeholder="Ex.ALWPG5809L">
+                                <mat-error *ngIf="createCompanyForm.get('panNumber').hasError('pattern')">
+                                    Invalid PAN number 
+                                  </mat-error>
+                            </mat-form-field>
+
+                            <h5>Other details</h5>
+                            <mat-form-field appearance="outline"  floatLabel="never">
+
+                                <textarea matInput formControlName="description" placeholder="Ex.Extra Information"></textarea>
+                            </mat-form-field>
+                        </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="bottom-part d-flex justify-content-between">
+                                <button mat-stroked-button color="primary" (click)="goPriviousFormRout()">Previous</button>
+                                <button mat-flat-button color="primary" type="submit">Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+        </div>
+    </div>
+</div>

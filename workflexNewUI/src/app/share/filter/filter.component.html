@@ -1,0 +1,123 @@
+<mat-toolbar class="tranparent">
+  <!-- <span>Filter</span> -->
+  <!-- <span class="example-spacer"></span>
+  <button mat-mini-fab color="primary" >
+    <mat-icon>search</mat-icon>
+  </button> -->
+  <span class="example-spacer"></span>
+  <button class="ml-auto" mat-stroked-button color="primary" (click)="goToLookingForSkill()" >
+    <mat-icon>create</mat-icon>{{postgigORskill}}
+  </button>
+  <!-- <button (click)="applyFilter()" mat-button color="primary">Apply</button> -->
+</mat-toolbar>
+<mat-accordion class="filters" multi>
+  <div class="card">
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="py-2">
+          <b class="my-auto"> Additional Filter</b> 
+        </mat-panel-title>
+        
+      </mat-expansion-panel-header>
+
+    
+
+
+
+      <!-- <mat-list style="max-height: calc(100vh - 230px);overflow-y: scroll;overflow-x: hidden;" *ngIf="skillList && skillList.length>0">
+        <mat-list-item *ngFor="let skill of skillList">
+          <mat-checkbox #checkbox="matCheckbox" (click)="somethingClick(checkbox, skill)">{{skill}}</mat-checkbox>
+          <input type="checkbox" formControlName="skills"/>
+          <span>{{skill}}</span>
+        </mat-list-item>
+      </mat-list> -->
+
+      <div class="col p-3">
+        <div class="form-group">
+          <label class="additional-filter-label" for="searchByName">Name </label>
+          <div class="form-inline">
+            <input type="text" class="form-control additional-filter-input" 
+            id="searchByName" name="searchByName" [(ngModel)]="searchByName"
+            (keyup.enter)="searchbyAdditionalFilter('name')"
+            placeholder="Enter Name">
+            <button mat-stroked-button color="primary" class="searchbtn p-0" (click)="searchbyAdditionalFilter('name')">
+              <mat-icon>done</mat-icon>
+            </button>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label class="additional-filter-label" for="searchByLocation">Location </label>
+          <div class="form-inline">
+            <input type="text" class="form-control additional-filter-input" id="searchByLocation" 
+            name="searchByLocation" [(ngModel)]="searchByLocation"
+            (keyup.enter)="searchbyAdditionalFilter('location')" placeholder="Enter Location">
+            <button mat-stroked-button color="primary" class="searchbtn p-0" (click)="searchbyAdditionalFilter('location')">
+              <mat-icon>done</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div [hidden]="!filterExpFlag" class="form-group">
+          <label class="additional-filter-label">Experience Range </label>
+          <div class="form-inline">
+            <input type="number" class="col-5 form-control additional-filter-input" id="searchByMinExp" 
+            name="searchByMinExp" [(ngModel)]="searchByMinExp"
+            (keyup.enter)="searchbyAdditionalFilter('experience')" placeholder="Min Exp" />
+            <input type="number" class="col-5 form-control additional-filter-input max-exp-input" id="searchByMaxExp" 
+            name="searchByMaxExp" [(ngModel)]="searchByMaxExp"
+            (keyup.enter)="searchbyAdditionalFilter('experience')" placeholder="Max Exp" />
+            <button mat-stroked-button color="primary" class="searchbtn p-0" (click)="searchbyAdditionalFilter('experience')">
+              <mat-icon>done</mat-icon>
+            </button>
+          </div>
+        </div>
+
+          
+        <button  mat-stroked-button class="mt-3 border-primary font-weight-bold mat-primary" 
+        (click)="clearFilter()">Clear Filter</button>
+
+      </div>
+     
+
+       
+
+    </mat-expansion-panel>
+    <!-- <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+              Location
+          </mat-panel-title>
+       
+        </mat-expansion-panel-header>
+        <mat-list>
+          <mat-list-item> <mat-checkbox>Delhi</mat-checkbox> </mat-list-item>
+          <mat-list-item>  <mat-checkbox>Banglore </mat-checkbox> </mat-list-item>
+          <mat-list-item> <mat-checkbox>Callcutta</mat-checkbox> </mat-list-item>
+          <mat-list-item>  <mat-checkbox>Noida </mat-checkbox> </mat-list-item>
+          <mat-list-item> <mat-checkbox>Hyderabad</mat-checkbox> </mat-list-item>
+          <mat-list-item>  <mat-checkbox>Chennai</mat-checkbox> </mat-list-item>
+          <mat-list-item> <mat-checkbox>Garugram</mat-checkbox> </mat-list-item>
+         
+         </mat-list>
+        
+       
+      </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Job Type
+          </mat-panel-title>
+       
+        </mat-expansion-panel-header>
+        <mat-list>
+          <mat-list-item> <mat-checkbox>Full Time</mat-checkbox> </mat-list-item>
+          <mat-list-item>  <mat-checkbox>Contract base </mat-checkbox> </mat-list-item>
+          <mat-list-item> <mat-checkbox>Part Time</mat-checkbox> </mat-list-item>
+         
+         </mat-list>
+        
+       
+      </mat-expansion-panel> -->
+  </div>
+</mat-accordion>

@@ -1,0 +1,319 @@
+<app-individualheader></app-individualheader>
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-3 col-sm-12">
+      <!-- <button mat-flat-button color="primary" (click)="clickEvent()" class="d-block d-sm-none f-button">Filter</button>
+      <div class="mob" [ngClass]="classA">
+        <div class="filter"><button mat-icon-button aria-label="Example icon-button with a heart icon"
+            (click)="clickClose()" class="close">
+            <mat-icon>clear</mat-icon>
+          </button></div>
+
+          <app-filter (filterEmiiter)="applyFilter()"></app-filter>
+      </div> -->
+
+      <app-filter (gigWorkerFilter)="filterGigWorker($event)"></app-filter>
+
+    </div>
+
+    <div class="col-sm-12 col-md-6 p-0 ">
+
+      <div *ngIf="showNotification" class="alert alert-success alert-dismissible fade show" role="alert">
+        {{gigworkerDashboardService.messageNotification}} 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+      <div class="top">
+        <h3 class="heading pl-4 pl-md-0">Gigs based on your skill</h3>
+        <!-- <button mat-button [matMenuTriggerFor]="filter" class="shorting">
+          <mat-icon aria-hidden="false" aria-label="Example filter icon">filter_list
+          </mat-icon>
+          Short
+        </button>
+        <mat-menu #filter="matMenu">
+          <button mat-menu-item>Most Recent</button>
+          <button mat-menu-item>Time ago</button>
+        </mat-menu> -->
+      </div>
+
+      <div class="he">
+
+
+        <mat-tab-group class="milestone-tabs" color="primary" (selectedIndexChange)="tabChangeEvent($event)">
+          <mat-tab label="All Gigs ({{gigworkerDashboardService.allJobsListLength}}) ">
+            <ng-container
+              *ngIf="gigworkerDashboardService.seekersList != null && gigworkerDashboardService.seekersList.length > 0 else noJobList">
+              <mat-card class="example-card"
+                *ngFor="let item of gigworkerDashboardService.seekersList | keyvalue ; let i = index">
+                <!-- <ng-container *ngIf="seekersList != null && seekersList.length > 0 else noJobList" >
+              <ng-container *ngFor="let item of seekersList | keyvalue ; let i = index"> -->
+                <mat-card-header>
+                  <img mat-card-avatar style="margin-right: 16px; border-radius: 50%;flex-shrink: 0;object-fit: cover;" *ngIf="item.value.user"
+                      [src]="item.value.user.photo" alt="Profile photo" class="avtrcard mat-card-avatar example-header-image">
+                  <mat-card-title>
+                    <a href="javascript:void(0)" (click)="clickEvent()" target="_blank"
+                      [routerLink]="[ROUTS.GIGWORKER_CANDIDATE + '/'+item.value.id]">
+                      <span
+                        *ngIf="item.value.user != undefined && item.value.user != null && item.value.user.name != undefined">{{ item.value.user.name }}</span>
+                      <span
+                        *ngIf="item.value.company != undefined && item.value.company != null && item.value.company.companyName != undefined">{{ item.value.company.companyName }}</span>
+                    </a>
+                  </mat-card-title>
+                  <mat-card-subtitle>
+                    <ul>
+                      <li>Location : {{item.value.data.locationPreferences}}</li>
+                      <li>Engagement Period : {{item.value.data.engagementPeriod}} month(s)</li>
+                      <li>Required Experience : {{item.value.data.totalExperienceInYears}} <span
+                          *ngIf="item.value.data.maximumExperienceInYears">&nbsp; -
+                          {{item.value.data.maximumExperienceInYears}}&nbsp;</span> year(s)</li>
+                      <li *ngIf="item.value.createdAt">Posted on : {{item.value.createdAt | date: 'dd MMM yyyy'}}</li>
+                    </ul>
+                  </mat-card-subtitle>
+                </mat-card-header>
+
+                <mat-card-content>
+                  <p>
+                    {{item.value.data.remarks}}
+                  </p>
+                  <mat-chip-list aria-label="Fish selection">
+                    <span>Skill looking for</span>
+                    <mat-chip *ngFor="let skill of item.value.data.skill">{{skill}}</mat-chip>
+
+                  </mat-chip-list>
+                </mat-card-content>
+                <mat-card-actions align="end">
+
+                  <button mat-flat-button color="primary" *ngIf="!item.value.isApproved"
+                    (click)="shortlistSeeker('gig', item.value.id)">Shortlist</button>
+                    <!-- style="min-width: 180px;border-color: #1abc9c;height: 45px;" -->
+                  <button mat-button color="primary"
+                    color="primary" *ngIf="item.value.isApproved"                    class="font-weight-bold">
+                    <img src="assets/images/dashboard/check.png" class="icon-hw"> Shortlisted</button>
+                </mat-card-actions>
+              </mat-card>
+            </ng-container>
+            <ng-template #noJobList>
+              <p class="alert alert-info">No gigs found.</p>
+            </ng-template>
+
+          </mat-tab>
+          <mat-tab label=" Hirers Who Shortlisted Me ({{whoShortlistedMeListLength}}) ">
+            <ng-container
+              *ngIf="whoShortlistedMeList != null && whoShortlistedMeList.length > 0 else noOneShortlistedList">
+              <mat-card class="example-card" *ngFor="let item of whoShortlistedMeList | keyvalue ; let i = index">
+                <mat-card-header>
+                  <img mat-card-avatar style="margin-right: 16px; border-radius: 50%;flex-shrink: 0;object-fit: cover;" *ngIf="item.value.user"
+                      [src]="item.value.user.photo" alt="Profile photo" class="avtrcard mat-card-avatar example-header-image">
+                  <mat-card-title>
+                    <a href="javascript:void(0)" (click)="clickEvent()"> 
+                      <span
+                        *ngIf="item.value.user != undefined && item.value.user != null && item.value.user.name != undefined">{{ item.value.user.name }}</span>
+                      <span
+                        *ngIf="item.value.company != undefined && item.value.company != null && item.value.company.companyName != undefined">{{ item.value.company.companyName }}</span>
+                    </a>
+                  </mat-card-title>
+                  <mat-card-subtitle>
+                    <ul>
+                      <li>Shortlisted on : {{item.value.createdAt | date: 'dd MMM yyyy'}}</li>
+                    </ul>
+                  </mat-card-subtitle>
+                </mat-card-header>
+
+                <mat-card-content>
+                  <p>
+                    <span
+                      *ngIf="item.value.user != undefined && item.value.user != null && item.value.user.location != undefined">{{ item.value.user.location }}</span>
+                    <span
+                      *ngIf="item.value.company != undefined && item.value.company != null && item.value.company.companyCity != undefined">{{ item.value.company.companyCity }}</span>
+                  </p>
+                  <mat-chip-list aria-label="Fish selection">
+                    <span>Skill looking for</span>
+                    <mat-chip *ngFor="let skill of item.value.provider.data.skill">{{skill}}</mat-chip>
+
+                  </mat-chip-list>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                  <button mat-button color="primary" (click)="checkIfMilestoneExistForRoute(item.value.id)"
+                    matTooltip="Milestone" matTooltipPosition="above">
+                    <!-- <mat-icon>source</mat-icon> -->
+                    <img src="assets/images/dashboard/clipboard.png" class="icon-hw">
+                    <span class="notification" *ngIf="item.value.isUnreadMilestone">1</span>
+                  </button>
+                 
+                  <button mat-button color="primary" (click)="open(mymodal, item.value, 'who')" matTooltip="chat"
+                    matTooltipPosition="above">
+                    <!-- <mat-icon>textsms</mat-icon> -->
+                    <img src="assets/images/dashboard/chat.png" class="icon-hw">
+                    <span class="notification" *ngIf="item.value.unread">1</span>
+                  </button>
+                  <button mat-button color="primary"  class="font-weight-bold">
+                    <img src="assets/images/dashboard/check.png" class="icon-hw">Shortlisted</button>
+                </mat-card-actions>
+              </mat-card>
+            </ng-container>
+            <ng-template #noOneShortlistedList>
+              <p class="alert alert-info">No one shortlisted yet.</p>
+            </ng-template>
+          </mat-tab>
+          <mat-tab label=" Which Hirer Did I Shortlist ({{shortlistedSeekersListLength}}) ">
+            <ng-container
+              *ngIf="shortlistedSeekersList != null && shortlistedSeekersList.length > 0 else noOneShortlistedSeekerList">
+              <mat-card class="example-card" *ngFor="let item of shortlistedSeekersList | keyvalue ; let i = index">
+                <mat-card-header>
+                  <img mat-card-avatar style="margin-right: 16px; border-radius: 50%;flex-shrink: 0;object-fit: cover;" *ngIf="item.value.seeker && item.value.seeker.user"
+                      [src]="item.value.seeker.user.photo" alt="Profile photo" class="avtrcard mat-card-avatar example-header-image">
+                  <mat-card-title>
+                    <a href="javascript:void(0)" target="_blank" [routerLink]="[ROUTS.GIGWORKER_CANDIDATE + '/'+item.value.seekerId]"
+                      (click)="clickEvent()">
+                      <span
+                        *ngIf="item.value.seeker.user != undefined && item.value.seeker.user != null && item.value.seeker.user.name != undefined">{{ item.value.seeker.user.name }}</span>
+                      <span
+                        *ngIf="item.value.seeker.company != undefined && item.value.seeker.company != null && item.value.seeker.company.companyName != undefined">{{ item.value.seeker.company.companyName }}</span>
+                    </a>
+                  </mat-card-title>
+                  <mat-card-subtitle>
+                    <ul>
+                      <li>Location : {{item.value.seeker.data.locationPreferences}}</li>
+                      <li>Engagement Period : {{item.value.seeker.data.engagementPeriod}} month(s)</li>
+                      <li>Required Experience : {{item.value.seeker.data.totalExperienceInYears}} <span
+                          *ngIf="item.value.seeker.data.maximumExperienceInYears">&nbsp; -
+                          {{item.value.seeker.data.maximumExperienceInYears}} &nbsp;</span> year(s)</li>
+                      <li *ngIf="item.value.seeker.createdAt">{{item.value.seeker.createdAt | date: 'dd MMM yyyy'}}</li>
+                    </ul>
+                  </mat-card-subtitle>
+                </mat-card-header>
+
+                <mat-card-content>
+                  <p>
+                    {{item.value.seeker.data.remarks}}
+                  </p>
+                  <mat-chip-list aria-label="Fish selection">
+                    <span>Skill looking for</span>
+                    <mat-chip *ngFor="let skill of item.value.seeker.data.skill">{{skill}}</mat-chip>
+
+                  </mat-chip-list>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                  <!-- <button mat-flat-button color="primary" *ngIf="!item.value.seekerId" (click)="shortlistSeeker('gig', item.value.seekerId)">Shortlist</button>
+                <button style="min-width: 180px;border-color: #1abc9c;height: 45px;" mat-stroked-button color="primary" (click)="shortlistDelete(item.value.seekerId,'seeker')" *ngIf="item.value.isApproved">Shortlisted</button> -->
+                  <button mat-button color="primary"
+                    class="font-weight-bold">
+                    <img src="assets/images/dashboard/check.png" class="icon-hw">Shortlisted</button>
+                  <button mat-button color="primary" matTooltip="delete"
+                  matTooltipPosition="above" (click)="shortlistDelete(item.value.id,'seeker')">
+                  <img src="assets/images/dashboard/delete.png" class="icon-hw"></button>
+                </mat-card-actions>
+              </mat-card>
+            </ng-container>
+            <ng-template #noOneShortlistedSeekerList>
+              <p class="alert alert-info">No one shortlisted yet.</p>
+            </ng-template>
+          </mat-tab>
+
+
+        </mat-tab-group>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-3  d-none d-sm-block">
+      <mat-card class="profile mr-1" *ngIf="userDetails">
+        <span class="img-avtar"><img style="border-radius: 50%;flex-shrink: 0;object-fit: cover;"
+            [src]="gigworkerSrcData" alt="Profile photo" class="avtrcard mat-card-avatar"
+            *ngIf="gigworkerSrcData"></span>
+        <span style="margin-left: 15px;">{{userDetails.name}}</span>
+        <mat-divider class="mt-3"></mat-divider>
+        <mat-card-content>
+          <h6 class="font-weight-bold mb-0">Email:</h6>
+          <p>{{ userDetails.email }}</p>
+          <h6 class="font-weight-bold mb-0">
+            Location:</h6>
+          <p>{{ userDetails.location }}</p>
+          <h6 class="font-weight-bold mb-0">Mobile number:</h6>
+          <p>{{ userDetails.mobile }}</p>
+          <!-- <h4>Profile</h4>
+          <div class="pr">
+            <span>80%</span>
+            <mat-progress-bar mode="determinate" value="80"></mat-progress-bar>
+          </div> -->
+        </mat-card-content>
+
+      </mat-card>
+    </div>
+  </div>
+
+</div>
+<!-- <div [ngClass]="{show: shouldShow, hide: !shouldShow}">This is ItSolutionStuff.com Div If.</div> -->
+
+
+
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title text-center" id="modal-basic-title">
+      <div *ngIf="type == 'who' else notWho">
+        <span
+          *ngIf="this.dataList.company != undefined && dataList.company != null && dataList.company.companyName != undefined else userShowDetails">To:
+          {{ dataList.provider.company.companyName }}</span>
+        <ng-template #userShowDetails>
+          <span *ngIf="this.dataList.user != undefined && dataList.user != null && dataList.user.name != undefined">To:
+            {{ dataList.provider.user.name }}</span>
+        </ng-template>
+      </div>
+      <ng-template #notWho>
+        <span
+          *ngIf="dataList.provider != null && this.dataList.provider.company != undefined && dataList.provider.company != null && dataList.provider.company.companyName != undefined else userShowDetails">To:
+          {{ dataList.provider.company.companyName }}</span>
+        <ng-template #userShowDetails>
+          <span
+            *ngIf="dataList.provider != null && this.dataList.provider.user != undefined && dataList.provider.user != null && dataList.provider.user.name != undefined">To:
+            {{ dataList.provider.user.name }}</span>
+        </ng-template>
+      </ng-template>
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <!-- <div class="modal-body" #scrollMe [scrollTop]="scrollMe.scrollHeight"> -->
+  <div class="modal-body">
+    <ul *ngIf="messageList != null else noMessageFound" class="no-bullet p-0">
+      <li *ngFor="let mes of messageList | keyvalue ; let i = index">
+        <div class="userMessage"
+          *ngIf="(messageList[i]['user'] != null && messageList[i]['user'] != userId) || (messageList[i]['company'] != null && messageList[i]['company'] != companyId) else myMessage">
+          {{ messageList[i]['message'] }} <p class="time">{{ messageList[i]['sentTime'] }}</p>
+        </div>
+        <ng-template #myMessage>
+          <div class="myMessage">{{ messageList[i]['message'] }} <p class="time">{{ messageList[i]['sentTime'] }}</p>
+          </div>
+        </ng-template>
+      </li>
+    </ul>
+    <ng-template #noMessageFound>
+      <p class="alert alert-info">No message found</p>
+    </ng-template>
+  </div>
+  <!-- <div *ngIf="type != 'who' && gigProcessExist == 'false'" class="chatButton">
+      <button class="btn btn-sm btn-success" (click)="gigProcess(true, false, false)">Create Milestone</button>
+      <button class="btn btn-sm btn-danger" (click)="gigProcess(false, true, false)">Not Interested</button>
+    </div> -->
+  <div class="messageSuggestionParent text-center">
+    <span class="messageSuggestion" (click)="sendMessage('Showcase your skill')">Showcase your skill</span>
+    <span class="messageSuggestion" (click)="sendMessage('Total skill exp?')">Total skill exp?</span>
+    <span class="messageSuggestion" (click)="sendMessage('Your location?')">Your location?</span>
+    <br />
+    <span class="messageSuggestion" (click)="sendMessage('Share link to your work')">Share link to your work</span>
+    <span class="messageSuggestion" (click)="sendMessage('Fee per hr (INR)')">Fee per hr (INR)</span>
+    <span class="messageSuggestion" (click)="sendMessage('Fee per month (INR)')">Fee per month (INR)</span>
+    <br />
+    <span class="messageSuggestion" (click)="sendMessage('Good morning')">Good morning</span>
+    <span class="messageSuggestion" (click)="sendMessage('Thank you')">Thank you</span>
+    <span class="messageSuggestion" (click)="sendMessage('Have a nice day!')">Have a nice day!</span>
+  </div>
+  <div class="modal-footer">
+    <input type="text" class="form-control" (keyup.enter)="sendMessage(messageText.value)" id="messageText"
+      name="messageText" #messageText />
+    <button type="button" class="mat-flat-button mat-button-base mat-primary ng-star-inserted"
+      (click)="sendMessage(messageText.value)">Send</button>
+  </div>
+</ng-template>

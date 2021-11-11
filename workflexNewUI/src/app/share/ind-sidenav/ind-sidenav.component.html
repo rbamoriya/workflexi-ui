@@ -1,0 +1,37 @@
+<a href="javascript:void(0)" class="logo"><img src="assets/images/logo.png" alt="workflexi"/></a>
+<mat-nav-list>
+    <mat-list-item >
+       <a matLine href="#" [routerLinkActive]="'active'"
+       [routerLink]="['/userprofile/basicinfo']">
+           <span class="steps">1</span> Basic Information
+       </a>
+    
+    </mat-list-item>
+    <mat-list-item *ngIf="isEmailVarify == true">
+        <a matLine href="#" [routerLinkActive]="'active'" [class.disabled]="true"
+        [routerLink]="['/gigworker/skills']">
+            <span class="steps">2</span> Skills & Experience
+        </a>
+     
+     </mat-list-item>
+     <mat-list-item *ngIf="isEmailVarify == true && companySelect == false">
+        <a matLine href="javascript:void(0);" [routerLinkActive]="'active'"
+        [routerLink]="['/userprofile/payments']" *ngIf="nextTrue == true">
+            <span class="steps">3</span> Payment Settings
+        </a>
+        <a matLine href="javascript:void(0);" [routerLinkActive]="'active'" *ngIf="nextTrue != true">
+            <span class="steps">3</span> Payment Settings
+        </a>
+     
+     </mat-list-item>
+     <!-- <mat-list-item *ngIf="isEmailVarify == true && companySelect == true">
+        <a matLine href="javascript:void(0);" [routerLinkActive]="'active'"
+        [routerLink]="['/company/basicinfo']" *ngIf="nextTrue == true">
+            <span class="steps">3</span> Company detail 
+        </a>
+        <a matLine href="javascript:void(0);" [routerLinkActive]="'active'" *ngIf="nextTrue != true">
+            <span class="steps">3</span> Company detail 
+        </a>
+     </mat-list-item> -->
+  </mat-nav-list>
+  
